@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DreamWorkFlow.Engine", "DreamWorkFlow.Engine\DreamWorkFlow.Engine.csproj", "{0C37F162-0936-4D3E-A426-8BFCAFDEBD1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonDll", "CommonDll", "{1724D701-CD35-48E5-8C8A-7B87854F4163}"
+	ProjectSection(SolutionItems) = preProject
+		CommonDll\IBatisNet.Common.dll = CommonDll\IBatisNet.Common.dll
+		CommonDll\IBatisNet.DataMapper.dll = CommonDll\IBatisNet.DataMapper.dll
+		CommonDll\providers.config = CommonDll\providers.config
+		CommonDll\SqlMap.config = CommonDll\SqlMap.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DreamWorkFlow.Engine.UnitTest", "DreamWorkFlow.Engine.UnitTest\DreamWorkFlow.Engine.UnitTest.csproj", "{D85F6E2B-09A7-43A3-BF90-D3D9639C10AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C37F162-0936-4D3E-A426-8BFCAFDEBD1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C37F162-0936-4D3E-A426-8BFCAFDEBD1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C37F162-0936-4D3E-A426-8BFCAFDEBD1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C37F162-0936-4D3E-A426-8BFCAFDEBD1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D85F6E2B-09A7-43A3-BF90-D3D9639C10AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D85F6E2B-09A7-43A3-BF90-D3D9639C10AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D85F6E2B-09A7-43A3-BF90-D3D9639C10AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D85F6E2B-09A7-43A3-BF90-D3D9639C10AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
