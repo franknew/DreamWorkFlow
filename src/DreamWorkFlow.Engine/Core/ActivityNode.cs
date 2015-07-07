@@ -1,5 +1,6 @@
 ﻿
 using DreamWorkFlow.Engine.Model;
+using IBatisNet.DataMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,16 @@ namespace DreamWorkFlow.Engine
 {
     public class ActivityNode : Node<Activity>
     {
+        public List<Link> Link { get; set; }
+
+        public string Save(Mapper mapper)
+        {
+            return null;
+        }
+
+        public bool Delete(Mapper mapper)
+        {
+            return false;
+        }
     }
 }
