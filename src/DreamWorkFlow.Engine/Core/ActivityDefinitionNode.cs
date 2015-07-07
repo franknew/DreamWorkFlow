@@ -1,5 +1,4 @@
-﻿
-using DreamWorkFlow.Engine.Model;
+﻿using DreamWorkFlow.Engine.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Text;
 
 namespace DreamWorkFlow.Engine
 {
-    public class ActivityNode : Node<Activity>
+    public class ActivityDefinitionNode : Node<ActivityDefinition>
     {
     }
 }

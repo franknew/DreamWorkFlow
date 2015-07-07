@@ -21,7 +21,9 @@ namespace DreamWorkFlow.Engine.Model
 
         public string Creator { get; set; }
 
-        public string CreateTime { get; set; }
+        public DateTime CreateTime { get; set; }
+
+        public DateTime ProcessTime { get; set; }
 
     }
 }

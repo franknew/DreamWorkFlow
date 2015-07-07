@@ -5,22 +5,20 @@ using System.Text;
 
 namespace DreamWorkFlow.Engine.Model
 {
-    public class ActivityDefinition
+    public class LinkDefinition
     {
         public string ID { get; set; }
 
-        public string WorkflowDefinitionID { get; set; }
+        public string FromAcitivityDefinitionID { get; set; }
 
-        public string Page { get; set; }
+        public string ToActivityDefinitionID { get; set; }
 
-        public bool Enabled { get; set; }
-
-        public string Type { get; set; }
-
-        public string Remark { get; set; }
+        public string Name { get; set; }
 
         public string Creator { get; set; }
 
         public DateTime CreateTime { get; set; }
+
+        public string Remark { get; set; }
     }
 }
