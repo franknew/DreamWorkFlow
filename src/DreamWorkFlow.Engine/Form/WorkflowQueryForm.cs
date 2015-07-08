@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DreamWorkflow.Engine.Model
+namespace DreamWorkflow.Engine.Form
 {
-    public class Workflow
+    public class WorkflowQueryForm
     {
         public string ID { get; set; }
 
@@ -15,7 +15,9 @@ namespace DreamWorkflow.Engine.Model
 
         public string Creator { get; set; }
 
-        public DateTime? CreateTime { get; set; }
+        public DateTime? CreateTime_Start { get; set; }
+
+        public DateTime? CreateTime_End { get; set; }
 
         public int? Status { get; set; }
     }

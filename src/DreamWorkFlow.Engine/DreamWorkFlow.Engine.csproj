@@ -7,8 +7,8 @@
     <ProjectGuid>{0C37F162-0936-4D3E-A426-8BFCAFDEBD1B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DreamWorkFlow.Engine</RootNamespace>
-    <AssemblyName>DreamWorkFlow.Engine</AssemblyName>
+    <RootNamespace>DreamWorkflow.Engine</RootNamespace>
+    <AssemblyName>DreamWorkflow.Engine</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Bin\DreamWorkflow.Engine.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -45,15 +46,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ActivityDefinitionNode.cs" />
     <Compile Include="Core\WorkflowContext.cs" />
-    <Compile Include="Core\WorkflowTree.cs" />
+    <Compile Include="DAL\ActivityDao.cs" />
+    <Compile Include="DAL\WorkflowDao.cs" />
     <Compile Include="Model\Activity.cs" />
     <Compile Include="Model\ActivityDefinition.cs" />
     <Compile Include="Core\ActivityNode.cs" />
     <Compile Include="Core\Node.cs" />
+    <Compile Include="Model\Link.cs" />
+    <Compile Include="Model\LinkDefinition.cs" />
+    <Compile Include="Model\Task.cs" />
     <Compile Include="Model\Workflow.cs" />
     <Compile Include="Model\WorkflowDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Form\WorkflowQueryForm.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="providers.config" />
@@ -61,7 +68,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interface\" />
-    <Folder Include="SqlMapping\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlMapping\Activity.xml" />
+    <Content Include="SqlMapping\Workflow.xml" />
+    <Content Include="SqlMapping\dbsql.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

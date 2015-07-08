@@ -1,11 +1,11 @@
-﻿using DreamWorkFlow.Engine.Model;
+﻿using DreamWorkflow.Engine.Model;
 using IBatisNet.DataMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DreamWorkFlow.Engine
+namespace DreamWorkflow.Engine
 {
     public class WorkflowContext
     {
