@@ -8,10 +8,12 @@ using System.Text;
 
 namespace DreamWorkflow.Engine.DAL
 {
-    public class WorkflowDao : BaseDao<Workflow, WorkflowQueryForm>
+    public class WorkflowDefinitionDao : BaseDao<WorkflowDefinition, WorkflowDefinitionQueryForm>
     {
-        public WorkflowDao(ISqlMapper mapper = null)
+        public WorkflowDefinitionDao(ISqlMapper mapper= null)
             : base(mapper)
-        { }
+        {
+
+        }
     }
 }

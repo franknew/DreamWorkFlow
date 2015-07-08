@@ -5,15 +5,10 @@ using System.Text;
 
 namespace DreamWorkflow.Engine.Model
 {
-    public class Task
+    public class Task : BaseEntity
     {
-        public string ID { get; set; }
 
         public string ActivityID { get; set; }
-
-        public string Creator { get; set; }
-
-        public DateTime CreateTime { get; set; }
 
         public string Remark { get; set; }
 

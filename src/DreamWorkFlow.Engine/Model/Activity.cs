@@ -5,9 +5,8 @@ using System.Text;
 
 namespace DreamWorkflow.Engine.Model
 {
-    public class Activity
+    public class Activity : BaseEntity
     {
-        public string ID { get; set; }
 
         public string WorkflowID { get; set; }
 
@@ -18,10 +17,6 @@ namespace DreamWorkflow.Engine.Model
         public string Type { get; set; }
 
         public string Status { get; set; }
-
-        public string Creator { get; set; }
-
-        public DateTime CreateTime { get; set; }
 
         public DateTime ProcessTime { get; set; }
 

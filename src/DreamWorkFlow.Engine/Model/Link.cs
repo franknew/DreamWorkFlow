@@ -6,20 +6,11 @@ using System.Text;
 
 namespace DreamWorkflow.Engine.Model
 {
-    public class Link
+    public class Link : BaseEntity
     {
-        public string ID { get; set; }
 
         public string FromAcitivityID { get; set; }
 
         public string ToActivityID { get; set; }
-
-        public string Name { get; set; }
-
-        public string Creator { get; set; }
-
-        public DateTime CreateTime { get; set; }
-
-        
     }
 }

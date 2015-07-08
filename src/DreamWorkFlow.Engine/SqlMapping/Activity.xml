@@ -1,1 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8" ?> 
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="post" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Activity" type="DreamWorkflow.Engine.Model.Activity" />
+    <typeAlias alias="ActivityForm" type="DreamWorkflow.Engine.Form.ActivityQueryForm" />
+  </alias>
+  <statements>
+    <select>
+      
+    </select>
+  </statements>
+</sqlMap>

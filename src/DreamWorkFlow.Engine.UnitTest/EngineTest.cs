@@ -14,33 +14,26 @@ namespace DreamWorkflow.Engine.UnitTest
         [TestMethod]
         public void TestAdd()
         {
-            try
+            Workflow wf = new Workflow
             {
-                Workflow wf = new Workflow
-                {
-                    Creator = "test add",
-                    Name = "testing add",
-                    Status = 0,
-                    CreateTime = DateTime.Now,
-                    WorkflowDefinitionID = "1",
-                };
-                dao.Add(wf);
-                WorkflowQueryForm form = new WorkflowQueryForm
-                {
-                    ID = wf.ID,
-                };
-                var list = dao.Query(form);
-                Assert.AreEqual(1, list.Count);
-                Assert.AreEqual("test add", list[0].Name);
-                Assert.AreEqual(1, list[0].WorkflowDefinitionID);
-                Assert.AreEqual("testing add", list[0].Creator);
-                Assert.AreEqual(0, list[0].Status);
-                dao.Delete(form);
-            }
-            catch (Exception ex)
+                Creator = "test add",
+                Name = "testing add",
+                Status = 0,
+                CreateTime = DateTime.Now,
+                WorkflowDefinitionID = "1",
+            };
+            dao.Add(wf);
+            WorkflowQueryForm form = new WorkflowQueryForm
             {
-
-            }
+                ID = wf.ID,
+            };
+            var list = dao.Query(form);
+            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual("testing add", list[0].Name);
+            Assert.AreEqual("1", list[0].WorkflowDefinitionID);
+            Assert.AreEqual("test add", list[0].Creator);
+            Assert.AreEqual(0, list[0].Status);
+            dao.Delete(form);
         }
 
         [TestMethod]
