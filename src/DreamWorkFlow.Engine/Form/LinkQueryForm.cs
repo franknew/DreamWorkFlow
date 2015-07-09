@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 namespace DreamWorkflow.Engine.Form
 {
-    public class ActivityQueryForm : BaseQueryForm
+    public class LinkQueryForm : BaseQueryForm
     {
-        public string ActivityDefinitionID { get; set; }
+        public string LinkDefinitionID { get; set; }
         
-        public string Page { get; set; }
+        public string FromActivityID { get; set; }
         
-        public Int32? Type { get; set; }
-        
-        public string WorkflowID { get; set; }
+        public string ToAcivityID { get; set; }
         
         public Int32? Status { get; set; }
         

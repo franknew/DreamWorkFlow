@@ -27,5 +27,10 @@ namespace WinformTest
             wf.ID = "2";
             var list = dao.Query(wf);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

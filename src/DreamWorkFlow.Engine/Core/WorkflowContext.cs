@@ -1,4 +1,6 @@
-﻿using DreamWorkflow.Engine.Model;
+﻿using DreamWorkflow.Engine.DAL;
+using DreamWorkflow.Engine.Form;
+using DreamWorkflow.Engine.Model;
 using IBatisNet.DataMapper;
 using System;
 using System.Collections.Generic;
@@ -25,8 +27,8 @@ namespace DreamWorkflow.Engine
             {
                 this.value.ID = id;
             }
-            var mapper = Mapper.Instance();
-            this.value = mapper.QueryForObject<Workflow>("GetWorkflowByID", this.value.ID);
+            WorkflowDao dao = new WorkflowDao();
+            var list = dao.Query(new WorkflowQueryForm { ID = this.value.ID });
         }
 
         public ActivityNode CurrentActivity

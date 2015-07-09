@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 namespace DreamWorkflow.Engine.DAL
 {
-    public class ActivityDefinitionDao : BaseDao<ActivityDefinition, ActivityDefinitionQueryForm, ActivityDefinitionUpdateForm>
+    public class LinkDao : BaseDao<Link, LinkQueryForm, LinkUpdateForm>
     {
-        public ActivityDefinitionDao(ISqlMapper mapper = null)
+        public LinkDao(ISqlMapper mapper = null)
             : base(mapper)
         {
 

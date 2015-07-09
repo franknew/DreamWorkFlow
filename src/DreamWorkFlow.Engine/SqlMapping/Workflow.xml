@@ -1,88 +1,120 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <sqlMap namespace="post" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
   <alias>
     <typeAlias alias="Workflow" type="DreamWorkflow.Engine.Model.Workflow" />
     <typeAlias alias="WorkflowQueryForm" type="DreamWorkflow.Engine.Form.WorkflowQueryForm" />
+    <typeAlias alias="WorkflowUpdateForm" type="DreamWorkflow.Engine.Form.WorkflowUpdateForm" />
   </alias>
   <statements>
-    <select id="QueryWorkflow" resultClass="Workflow" parameterClass="WorkflowQueryForm">
-      select * from Workflow where 1=1
-      <isNotNull property="ID">
-        AND ID=#ID#
-      </isNotNull>
-      <isNotNull property="Name">
-        AND Name LIKE '%$Name$%'
-      </isNotNull>
-      <isNotNull property="WorkflowDefinitionID">
-        AND WorkflowDefinitionID=#WorkflowDefinitionID#
-      </isNotNull>
-      <isNotNull property="Creator">
-        AND Creator=#Creator#
-      </isNotNull>
-      <isNotNull property="CreateTime_Start">
-        AND CreateTime&gt;=#CreateTime_Start#
-      </isNotNull>
-      <isNotNull property="CreateTime_End">
-        AND CreateTime&lt;=#CreateTime_End#
-      </isNotNull>
-      <isNotNull property="Status">
-        AND [Status]=#Status#
-      </isNotNull>
-    </select>
-    <insert id="AddWorkflow" resultClass="string" parameterClass="Workflow">
-      INSERT INTO Workflow
-      (
-      ID,WorkflowDefinitionID,Name,Creator,CreateTime,[Status]
-      )
-      VALUES(
-      #ID#,#WorkflowDefinitionID#,#Name#,#Creator#,#CreateTime#,#Status#
-      )
-    </insert>
-    <delete id="DeleteWorkflow" parameterClass="WorkflowQueryForm">
-      DELETE FROM Workflow WHERE 1=1
-      <isNotNull property="ID">
-        AND ID=#ID#
-      </isNotNull>
-      <isNotNull property="Name">
-        AND Name=#Name#
-      </isNotNull>
-      <isNotNull property="WorkflowDefinitionID">
-        AND WorkflowDefinitionID=#WorkflowDefinitionID#
-      </isNotNull>
-      <isNotNull property="Creator">
-        AND Creator=#Creator#
-      </isNotNull>
-      <isNotNull property="Status">
-        AND Status=#Status#
-      </isNotNull>
-      <isNotNull property="CreateTime_Start">
-        AND CreateTime&gt;=#CreateTime_Start#
-      </isNotNull>
-      <isNotNull property="CreateTime_End">
-        AND CreateTime&lt;=#CreateTime_End#
-      </isNotNull>
-    </delete>
-    <update id="UpdateWorkflow" parameterClass="Workflow">
-      <isNotNull property="ID">
-        UPDATE Workflow SET
-        <isNotNull property="Name">
-          Name=#Name#
+  <select id="QueryWorkflow" resultClass="Workflow" parameterClass="WorkflowQueryForm">
+    SELECT * FROM Workflow WHERE 1=1
+    <isNotNull prepend="AND" property="ID">
+        [ID]=#ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowDefinitionID">
+        [WorkflowDefinitionID]=#WorkflowDefinitionID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Name">
+        [Name] LIKE '%$Name$%'
+    </isNotNull>
+    <isNotNull prepend="AND" property="Creator">
+        [Creator]=#Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_Start">
+        [CreateTime]&gt;=#CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_End">
+        [CreateTime]&lt;=#CreateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Status">
+        [Status]=#Status#
+    </isNotNull>
+  </select>
+  <insert id="AddWorkflow" parameterClass="Workflow">
+  INSERT INTO Workflow
+  (
+    [ID],
+    [WorkflowDefinitionID],
+    [Name],
+    [Creator],
+    [CreateTime],
+    [Status]
+  )
+  VALUES
+  (
+        #ID#,
+        #WorkflowDefinitionID#,
+        #Name#,
+        #Creator#,
+        #CreateTime#,
+        #Status#
+  )
+  </insert>
+  <update id="UpdateWorkflow" parameterClass="WorkflowUpdateForm">
+  <isNotNull property="Workflow">
+  UPDATE Workflow SET 
+        <isNotNull property="Workflow.WorkflowDefinitionID">
+        [WorkflowDefinitionID]=#Workflow.WorkflowDefinitionID#,
         </isNotNull>
-        <isNotNull property="WorkflowDefinitionID">
-          WorkflowDefinitionID=#WorkflowDefinitionID#
+        <isNotNull property="Workflow.Name">
+        [Name]=#Workflow.Name#,
         </isNotNull>
-        <isNotNull property="Creator">
-          Creator=#Creator#
+        <isNotNull property="Workflow.Creator">
+        [Creator]=#Workflow.Creator#,
         </isNotNull>
-        <isNotNull property="CreateTime">
-          CreateTime=#CreateTime#
+        <isNotNull property="Workflow.CreateTime">
+        [CreateTime]=#Workflow.CreateTime#,
         </isNotNull>
-        <isNotNull property="Status">
-          [Status]=#Status#
+        <isNotNull property="Workflow.Status">
+        [Status]=#Workflow.Status#
         </isNotNull>
-        WHERE ID=#ID#
-      </isNotNull>
-    </update>
+    WHERE 1=1
+    <isNotNull prepend="AND" property="WorkflowQueryForm.ID">
+        [ID]=#WorkflowQueryForm.ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowQueryForm.WorkflowDefinitionID">
+        [WorkflowDefinitionID]=#WorkflowQueryForm.WorkflowDefinitionID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowQueryForm.Name">
+        [Name] LIKE '%$WorkflowQueryForm.Name$%'
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowQueryForm.Creator">
+        [Creator]=#WorkflowQueryForm.Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowQueryForm.CreateTime_Start">
+        [CreateTime]&gt;=#WorkflowQueryForm.CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowQueryForm.CreateTime_End">
+        [CreateTime]&lt;=#WorkflowQueryForm.CreateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowQueryForm.Status">
+        [Status]=#WorkflowQueryForm.Status#
+    </isNotNull>
+    </isNotNull>
+  </update>
+  <delete id="DeleteWorkflow" parameterClass="WorkflowQueryForm">
+    DELETE FROM Workflow WHERE 1=1
+    <isNotNull prepend="AND" property="ID">
+        [ID]=#ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowDefinitionID">
+        [WorkflowDefinitionID]=#WorkflowDefinitionID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Name">
+        [Name]=#Name#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Creator">
+        [Creator]=#Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_Start">
+        [CreateTime]&gt;=#CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_End">
+        [CreateTime]&lt;=#CreateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Status">
+        [Status]=#Status#
+    </isNotNull>
+  </delete>
   </statements>
 </sqlMap>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="post" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Approval" type="DreamWorkflow.Engine.Model.Approval" />
+    <typeAlias alias="ApprovalQueryForm" type="DreamWorkflow.Engine.Form.ApprovalQueryForm" />
+    <typeAlias alias="ApprovalUpdateForm" type="DreamWorkflow.Engine.Form.ApprovalUpdateForm" />
+  </alias>
+  <statements>
+  <select id="QueryApproval" resultClass="Approval" parameterClass="ApprovalQueryForm">
+    SELECT * FROM Approval WHERE 1=1
+    <isNotNull prepend="AND" property="ID">
+        [ID]=#ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityID">
+        [ActivityID]=#ActivityID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Passed">
+        [Passed]=#Passed#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Remark">
+        [Remark] LIKE '%$Remark$%'
+    </isNotNull>
+    <isNotNull prepend="AND" property="Creator">
+        [Creator]=#Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_Start">
+        [CreateTime]&gt;=#CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_End">
+        [CreateTime]&lt;=#CreateTime_End#
+    </isNotNull>
+  </select>
+  <insert id="AddApproval" parameterClass="Approval">
+  INSERT INTO Approval
+  (
+    [ID],
+    [ActivityID],
+    [Passed],
+    [Remark],
+    [Creator],
+    [CreateTime]
+  )
+  VALUES
+  (
+        #ID#,
+        #ActivityID#,
+        #Passed#,
+        #Remark#,
+        #Creator#,
+        #CreateTime#
+  )
+  </insert>
+  <update id="UpdateApproval" parameterClass="ApprovalUpdateForm">
+  <isNotNull property="Approval">
+  UPDATE Approval SET 
+        <isNotNull property="Approval.ActivityID">
+        [ActivityID]=#Approval.ActivityID#,
+        </isNotNull>
+        <isNotNull property="Approval.Passed">
+        [Passed]=#Approval.Passed#,
+        </isNotNull>
+        <isNotNull property="Approval.Remark">
+        [Remark]=#Approval.Remark#,
+        </isNotNull>
+        <isNotNull property="Approval.Creator">
+        [Creator]=#Approval.Creator#,
+        </isNotNull>
+        <isNotNull property="Approval.CreateTime">
+        [CreateTime]=#Approval.CreateTime#
+        </isNotNull>
+    WHERE 1=1
+    <isNotNull prepend="AND" property="ApprovalQueryForm.ID">
+        [ID]=#ApprovalQueryForm.ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ApprovalQueryForm.ActivityID">
+        [ActivityID]=#ApprovalQueryForm.ActivityID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ApprovalQueryForm.Passed">
+        [Passed]=#ApprovalQueryForm.Passed#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ApprovalQueryForm.Remark">
+        [Remark] LIKE '%$ApprovalQueryForm.Remark$%'
+    </isNotNull>
+    <isNotNull prepend="AND" property="ApprovalQueryForm.Creator">
+        [Creator]=#ApprovalQueryForm.Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ApprovalQueryForm.CreateTime_Start">
+        [CreateTime]&gt;=#ApprovalQueryForm.CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ApprovalQueryForm.CreateTime_End">
+        [CreateTime]&lt;=#ApprovalQueryForm.CreateTime_End#
+    </isNotNull>
+    </isNotNull>
+  </update>
+  <delete id="DeleteApproval" parameterClass="ApprovalQueryForm">
+    DELETE FROM Approval WHERE 1=1
+    <isNotNull prepend="AND" property="ID">
+        [ID]=#ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityID">
+        [ActivityID]=#ActivityID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Passed">
+        [Passed]=#Passed#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Remark">
+        [Remark]=#Remark#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Creator">
+        [Creator]=#Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_Start">
+        [CreateTime]&gt;=#CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_End">
+        [CreateTime]&lt;=#CreateTime_End#
+    </isNotNull>
+  </delete>
+  </statements>
+</sqlMap>

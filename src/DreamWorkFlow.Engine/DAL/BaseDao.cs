@@ -8,7 +8,7 @@ using System.Text;
 namespace DreamWorkflow.Engine.DAL
 {
 
-    public class BaseDao<TEngity, TQueryForm> where TEngity : BaseEntity
+    public class BaseDao<TEngity, TQueryForm, TUpdateForm> where TEngity : BaseEntity
     {
 
         private ISqlMapper mapper = null;
@@ -49,9 +49,9 @@ namespace DreamWorkflow.Engine.DAL
             return true;
         }
 
-        public bool Update(TEngity workflow)
+        public bool Update(TUpdateForm entity)
         {
-            mapper.Update("Update" + tableName, workflow);
+            mapper.Update("Update" + tableName, entity);
             return true;
         }
     }

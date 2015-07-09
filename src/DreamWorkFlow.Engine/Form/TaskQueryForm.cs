@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 namespace DreamWorkflow.Engine.Form
 {
-    public class ActivityQueryForm : BaseQueryForm
+    public class TaskQueryForm : BaseQueryForm
     {
-        public string ActivityDefinitionID { get; set; }
+        public string AcitivityID { get; set; }
         
-        public string Page { get; set; }
-        
-        public Int32? Type { get; set; }
-        
-        public string WorkflowID { get; set; }
+        public string Remark { get; set; }
         
         public Int32? Status { get; set; }
+        
+        public DateTime? ReadTime_Start { get; set; }
+        
+        public DateTime? ReadTime_End { get; set; }
         
         public DateTime? ProcessTime_Start { get; set; }
         

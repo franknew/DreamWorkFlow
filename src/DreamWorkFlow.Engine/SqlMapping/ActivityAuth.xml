@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="post" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="ActivityAuth" type="DreamWorkflow.Engine.Model.ActivityAuth" />
+    <typeAlias alias="ActivityAuthQueryForm" type="DreamWorkflow.Engine.Form.ActivityAuthQueryForm" />
+    <typeAlias alias="ActivityAuthUpdateForm" type="DreamWorkflow.Engine.Form.ActivityAuthUpdateForm" />
+  </alias>
+  <statements>
+  <select id="QueryActivityAuth" resultClass="ActivityAuth" parameterClass="ActivityAuthQueryForm">
+    SELECT * FROM ActivityAuth WHERE 1=1
+    <isNotNull prepend="AND" property="ID">
+        [ID]=#ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="AcitivityAuthDefinitionID">
+        [AcitivityAuthDefinitionID]=#AcitivityAuthDefinitionID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Type">
+        [Type]=#Type#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Value">
+        [Value]=#Value#
+    </isNotNull>
+    <isNotNull prepend="AND" property="AcitivityID">
+        [AcitivityID]=#AcitivityID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Creator">
+        [Creator]=#Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_Start">
+        [CreateTime]&gt;=#CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_End">
+        [CreateTime]&lt;=#CreateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Name">
+        [Name] LIKE '%$Name$%'
+    </isNotNull>
+  </select>
+  <insert id="AddActivityAuth" parameterClass="ActivityAuth">
+  INSERT INTO ActivityAuth
+  (
+    [ID],
+    [AcitivityAuthDefinitionID],
+    [Type],
+    [Value],
+    [AcitivityID],
+    [Creator],
+    [CreateTime],
+    [Name]
+  )
+  VALUES
+  (
+        #ID#,
+        #AcitivityAuthDefinitionID#,
+        #Type#,
+        #Value#,
+        #AcitivityID#,
+        #Creator#,
+        #CreateTime#,
+        #Name#
+  )
+  </insert>
+  <update id="UpdateActivityAuth" parameterClass="ActivityAuthUpdateForm">
+  <isNotNull property="ActivityAuth">
+  UPDATE ActivityAuth SET 
+        <isNotNull property="ActivityAuth.AcitivityAuthDefinitionID">
+        [AcitivityAuthDefinitionID]=#ActivityAuth.AcitivityAuthDefinitionID#,
+        </isNotNull>
+        <isNotNull property="ActivityAuth.Type">
+        [Type]=#ActivityAuth.Type#,
+        </isNotNull>
+        <isNotNull property="ActivityAuth.Value">
+        [Value]=#ActivityAuth.Value#,
+        </isNotNull>
+        <isNotNull property="ActivityAuth.AcitivityID">
+        [AcitivityID]=#ActivityAuth.AcitivityID#,
+        </isNotNull>
+        <isNotNull property="ActivityAuth.Creator">
+        [Creator]=#ActivityAuth.Creator#,
+        </isNotNull>
+        <isNotNull property="ActivityAuth.CreateTime">
+        [CreateTime]=#ActivityAuth.CreateTime#,
+        </isNotNull>
+        <isNotNull property="ActivityAuth.Name">
+        [Name]=#ActivityAuth.Name#
+        </isNotNull>
+    WHERE 1=1
+    <isNotNull prepend="AND" property="ActivityAuthQueryForm.ID">
+        [ID]=#ActivityAuthQueryForm.ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityAuthQueryForm.AcitivityAuthDefinitionID">
+        [AcitivityAuthDefinitionID]=#ActivityAuthQueryForm.AcitivityAuthDefinitionID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityAuthQueryForm.Type">
+        [Type]=#ActivityAuthQueryForm.Type#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityAuthQueryForm.Value">
+        [Value]=#ActivityAuthQueryForm.Value#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityAuthQueryForm.AcitivityID">
+        [AcitivityID]=#ActivityAuthQueryForm.AcitivityID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityAuthQueryForm.Creator">
+        [Creator]=#ActivityAuthQueryForm.Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityAuthQueryForm.CreateTime_Start">
+        [CreateTime]&gt;=#ActivityAuthQueryForm.CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityAuthQueryForm.CreateTime_End">
+        [CreateTime]&lt;=#ActivityAuthQueryForm.CreateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityAuthQueryForm.Name">
+        [Name] LIKE '%$ActivityAuthQueryForm.Name$%'
+    </isNotNull>
+    </isNotNull>
+  </update>
+  <delete id="DeleteActivityAuth" parameterClass="ActivityAuthQueryForm">
+    DELETE FROM ActivityAuth WHERE 1=1
+    <isNotNull prepend="AND" property="ID">
+        [ID]=#ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="AcitivityAuthDefinitionID">
+        [AcitivityAuthDefinitionID]=#AcitivityAuthDefinitionID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Type">
+        [Type]=#Type#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Value">
+        [Value]=#Value#
+    </isNotNull>
+    <isNotNull prepend="AND" property="AcitivityID">
+        [AcitivityID]=#AcitivityID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Creator">
+        [Creator]=#Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_Start">
+        [CreateTime]&gt;=#CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_End">
+        [CreateTime]&lt;=#CreateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Name">
+        [Name]=#Name#
+    </isNotNull>
+  </delete>
+  </statements>
+</sqlMap>

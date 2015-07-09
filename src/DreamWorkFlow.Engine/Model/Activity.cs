@@ -18,7 +18,7 @@ namespace DreamWorkflow.Engine.Model
 
         public string Status { get; set; }
 
-        public DateTime ProcessTime { get; set; }
+        public DateTime? ProcessTime { get; set; }
 
     }
 }

@@ -48,22 +48,55 @@
   <ItemGroup>
     <Compile Include="Core\ActivityDefinitionNode.cs" />
     <Compile Include="Core\WorkflowContext.cs" />
+    <Compile Include="DAL\ActivityAuthDao.cs" />
+    <Compile Include="DAL\ActivityAuthDefinitionDao.cs" />
     <Compile Include="DAL\ActivityDao.cs" />
     <Compile Include="DAL\ActivityDefinitionDao.cs" />
+    <Compile Include="DAL\ApprovalDao.cs" />
     <Compile Include="DAL\BaseDao.cs" />
+    <Compile Include="DAL\ContextDao.cs" />
+    <Compile Include="DAL\LinkDao.cs" />
+    <Compile Include="DAL\LinkDefinitionDao.cs" />
+    <Compile Include="DAL\ParameterDao.cs" />
+    <Compile Include="DAL\TaskDao.cs" />
     <Compile Include="DAL\WorkflowDao.cs" />
     <Compile Include="DAL\WorkflowDefinitionDao.cs" />
+    <Compile Include="Form\ActivityAuthDefinitionQueryForm.cs" />
+    <Compile Include="Form\ActivityAuthDefinitionUpdateForm.cs" />
+    <Compile Include="Form\ActivityAuthQueryForm.cs" />
+    <Compile Include="Form\ActivityAuthUpdateForm.cs" />
     <Compile Include="Form\ActivityDefinitionQueryForm.cs" />
+    <Compile Include="Form\ActivityDefinitionUpdateForm.cs" />
     <Compile Include="Form\ActivityQueryForm.cs" />
+    <Compile Include="Form\ActivityUpdateForm.cs" />
+    <Compile Include="Form\ApprovalQueryForm.cs" />
+    <Compile Include="Form\ApprovalUpdateForm.cs" />
     <Compile Include="Form\BaseQueryForm.cs" />
+    <Compile Include="Form\ContextQueryForm.cs" />
+    <Compile Include="Form\ContextUpdateForm.cs" />
+    <Compile Include="Form\LinkDefinitionQueryForm.cs" />
+    <Compile Include="Form\LinkDefinitionUpdateForm.cs" />
+    <Compile Include="Form\LinkQueryForm.cs" />
+    <Compile Include="Form\LinkUpdateForm.cs" />
+    <Compile Include="Form\ParameterQueryForm.cs" />
+    <Compile Include="Form\ParameterUpdateForm.cs" />
+    <Compile Include="Form\TaskQueryForm.cs" />
+    <Compile Include="Form\TaskUpdateForm.cs" />
     <Compile Include="Form\WorkflowDefinitionQueryForm.cs" />
+    <Compile Include="Form\WorkflowDefinitionUpdateForm.cs" />
+    <Compile Include="Form\WorkflowUpdateForm.cs" />
     <Compile Include="Model\Activity.cs" />
+    <Compile Include="Model\ActivityAuth.cs" />
+    <Compile Include="Model\ActivityAuthDefinition.cs" />
     <Compile Include="Model\ActivityDefinition.cs" />
     <Compile Include="Core\ActivityNode.cs" />
     <Compile Include="Core\Node.cs" />
+    <Compile Include="Model\Approval.cs" />
     <Compile Include="Model\BaseEntity.cs" />
+    <Compile Include="Model\Context.cs" />
     <Compile Include="Model\Link.cs" />
     <Compile Include="Model\LinkDefinition.cs" />
+    <Compile Include="Model\Parameter.cs" />
     <Compile Include="Model\Task.cs" />
     <Compile Include="Model\Workflow.cs" />
     <Compile Include="Model\WorkflowDefinition.cs" />
@@ -79,8 +112,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="SqlMapping\Activity.xml" />
+    <Content Include="SqlMapping\ActivityAuth.xml" />
+    <Content Include="SqlMapping\ActivityAuthDefinition.xml" />
+    <Content Include="SqlMapping\ActivityDefinition.xml" />
+    <Content Include="SqlMapping\Approval.xml" />
+    <Content Include="SqlMapping\Context.xml" />
+    <Content Include="SqlMapping\Link.xml" />
+    <Content Include="SqlMapping\LinkDefinition.xml" />
+    <Content Include="SqlMapping\Parameter.xml" />
+    <Content Include="SqlMapping\Task.xml" />
     <Content Include="SqlMapping\Workflow.xml" />
     <Content Include="SqlMapping\dbsql.sql" />
+    <Content Include="SqlMapping\WorkflowDefinition.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

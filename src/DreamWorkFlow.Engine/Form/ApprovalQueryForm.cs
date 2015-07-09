@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 namespace DreamWorkflow.Engine.Form
 {
-    public class WorkflowDefinitionQueryForm : BaseQueryForm
+    public class ApprovalQueryForm : BaseQueryForm
     {
-        public Boolean? Enabled { get; set; }
+        public string ActivityID { get; set; }
+        
+        public Boolean? Passed { get; set; }
         
         public string Remark { get; set; }
         

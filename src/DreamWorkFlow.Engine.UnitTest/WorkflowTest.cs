@@ -58,11 +58,18 @@ namespace DreamWorkflow.Engine.UnitTest
                 ID = "11",
             };
             var list = dao.Query(form);
-            Workflow updateform = new Workflow
+            WorkflowUpdateForm updateform = new WorkflowUpdateForm
             {
-                ID = list[0].ID,
-                Status = 1,
+                Workflow = new Workflow
+                {
+                    Status = 1
+                },
+                WorkflowQueryForm = new WorkflowQueryForm
+                {
+                    ID = list[0].ID,
+                },
             };
+             
             dao.Update(updateform);
             list = dao.Query(form);
             Assert.AreEqual(1, list[0].Status);

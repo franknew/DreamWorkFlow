@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="post" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <alias>
+    <typeAlias alias="Link" type="DreamWorkflow.Engine.Model.Link" />
+    <typeAlias alias="LinkQueryForm" type="DreamWorkflow.Engine.Form.LinkQueryForm" />
+    <typeAlias alias="LinkUpdateForm" type="DreamWorkflow.Engine.Form.LinkUpdateForm" />
+  </alias>
+  <statements>
+  <select id="QueryLink" resultClass="Link" parameterClass="LinkQueryForm">
+    SELECT * FROM Link WHERE 1=1
+    <isNotNull prepend="AND" property="ID">
+        [ID]=#ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LinkDefinitionID">
+        [LinkDefinitionID]=#LinkDefinitionID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="FromActivityID">
+        [FromActivityID]=#FromActivityID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ToAcivityID">
+        [ToAcivityID]=#ToAcivityID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Name">
+        [Name] LIKE '%$Name$%'
+    </isNotNull>
+    <isNotNull prepend="AND" property="Creator">
+        [Creator]=#Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_Start">
+        [CreateTime]&gt;=#CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_End">
+        [CreateTime]&lt;=#CreateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Status">
+        [Status]=#Status#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ProcessTime_Start">
+        [ProcessTime]&gt;=#ProcessTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ProcessTime_End">
+        [ProcessTime]&lt;=#ProcessTime_End#
+    </isNotNull>
+  </select>
+  <insert id="AddLink" parameterClass="Link">
+  INSERT INTO Link
+  (
+    [ID],
+    [LinkDefinitionID],
+    [FromActivityID],
+    [ToAcivityID],
+    [Name],
+    [Creator],
+    [CreateTime],
+    [Status],
+    [ProcessTime]
+  )
+  VALUES
+  (
+        #ID#,
+        #LinkDefinitionID#,
+        #FromActivityID#,
+        #ToAcivityID#,
+        #Name#,
+        #Creator#,
+        #CreateTime#,
+        #Status#,
+        #ProcessTime#
+  )
+  </insert>
+  <update id="UpdateLink" parameterClass="LinkUpdateForm">
+  <isNotNull property="Link">
+  UPDATE Link SET 
+        <isNotNull property="Link.LinkDefinitionID">
+        [LinkDefinitionID]=#Link.LinkDefinitionID#,
+        </isNotNull>
+        <isNotNull property="Link.FromActivityID">
+        [FromActivityID]=#Link.FromActivityID#,
+        </isNotNull>
+        <isNotNull property="Link.ToAcivityID">
+        [ToAcivityID]=#Link.ToAcivityID#,
+        </isNotNull>
+        <isNotNull property="Link.Name">
+        [Name]=#Link.Name#,
+        </isNotNull>
+        <isNotNull property="Link.Creator">
+        [Creator]=#Link.Creator#,
+        </isNotNull>
+        <isNotNull property="Link.CreateTime">
+        [CreateTime]=#Link.CreateTime#,
+        </isNotNull>
+        <isNotNull property="Link.Status">
+        [Status]=#Link.Status#,
+        </isNotNull>
+        <isNotNull property="Link.ProcessTime">
+        [ProcessTime]=#Link.ProcessTime#
+        </isNotNull>
+    WHERE 1=1
+    <isNotNull prepend="AND" property="LinkQueryForm.ID">
+        [ID]=#LinkQueryForm.ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LinkQueryForm.LinkDefinitionID">
+        [LinkDefinitionID]=#LinkQueryForm.LinkDefinitionID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LinkQueryForm.FromActivityID">
+        [FromActivityID]=#LinkQueryForm.FromActivityID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LinkQueryForm.ToAcivityID">
+        [ToAcivityID]=#LinkQueryForm.ToAcivityID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LinkQueryForm.Name">
+        [Name] LIKE '%$LinkQueryForm.Name$%'
+    </isNotNull>
+    <isNotNull prepend="AND" property="LinkQueryForm.Creator">
+        [Creator]=#LinkQueryForm.Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LinkQueryForm.CreateTime_Start">
+        [CreateTime]&gt;=#LinkQueryForm.CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LinkQueryForm.CreateTime_End">
+        [CreateTime]&lt;=#LinkQueryForm.CreateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LinkQueryForm.Status">
+        [Status]=#LinkQueryForm.Status#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LinkQueryForm.ProcessTime_Start">
+        [ProcessTime]&gt;=#LinkQueryForm.ProcessTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LinkQueryForm.ProcessTime_End">
+        [ProcessTime]&lt;=#LinkQueryForm.ProcessTime_End#
+    </isNotNull>
+    </isNotNull>
+  </update>
+  <delete id="DeleteLink" parameterClass="LinkQueryForm">
+    DELETE FROM Link WHERE 1=1
+    <isNotNull prepend="AND" property="ID">
+        [ID]=#ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LinkDefinitionID">
+        [LinkDefinitionID]=#LinkDefinitionID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="FromActivityID">
+        [FromActivityID]=#FromActivityID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ToAcivityID">
+        [ToAcivityID]=#ToAcivityID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Name">
+        [Name]=#Name#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Creator">
+        [Creator]=#Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_Start">
+        [CreateTime]&gt;=#CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_End">
+        [CreateTime]&lt;=#CreateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Status">
+        [Status]=#Status#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ProcessTime_Start">
+        [ProcessTime]&gt;=#ProcessTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ProcessTime_End">
+        [ProcessTime]&lt;=#ProcessTime_End#
+    </isNotNull>
+  </delete>
+  </statements>
+</sqlMap>
