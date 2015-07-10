@@ -40,20 +40,47 @@ namespace DreamWorkflow.Engine
             List<ActivityInstance> activityInstanceList = new List<ActivityInstance>();
             foreach (var activity in activitylist)
             {
-                var toLink = linkList.FindAll(t => t.ToAcivityID == activity.ID);
-                var toActivity = new ActivityInstance
+                //pre link
+                var preLink = linkList.FindAll(t => t.ToAcivityID == activity.ID);
+                //next link
+                var nextLink = linkList.FindAll(t => t.FromActivityID == activity.ID);
+                var activityInstance = new ActivityInstance
                 {
                     Value = activity,
                     Approvals = Approval.FindAll(t => t.ActivityID == activity.ID),
                     
+                    
                 };
-
-                if (toLink == null)
+                activityInstance.PreLinks = new List<LinkInstance>();
+                activityInstance.NextLinks = new List<LinkInstance>();
+                foreach (var link in preLink)
                 {
-                    this.Root = toActivity;
+                    var linkInstance = new LinkInstance
+                    {
+                        Link = link,
+                        FromActivity = activitylist.Find(t => t.ID == link.FromActivityID),
+                        ToActivity = activity,
+                    };
+                    activityInstance.PreLinks.Add(linkInstance);
+                }
+
+                foreach (var link in nextLink)
+                {
+                    var linkInstance = new LinkInstance
+                    {
+                        Link = link,
+                        ToActivity = activitylist.Find(t => t.ID == link.ToAcivityID),
+                        FromActivity = activity,
+                    };
+                    activityInstance.NextLinks.Add(linkInstance);
+                }
+
+                if (preLink == null || preLink.Count == 0)
+                {
+                    this.Root = activityInstance;
 
                 }
-                activityInstanceList.Add(toActivity);
+                activityInstanceList.Add(activityInstance);
             }
         }
 

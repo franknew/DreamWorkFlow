@@ -10,9 +10,9 @@ namespace DreamWorkflow.Engine
 {
     public class ActivityInstance : Node<Activity>
     {
-        public List<LinkInstance> LinkFrom { get; set; }
+        public List<LinkInstance> PreLinks { get; set; }
 
-        public List<LinkInstance> LinkTo { get; set; }
+        public List<LinkInstance> NextLinks { get; set; }
 
         public List<Approval> Approvals { get; set; }
 
