@@ -8,9 +8,13 @@ namespace DreamWorkflow.Engine.Form
     {
         public string ActivityID { get; set; }
         
-        public Boolean? Passed { get; set; }
+        public Int32? Status { get; set; }
         
         public string Remark { get; set; }
+        
+        public string WorkflowID { get; set; }
+        
+        public Int32? Type { get; set; }
         
     }
 }

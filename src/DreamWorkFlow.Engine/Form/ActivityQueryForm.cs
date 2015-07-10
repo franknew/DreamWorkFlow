@@ -10,11 +10,15 @@ namespace DreamWorkflow.Engine.Form
         
         public string Page { get; set; }
         
-        public Int32? Type { get; set; }
+        public string Type { get; set; }
         
         public string WorkflowID { get; set; }
         
         public Int32? Status { get; set; }
+        
+        public DateTime? ReadTime_Start { get; set; }
+        
+        public DateTime? ReadTime_End { get; set; }
         
         public DateTime? ProcessTime_Start { get; set; }
         

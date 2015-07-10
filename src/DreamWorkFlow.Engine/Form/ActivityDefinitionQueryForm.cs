@@ -12,7 +12,7 @@ namespace DreamWorkflow.Engine.Form
         
         public Boolean? Enabled { get; set; }
         
-        public string Type { get; set; }
+        public Int32? Type { get; set; }
         
         public string Remark { get; set; }
         

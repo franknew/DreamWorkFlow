@@ -14,8 +14,8 @@
     <isNotNull prepend="AND" property="ActivityID">
         [ActivityID]=#ActivityID#
     </isNotNull>
-    <isNotNull prepend="AND" property="Passed">
-        [Passed]=#Passed#
+    <isNotNull prepend="AND" property="Status">
+        [Status]=#Status#
     </isNotNull>
     <isNotNull prepend="AND" property="Remark">
         [Remark] LIKE '%$Remark$%'
@@ -29,25 +29,35 @@
     <isNotNull prepend="AND" property="CreateTime_End">
         [CreateTime]&lt;=#CreateTime_End#
     </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowID">
+        [WorkflowID]=#WorkflowID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Type">
+        [Type]=#Type#
+    </isNotNull>
   </select>
   <insert id="AddApproval" parameterClass="Approval">
   INSERT INTO Approval
   (
     [ID],
     [ActivityID],
-    [Passed],
+    [Status],
     [Remark],
     [Creator],
-    [CreateTime]
+    [CreateTime],
+    [WorkflowID],
+    [Type]
   )
   VALUES
   (
         #ID#,
         #ActivityID#,
-        #Passed#,
+        #Status#,
         #Remark#,
         #Creator#,
-        #CreateTime#
+        #CreateTime#,
+        #WorkflowID#,
+        #Type#
   )
   </insert>
   <update id="UpdateApproval" parameterClass="ApprovalUpdateForm">
@@ -56,8 +66,8 @@
         <isNotNull property="Approval.ActivityID">
         [ActivityID]=#Approval.ActivityID#,
         </isNotNull>
-        <isNotNull property="Approval.Passed">
-        [Passed]=#Approval.Passed#,
+        <isNotNull property="Approval.Status">
+        [Status]=#Approval.Status#,
         </isNotNull>
         <isNotNull property="Approval.Remark">
         [Remark]=#Approval.Remark#,
@@ -66,7 +76,13 @@
         [Creator]=#Approval.Creator#,
         </isNotNull>
         <isNotNull property="Approval.CreateTime">
-        [CreateTime]=#Approval.CreateTime#
+        [CreateTime]=#Approval.CreateTime#,
+        </isNotNull>
+        <isNotNull property="Approval.WorkflowID">
+        [WorkflowID]=#Approval.WorkflowID#,
+        </isNotNull>
+        <isNotNull property="Approval.Type">
+        [Type]=#Approval.Type#
         </isNotNull>
     WHERE 1=1
     <isNotNull prepend="AND" property="ApprovalQueryForm.ID">
@@ -75,8 +91,8 @@
     <isNotNull prepend="AND" property="ApprovalQueryForm.ActivityID">
         [ActivityID]=#ApprovalQueryForm.ActivityID#
     </isNotNull>
-    <isNotNull prepend="AND" property="ApprovalQueryForm.Passed">
-        [Passed]=#ApprovalQueryForm.Passed#
+    <isNotNull prepend="AND" property="ApprovalQueryForm.Status">
+        [Status]=#ApprovalQueryForm.Status#
     </isNotNull>
     <isNotNull prepend="AND" property="ApprovalQueryForm.Remark">
         [Remark] LIKE '%$ApprovalQueryForm.Remark$%'
@@ -90,6 +106,12 @@
     <isNotNull prepend="AND" property="ApprovalQueryForm.CreateTime_End">
         [CreateTime]&lt;=#ApprovalQueryForm.CreateTime_End#
     </isNotNull>
+    <isNotNull prepend="AND" property="ApprovalQueryForm.WorkflowID">
+        [WorkflowID]=#ApprovalQueryForm.WorkflowID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ApprovalQueryForm.Type">
+        [Type]=#ApprovalQueryForm.Type#
+    </isNotNull>
     </isNotNull>
   </update>
   <delete id="DeleteApproval" parameterClass="ApprovalQueryForm">
@@ -100,8 +122,8 @@
     <isNotNull prepend="AND" property="ActivityID">
         [ActivityID]=#ActivityID#
     </isNotNull>
-    <isNotNull prepend="AND" property="Passed">
-        [Passed]=#Passed#
+    <isNotNull prepend="AND" property="Status">
+        [Status]=#Status#
     </isNotNull>
     <isNotNull prepend="AND" property="Remark">
         [Remark]=#Remark#
@@ -114,6 +136,12 @@
     </isNotNull>
     <isNotNull prepend="AND" property="CreateTime_End">
         [CreateTime]&lt;=#CreateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowID">
+        [WorkflowID]=#WorkflowID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Type">
+        [Type]=#Type#
     </isNotNull>
   </delete>
   </statements>

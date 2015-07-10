@@ -4,13 +4,17 @@ using System.Linq;
 using System.Text;
 namespace DreamWorkflow.Engine.Model
 {
-    public class Approval : BaseEntity
+    public class Approval : SimpleEntity
     {
         public string ActivityID { get; set; }
         
-        public Boolean? Passed { get; set; }
+        public Int32? Status { get; set; }
         
         public string Remark { get; set; }
+        
+        public string WorkflowID { get; set; }
+        
+        public Int32? Type { get; set; }
         
     }
 }

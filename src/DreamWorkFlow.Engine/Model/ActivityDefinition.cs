@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 namespace DreamWorkflow.Engine.Model
 {
-    public class ActivityDefinition : BaseEntity
+    public class ActivityDefinition : SimpleEntity
     {
         public string WorkflowDefinitionID { get; set; }
         
@@ -12,7 +12,7 @@ namespace DreamWorkflow.Engine.Model
         
         public Boolean? Enabled { get; set; }
         
-        public string Type { get; set; }
+        public Int32? Type { get; set; }
         
         public string Remark { get; set; }
         

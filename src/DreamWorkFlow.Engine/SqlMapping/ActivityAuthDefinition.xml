@@ -11,15 +11,6 @@
     <isNotNull prepend="AND" property="ID">
         [ID]=#ID#
     </isNotNull>
-    <isNotNull prepend="AND" property="Type">
-        [Type]=#Type#
-    </isNotNull>
-    <isNotNull prepend="AND" property="Value">
-        [Value]=#Value#
-    </isNotNull>
-    <isNotNull prepend="AND" property="ActivityDefinitionID">
-        [ActivityDefinitionID]=#ActivityDefinitionID#
-    </isNotNull>
     <isNotNull prepend="AND" property="Name">
         [Name] LIKE '%$Name$%'
     </isNotNull>
@@ -32,41 +23,41 @@
     <isNotNull prepend="AND" property="CreateTime_End">
         [CreateTime]&lt;=#CreateTime_End#
     </isNotNull>
+    <isNotNull prepend="AND" property="Type">
+        [Type]=#Type#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Value">
+        [Value]=#Value#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityDefinitionID">
+        [ActivityDefinitionID]=#ActivityDefinitionID#
+    </isNotNull>
   </select>
   <insert id="AddActivityAuthDefinition" parameterClass="ActivityAuthDefinition">
   INSERT INTO ActivityAuthDefinition
   (
     [ID],
-    [Type],
-    [Value],
-    [ActivityDefinitionID],
     [Name],
     [Creator],
-    [CreateTime]
+    [CreateTime],
+    [Type],
+    [Value],
+    [ActivityDefinitionID]
   )
   VALUES
   (
         #ID#,
-        #Type#,
-        #Value#,
-        #ActivityDefinitionID#,
         #Name#,
         #Creator#,
-        #CreateTime#
+        #CreateTime#,
+        #Type#,
+        #Value#,
+        #ActivityDefinitionID#
   )
   </insert>
   <update id="UpdateActivityAuthDefinition" parameterClass="ActivityAuthDefinitionUpdateForm">
   <isNotNull property="ActivityAuthDefinition">
   UPDATE ActivityAuthDefinition SET 
-        <isNotNull property="ActivityAuthDefinition.Type">
-        [Type]=#ActivityAuthDefinition.Type#,
-        </isNotNull>
-        <isNotNull property="ActivityAuthDefinition.Value">
-        [Value]=#ActivityAuthDefinition.Value#,
-        </isNotNull>
-        <isNotNull property="ActivityAuthDefinition.ActivityDefinitionID">
-        [ActivityDefinitionID]=#ActivityAuthDefinition.ActivityDefinitionID#,
-        </isNotNull>
         <isNotNull property="ActivityAuthDefinition.Name">
         [Name]=#ActivityAuthDefinition.Name#,
         </isNotNull>
@@ -74,20 +65,20 @@
         [Creator]=#ActivityAuthDefinition.Creator#,
         </isNotNull>
         <isNotNull property="ActivityAuthDefinition.CreateTime">
-        [CreateTime]=#ActivityAuthDefinition.CreateTime#
+        [CreateTime]=#ActivityAuthDefinition.CreateTime#,
+        </isNotNull>
+        <isNotNull property="ActivityAuthDefinition.Type">
+        [Type]=#ActivityAuthDefinition.Type#,
+        </isNotNull>
+        <isNotNull property="ActivityAuthDefinition.Value">
+        [Value]=#ActivityAuthDefinition.Value#,
+        </isNotNull>
+        <isNotNull property="ActivityAuthDefinition.ActivityDefinitionID">
+        [ActivityDefinitionID]=#ActivityAuthDefinition.ActivityDefinitionID#
         </isNotNull>
     WHERE 1=1
     <isNotNull prepend="AND" property="ActivityAuthDefinitionQueryForm.ID">
         [ID]=#ActivityAuthDefinitionQueryForm.ID#
-    </isNotNull>
-    <isNotNull prepend="AND" property="ActivityAuthDefinitionQueryForm.Type">
-        [Type]=#ActivityAuthDefinitionQueryForm.Type#
-    </isNotNull>
-    <isNotNull prepend="AND" property="ActivityAuthDefinitionQueryForm.Value">
-        [Value]=#ActivityAuthDefinitionQueryForm.Value#
-    </isNotNull>
-    <isNotNull prepend="AND" property="ActivityAuthDefinitionQueryForm.ActivityDefinitionID">
-        [ActivityDefinitionID]=#ActivityAuthDefinitionQueryForm.ActivityDefinitionID#
     </isNotNull>
     <isNotNull prepend="AND" property="ActivityAuthDefinitionQueryForm.Name">
         [Name] LIKE '%$ActivityAuthDefinitionQueryForm.Name$%'
@@ -101,21 +92,21 @@
     <isNotNull prepend="AND" property="ActivityAuthDefinitionQueryForm.CreateTime_End">
         [CreateTime]&lt;=#ActivityAuthDefinitionQueryForm.CreateTime_End#
     </isNotNull>
+    <isNotNull prepend="AND" property="ActivityAuthDefinitionQueryForm.Type">
+        [Type]=#ActivityAuthDefinitionQueryForm.Type#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityAuthDefinitionQueryForm.Value">
+        [Value]=#ActivityAuthDefinitionQueryForm.Value#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityAuthDefinitionQueryForm.ActivityDefinitionID">
+        [ActivityDefinitionID]=#ActivityAuthDefinitionQueryForm.ActivityDefinitionID#
+    </isNotNull>
     </isNotNull>
   </update>
   <delete id="DeleteActivityAuthDefinition" parameterClass="ActivityAuthDefinitionQueryForm">
     DELETE FROM ActivityAuthDefinition WHERE 1=1
     <isNotNull prepend="AND" property="ID">
         [ID]=#ID#
-    </isNotNull>
-    <isNotNull prepend="AND" property="Type">
-        [Type]=#Type#
-    </isNotNull>
-    <isNotNull prepend="AND" property="Value">
-        [Value]=#Value#
-    </isNotNull>
-    <isNotNull prepend="AND" property="ActivityDefinitionID">
-        [ActivityDefinitionID]=#ActivityDefinitionID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
         [Name]=#Name#
@@ -128,6 +119,15 @@
     </isNotNull>
     <isNotNull prepend="AND" property="CreateTime_End">
         [CreateTime]&lt;=#CreateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Type">
+        [Type]=#Type#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Value">
+        [Value]=#Value#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityDefinitionID">
+        [ActivityDefinitionID]=#ActivityDefinitionID#
     </isNotNull>
   </delete>
   </statements>

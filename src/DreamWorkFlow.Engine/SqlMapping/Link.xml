@@ -32,14 +32,17 @@
     <isNotNull prepend="AND" property="CreateTime_End">
         [CreateTime]&lt;=#CreateTime_End#
     </isNotNull>
-    <isNotNull prepend="AND" property="Status">
-        [Status]=#Status#
+    <isNotNull prepend="AND" property="Passed">
+        [Passed]=#Passed#
     </isNotNull>
-    <isNotNull prepend="AND" property="ProcessTime_Start">
-        [ProcessTime]&gt;=#ProcessTime_Start#
+    <isNotNull prepend="AND" property="PassedTime_Start">
+        [PassedTime]&gt;=#PassedTime_Start#
     </isNotNull>
-    <isNotNull prepend="AND" property="ProcessTime_End">
-        [ProcessTime]&lt;=#ProcessTime_End#
+    <isNotNull prepend="AND" property="PassedTime_End">
+        [PassedTime]&lt;=#PassedTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowID">
+        [WorkflowID]=#WorkflowID#
     </isNotNull>
   </select>
   <insert id="AddLink" parameterClass="Link">
@@ -52,8 +55,9 @@
     [Name],
     [Creator],
     [CreateTime],
-    [Status],
-    [ProcessTime]
+    [Passed],
+    [PassedTime],
+    [WorkflowID]
   )
   VALUES
   (
@@ -64,8 +68,9 @@
         #Name#,
         #Creator#,
         #CreateTime#,
-        #Status#,
-        #ProcessTime#
+        #Passed#,
+        #PassedTime#,
+        #WorkflowID#
   )
   </insert>
   <update id="UpdateLink" parameterClass="LinkUpdateForm">
@@ -89,11 +94,14 @@
         <isNotNull property="Link.CreateTime">
         [CreateTime]=#Link.CreateTime#,
         </isNotNull>
-        <isNotNull property="Link.Status">
-        [Status]=#Link.Status#,
+        <isNotNull property="Link.Passed">
+        [Passed]=#Link.Passed#,
         </isNotNull>
-        <isNotNull property="Link.ProcessTime">
-        [ProcessTime]=#Link.ProcessTime#
+        <isNotNull property="Link.PassedTime">
+        [PassedTime]=#Link.PassedTime#,
+        </isNotNull>
+        <isNotNull property="Link.WorkflowID">
+        [WorkflowID]=#Link.WorkflowID#
         </isNotNull>
     WHERE 1=1
     <isNotNull prepend="AND" property="LinkQueryForm.ID">
@@ -120,14 +128,17 @@
     <isNotNull prepend="AND" property="LinkQueryForm.CreateTime_End">
         [CreateTime]&lt;=#LinkQueryForm.CreateTime_End#
     </isNotNull>
-    <isNotNull prepend="AND" property="LinkQueryForm.Status">
-        [Status]=#LinkQueryForm.Status#
+    <isNotNull prepend="AND" property="LinkQueryForm.Passed">
+        [Passed]=#LinkQueryForm.Passed#
     </isNotNull>
-    <isNotNull prepend="AND" property="LinkQueryForm.ProcessTime_Start">
-        [ProcessTime]&gt;=#LinkQueryForm.ProcessTime_Start#
+    <isNotNull prepend="AND" property="LinkQueryForm.PassedTime_Start">
+        [PassedTime]&gt;=#LinkQueryForm.PassedTime_Start#
     </isNotNull>
-    <isNotNull prepend="AND" property="LinkQueryForm.ProcessTime_End">
-        [ProcessTime]&lt;=#LinkQueryForm.ProcessTime_End#
+    <isNotNull prepend="AND" property="LinkQueryForm.PassedTime_End">
+        [PassedTime]&lt;=#LinkQueryForm.PassedTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LinkQueryForm.WorkflowID">
+        [WorkflowID]=#LinkQueryForm.WorkflowID#
     </isNotNull>
     </isNotNull>
   </update>
@@ -157,14 +168,17 @@
     <isNotNull prepend="AND" property="CreateTime_End">
         [CreateTime]&lt;=#CreateTime_End#
     </isNotNull>
-    <isNotNull prepend="AND" property="Status">
-        [Status]=#Status#
+    <isNotNull prepend="AND" property="Passed">
+        [Passed]=#Passed#
     </isNotNull>
-    <isNotNull prepend="AND" property="ProcessTime_Start">
-        [ProcessTime]&gt;=#ProcessTime_Start#
+    <isNotNull prepend="AND" property="PassedTime_Start">
+        [PassedTime]&gt;=#PassedTime_Start#
     </isNotNull>
-    <isNotNull prepend="AND" property="ProcessTime_End">
-        [ProcessTime]&lt;=#ProcessTime_End#
+    <isNotNull prepend="AND" property="PassedTime_End">
+        [PassedTime]&lt;=#PassedTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowID">
+        [WorkflowID]=#WorkflowID#
     </isNotNull>
   </delete>
   </statements>

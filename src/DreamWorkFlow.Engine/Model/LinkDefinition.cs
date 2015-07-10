@@ -1,17 +1,18 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 namespace DreamWorkflow.Engine.Model
 {
-    public class LinkDefinition : BaseEntity
+    public class LinkDefinition : SimpleEntity
     {
-
-        public string FromAcitivityDefinitionID { get; set; }
-
+        public string FromActivityDefinitionID { get; set; }
+        
         public string ToActivityDefinitionID { get; set; }
-
+        
         public string Remark { get; set; }
+        
+        public string WorkflowDefinitionID { get; set; }
+        
     }
 }

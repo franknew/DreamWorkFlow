@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 namespace DreamWorkflow.Engine.Model
 {
-    public class ActivityAuthDefinition : BaseEntity
+    public class ActivityAuthDefinition : SimpleEntity
     {
         public string Type { get; set; }
         

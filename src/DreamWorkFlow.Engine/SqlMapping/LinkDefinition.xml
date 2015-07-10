@@ -32,6 +32,9 @@
     <isNotNull prepend="AND" property="Remark">
         [Remark] LIKE '%$Remark$%'
     </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowDefinitionID">
+        [WorkflowDefinitionID]=#WorkflowDefinitionID#
+    </isNotNull>
   </select>
   <insert id="AddLinkDefinition" parameterClass="LinkDefinition">
   INSERT INTO LinkDefinition
@@ -42,7 +45,8 @@
     [Name],
     [Creator],
     [CreateTime],
-    [Remark]
+    [Remark],
+    [WorkflowDefinitionID]
   )
   VALUES
   (
@@ -52,7 +56,8 @@
         #Name#,
         #Creator#,
         #CreateTime#,
-        #Remark#
+        #Remark#,
+        #WorkflowDefinitionID#
   )
   </insert>
   <update id="UpdateLinkDefinition" parameterClass="LinkDefinitionUpdateForm">
@@ -74,7 +79,10 @@
         [CreateTime]=#LinkDefinition.CreateTime#,
         </isNotNull>
         <isNotNull property="LinkDefinition.Remark">
-        [Remark]=#LinkDefinition.Remark#
+        [Remark]=#LinkDefinition.Remark#,
+        </isNotNull>
+        <isNotNull property="LinkDefinition.WorkflowDefinitionID">
+        [WorkflowDefinitionID]=#LinkDefinition.WorkflowDefinitionID#
         </isNotNull>
     WHERE 1=1
     <isNotNull prepend="AND" property="LinkDefinitionQueryForm.ID">
@@ -100,6 +108,9 @@
     </isNotNull>
     <isNotNull prepend="AND" property="LinkDefinitionQueryForm.Remark">
         [Remark] LIKE '%$LinkDefinitionQueryForm.Remark$%'
+    </isNotNull>
+    <isNotNull prepend="AND" property="LinkDefinitionQueryForm.WorkflowDefinitionID">
+        [WorkflowDefinitionID]=#LinkDefinitionQueryForm.WorkflowDefinitionID#
     </isNotNull>
     </isNotNull>
   </update>
@@ -128,6 +139,9 @@
     </isNotNull>
     <isNotNull prepend="AND" property="Remark">
         [Remark]=#Remark#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowDefinitionID">
+        [WorkflowDefinitionID]=#WorkflowDefinitionID#
     </isNotNull>
   </delete>
   </statements>

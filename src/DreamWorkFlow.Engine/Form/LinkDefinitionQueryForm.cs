@@ -12,5 +12,7 @@ namespace DreamWorkflow.Engine.Form
         
         public string Remark { get; set; }
         
+        public string WorkflowDefinitionID { get; set; }
+        
     }
 }

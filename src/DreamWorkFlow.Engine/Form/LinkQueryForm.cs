@@ -12,11 +12,13 @@ namespace DreamWorkflow.Engine.Form
         
         public string ToAcivityID { get; set; }
         
-        public Int32? Status { get; set; }
+        public Boolean? Passed { get; set; }
         
-        public DateTime? ProcessTime_Start { get; set; }
+        public DateTime? PassedTime_Start { get; set; }
         
-        public DateTime? ProcessTime_End { get; set; }
+        public DateTime? PassedTime_End { get; set; }
+        
+        public string WorkflowID { get; set; }
         
     }
 }

@@ -38,6 +38,12 @@
     <isNotNull prepend="AND" property="Status">
         [Status]=#Status#
     </isNotNull>
+    <isNotNull prepend="AND" property="ReadTime_Start">
+        [ReadTime]&gt;=#ReadTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ReadTime_End">
+        [ReadTime]&lt;=#ReadTime_End#
+    </isNotNull>
     <isNotNull prepend="AND" property="ProcessTime_Start">
         [ProcessTime]&gt;=#ProcessTime_Start#
     </isNotNull>
@@ -57,6 +63,7 @@
     [Type],
     [WorkflowID],
     [Status],
+    [ReadTime],
     [ProcessTime]
   )
   VALUES
@@ -70,6 +77,7 @@
         #Type#,
         #WorkflowID#,
         #Status#,
+        #ReadTime#,
         #ProcessTime#
   )
   </insert>
@@ -99,6 +107,9 @@
         </isNotNull>
         <isNotNull property="Activity.Status">
         [Status]=#Activity.Status#,
+        </isNotNull>
+        <isNotNull property="Activity.ReadTime">
+        [ReadTime]=#Activity.ReadTime#,
         </isNotNull>
         <isNotNull property="Activity.ProcessTime">
         [ProcessTime]=#Activity.ProcessTime#
@@ -133,6 +144,12 @@
     </isNotNull>
     <isNotNull prepend="AND" property="ActivityQueryForm.Status">
         [Status]=#ActivityQueryForm.Status#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityQueryForm.ReadTime_Start">
+        [ReadTime]&gt;=#ActivityQueryForm.ReadTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityQueryForm.ReadTime_End">
+        [ReadTime]&lt;=#ActivityQueryForm.ReadTime_End#
     </isNotNull>
     <isNotNull prepend="AND" property="ActivityQueryForm.ProcessTime_Start">
         [ProcessTime]&gt;=#ActivityQueryForm.ProcessTime_Start#
@@ -173,6 +190,12 @@
     </isNotNull>
     <isNotNull prepend="AND" property="Status">
         [Status]=#Status#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ReadTime_Start">
+        [ReadTime]&gt;=#ReadTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ReadTime_End">
+        [ReadTime]&lt;=#ReadTime_End#
     </isNotNull>
     <isNotNull prepend="AND" property="ProcessTime_Start">
         [ProcessTime]&gt;=#ProcessTime_Start#

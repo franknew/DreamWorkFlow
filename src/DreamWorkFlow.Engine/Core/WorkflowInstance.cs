@@ -29,8 +29,12 @@ namespace DreamWorkflow.Engine
             }
             WorkflowDao wfdao = new WorkflowDao();
             ActivityDao activitydao = new ActivityDao();
+            LinkDao linkDao = new LinkDao();
+            ApprovalDao approvalDao = new ApprovalDao();
             var workflowlist = wfdao.Query(new WorkflowQueryForm { ID = this.value.ID });
             var activitylist = activitydao.Query(new ActivityQueryForm { WorkflowID = this.value.ID });
+            var linkLIst = linkDao.Query(new LinkQueryForm { WorkflowID = this.value.ID });
+            var approvalList = approvalDao.Query(new ApprovalQueryForm { WorkflowID = this.value.ID });
         }
 
         public void Save()

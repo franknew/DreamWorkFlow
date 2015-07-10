@@ -14,6 +14,8 @@ namespace DreamWorkflow.Engine
 
         public List<LinkInstance> LinkTo { get; set; }
 
+        public List<Approval> Approvals { get; set; }
+
         public string Save(Mapper mapper)
         {
             return null;
