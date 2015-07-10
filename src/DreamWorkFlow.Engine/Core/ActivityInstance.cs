@@ -16,6 +16,8 @@ namespace DreamWorkflow.Engine
 
         public List<Approval> Approvals { get; set; }
 
+        public List<ActivityAuth> Auth { get; set; }
+
         public string Save(Mapper mapper)
         {
             return null;
