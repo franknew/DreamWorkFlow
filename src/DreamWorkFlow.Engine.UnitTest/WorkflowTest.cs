@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DreamWorkflow.Engine.DAL;
 using DreamWorkflow.Engine.Model;
 using DreamWorkflow.Engine.Form;
+using IBatisNet.DataMapper.Scope;
 
 namespace DreamWorkflow.Engine.UnitTest
 {
@@ -60,7 +61,7 @@ namespace DreamWorkflow.Engine.UnitTest
             var list = dao.Query(form);
             WorkflowUpdateForm updateform = new WorkflowUpdateForm
             {
-                Workflow = new Workflow
+                Entity = new Workflow
                 {
                     Status = 1
                 },
@@ -69,7 +70,14 @@ namespace DreamWorkflow.Engine.UnitTest
                     ID = list[0].ID,
                 },
             };
-             
+
+            var statement = dao.Mapper.GetMappedStatement("UpdateWorkflow");
+            if (!dao.Mapper.IsSessionStarted)
+            {
+                dao.Mapper.OpenConnection();
+            }
+            RequestScope scope = statement.Statement.Sql.GetRequestScope(statement, updateform, dao.Mapper.LocalSession);
+            string result = scope.PreparedStatement.PreparedSql;
             dao.Update(updateform);
             list = dao.Query(form);
             Assert.AreEqual(1, list[0].Status);

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SOAFramework.Library.DAL;
+
 namespace DreamWorkflow.Engine.Model
 {
     public class ActivityAuth : SimpleEntity
@@ -13,6 +15,8 @@ namespace DreamWorkflow.Engine.Model
         public string Value { get; set; }
         
         public string ActivityID { get; set; }
+        
+        public string WorkflowID { get; set; }
         
     }
 }

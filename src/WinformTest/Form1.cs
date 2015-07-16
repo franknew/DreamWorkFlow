@@ -1,4 +1,5 @@
-﻿using DreamWorkflow.Engine.DAL;
+﻿using DreamWorkflow.Engine;
+using DreamWorkflow.Engine.DAL;
 using DreamWorkflow.Engine.Form;
 using DreamWorkflow.Engine.Model;
 using IBatisNet.DataMapper;
@@ -31,6 +32,11 @@ namespace WinformTest
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var list = TableCacheHelper.GetDataFromCache<Workflow>(typeof(WorkflowDao));
         }
     }
 }

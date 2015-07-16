@@ -10,5 +10,11 @@ namespace DreamWorkflow.Engine.Form
         
         public Int32? Status { get; set; }
         
+        public DateTime? LastUpdateTime_Start { get; set; }
+        
+        public DateTime? LastUpdateTime_End { get; set; }
+        
+        public string LastUpdator { get; set; }
+        
     }
 }

@@ -5,9 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SOAFramework.Library.DAL;
+
 namespace DreamWorkflow.Engine.DAL
 {
-    public class ActivityDefinitionDao : BaseDao<ActivityDefinition, ActivityDefinitionQueryForm, ActivityDefinitionUpdateForm>
+    public partial class ActivityDefinitionDao : SimpleDao<ActivityDefinition, ActivityDefinitionQueryForm, ActivityDefinitionUpdateForm>
     {
         public ActivityDefinitionDao(ISqlMapper mapper = null)
             : base(mapper)

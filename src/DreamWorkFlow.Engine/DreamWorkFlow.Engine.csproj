@@ -37,8 +37,15 @@
     <Reference Include="IBatisNet.DataMapper">
       <HintPath>..\CommonDll\IBatisNet.DataMapper.dll</HintPath>
     </Reference>
+    <Reference Include="SOAFramework.Library.Cache">
+      <HintPath>..\CommonDll\SOAFramework.Library.Cache.dll</HintPath>
+    </Reference>
+    <Reference Include="SOAFramework.Library.DAL">
+      <HintPath>..\CommonDll\SOAFramework.Library.DAL.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\TableCacheHelper.cs" />
     <Compile Include="Core\ActivityDefinitionInstance.cs" />
     <Compile Include="Core\LinkInstance.cs" />
     <Compile Include="Core\WorkflowInstance.cs" />
@@ -54,7 +62,6 @@
     <Compile Include="DAL\ActivityDao.cs" />
     <Compile Include="DAL\ActivityDefinitionDao.cs" />
     <Compile Include="DAL\ApprovalDao.cs" />
-    <Compile Include="DAL\BaseDao.cs" />
     <Compile Include="DAL\ContextDao.cs" />
     <Compile Include="DAL\LinkDao.cs" />
     <Compile Include="DAL\LinkDefinitionDao.cs" />
@@ -93,12 +100,10 @@
     <Compile Include="Core\ActivityInstance.cs" />
     <Compile Include="Core\Node.cs" />
     <Compile Include="Model\Approval.cs" />
-    <Compile Include="Model\BaseEntity.cs" />
     <Compile Include="Model\Context.cs" />
     <Compile Include="Model\Link.cs" />
     <Compile Include="Model\LinkDefinition.cs" />
     <Compile Include="Model\Parameter.cs" />
-    <Compile Include="Model\SimpleEntity.cs" />
     <Compile Include="Model\Task.cs" />
     <Compile Include="Model\Workflow.cs" />
     <Compile Include="Model\WorkflowDefinition.cs" />

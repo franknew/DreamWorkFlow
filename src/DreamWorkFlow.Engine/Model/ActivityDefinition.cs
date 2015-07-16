@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SOAFramework.Library.DAL;
+
 namespace DreamWorkflow.Engine.Model
 {
     public class ActivityDefinition : SimpleEntity
@@ -10,7 +12,7 @@ namespace DreamWorkflow.Engine.Model
         
         public string Page { get; set; }
         
-        public Boolean? Enabled { get; set; }
+        public UInt64? Enabled { get; set; }
         
         public Int32? Type { get; set; }
         

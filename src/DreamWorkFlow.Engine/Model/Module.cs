@@ -6,10 +6,8 @@ using SOAFramework.Library.DAL;
 
 namespace DreamWorkflow.Engine.Model
 {
-    public class WorkflowDefinition : SimpleEntity
+    public class Module : SimpleEntity
     {
-        public UInt64? Enabled { get; set; }
-        
         public string Remark { get; set; }
         
     }

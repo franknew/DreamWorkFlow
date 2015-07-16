@@ -12,5 +12,13 @@ namespace DreamWorkflow.Engine.Form
         
         public string ActivityDefinitionID { get; set; }
         
+        public string WorkflowDefinitionID { get; set; }
+        
+        public DateTime? LastUpdateTime_Start { get; set; }
+        
+        public DateTime? LastUpdateTime_End { get; set; }
+        
+        public string LastUpdator { get; set; }
+        
     }
 }
