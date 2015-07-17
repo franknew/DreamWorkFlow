@@ -181,5 +181,8 @@
         `LastUpdator`=#LastUpdator#
     </isNotNull>
   </delete>
+   <select id="QueryActivityAuthDefinitionLastUpdateTime" resultClass="DateTime">
+        SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM ActivityAuthDefinition
+   </select>
   </statements>
 </sqlMap>

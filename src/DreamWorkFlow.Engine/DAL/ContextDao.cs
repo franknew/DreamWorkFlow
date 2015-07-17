@@ -11,10 +11,15 @@ namespace DreamWorkflow.Engine.DAL
 {
     public partial class ContextDao : BaseDao<Context, ContextQueryForm, ContextUpdateForm>
     {
-        public ContextDao(ISqlMapper mapper = null)
+        public ContextDao(ISqlMapper mapper)
             : base(mapper)
         {
-
         }
+        
+        public ContextDao()
+            : base(null)
+        {
+        }
+        
     }
 }

@@ -153,5 +153,8 @@
         `LastUpdator`=#LastUpdator#
     </isNotNull>
   </delete>
+   <select id="QueryWorkflowDefinitionLastUpdateTime" resultClass="DateTime">
+        SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM WorkflowDefinition
+   </select>
   </statements>
 </sqlMap>

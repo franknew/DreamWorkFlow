@@ -9,21 +9,21 @@ using SOAFramework.Library.DAL;
 
 namespace DreamWorkflow.Engine.DAL
 {
-    public partial class LinkDefinitionDao : SimpleDao<LinkDefinition, LinkDefinitionQueryForm, LinkDefinitionUpdateForm>
+    public partial class MenuDao : SimpleDao<Menu, MenuQueryForm, MenuUpdateForm>
     {
-        public LinkDefinitionDao(ISqlMapper mapper)
+        public MenuDao(ISqlMapper mapper)
             : base(mapper)
         {
         }
         
-        public LinkDefinitionDao()
+        public MenuDao()
             : base(null)
         {
         }
         
         public DateTime QueryMaxLastUpdateTime()
         {
-            return Mapper.QueryForObject<DateTime>("QueryLinkDefinitionLastUpdateTime", null);
+            return Mapper.QueryForObject<DateTime>("QueryMenuLastUpdateTime", null);
         }
     }
 }
