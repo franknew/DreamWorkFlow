@@ -17,6 +17,8 @@ namespace DreamWorkflow.Engine.Model
         public DateTime? ReadTime { get; set; }
         
         public DateTime? ProcessTime { get; set; }
+
+        public string UserID { get; set; }
         
     }
 }

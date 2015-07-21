@@ -63,36 +63,42 @@
     <Compile Include="DAL\ActivityDefinitionDao.cs" />
     <Compile Include="DAL\ApprovalDao.cs" />
     <Compile Include="DAL\ContextDao.cs" />
+    <Compile Include="DAL\DataDictionaryDao.cs" />
+    <Compile Include="DAL\DataDictionaryGroupDao.cs" />
     <Compile Include="DAL\LinkDao.cs" />
     <Compile Include="DAL\LinkDefinitionDao.cs" />
     <Compile Include="DAL\ParameterDao.cs" />
     <Compile Include="DAL\TaskDao.cs" />
     <Compile Include="DAL\WorkflowDao.cs" />
     <Compile Include="DAL\WorkflowDefinitionDao.cs" />
-    <Compile Include="Form\ActivityAuthDefinitionQueryForm.cs" />
-    <Compile Include="Form\ActivityAuthDefinitionUpdateForm.cs" />
-    <Compile Include="Form\ActivityAuthQueryForm.cs" />
-    <Compile Include="Form\ActivityAuthUpdateForm.cs" />
-    <Compile Include="Form\ActivityDefinitionQueryForm.cs" />
-    <Compile Include="Form\ActivityDefinitionUpdateForm.cs" />
-    <Compile Include="Form\ActivityQueryForm.cs" />
-    <Compile Include="Form\ActivityUpdateForm.cs" />
-    <Compile Include="Form\ApprovalQueryForm.cs" />
-    <Compile Include="Form\ApprovalUpdateForm.cs" />
-    <Compile Include="Form\BaseQueryForm.cs" />
-    <Compile Include="Form\ContextQueryForm.cs" />
-    <Compile Include="Form\ContextUpdateForm.cs" />
-    <Compile Include="Form\LinkDefinitionQueryForm.cs" />
-    <Compile Include="Form\LinkDefinitionUpdateForm.cs" />
-    <Compile Include="Form\LinkQueryForm.cs" />
-    <Compile Include="Form\LinkUpdateForm.cs" />
-    <Compile Include="Form\ParameterQueryForm.cs" />
-    <Compile Include="Form\ParameterUpdateForm.cs" />
-    <Compile Include="Form\TaskQueryForm.cs" />
-    <Compile Include="Form\TaskUpdateForm.cs" />
-    <Compile Include="Form\WorkflowDefinitionQueryForm.cs" />
-    <Compile Include="Form\WorkflowDefinitionUpdateForm.cs" />
-    <Compile Include="Form\WorkflowUpdateForm.cs" />
+    <Compile Include="Form\QueryForm\ActivityAuthDefinitionQueryForm.cs" />
+    <Compile Include="Form\QueryForm\DataDictionaryGroupQueryForm.cs" />
+    <Compile Include="Form\QueryForm\DataDictionaryQueryForm.cs" />
+    <Compile Include="Form\UpdateForm\ActivityAuthDefinitionUpdateForm.cs" />
+    <Compile Include="Form\QueryForm\ActivityAuthQueryForm.cs" />
+    <Compile Include="Form\UpdateForm\ActivityAuthUpdateForm.cs" />
+    <Compile Include="Form\QueryForm\ActivityDefinitionQueryForm.cs" />
+    <Compile Include="Form\UpdateForm\ActivityDefinitionUpdateForm.cs" />
+    <Compile Include="Form\QueryForm\ActivityQueryForm.cs" />
+    <Compile Include="Form\UpdateForm\ActivityUpdateForm.cs" />
+    <Compile Include="Form\QueryForm\ApprovalQueryForm.cs" />
+    <Compile Include="Form\UpdateForm\ApprovalUpdateForm.cs" />
+    <Compile Include="Form\QueryForm\BaseQueryForm.cs" />
+    <Compile Include="Form\QueryForm\ContextQueryForm.cs" />
+    <Compile Include="Form\UpdateForm\ContextUpdateForm.cs" />
+    <Compile Include="Form\QueryForm\LinkDefinitionQueryForm.cs" />
+    <Compile Include="Form\UpdateForm\DataDictionaryGroupUpdateForm.cs" />
+    <Compile Include="Form\UpdateForm\DataDictionaryUpdateForm.cs" />
+    <Compile Include="Form\UpdateForm\LinkDefinitionUpdateForm.cs" />
+    <Compile Include="Form\QueryForm\LinkQueryForm.cs" />
+    <Compile Include="Form\UpdateForm\LinkUpdateForm.cs" />
+    <Compile Include="Form\QueryForm\ParameterQueryForm.cs" />
+    <Compile Include="Form\UpdateForm\ParameterUpdateForm.cs" />
+    <Compile Include="Form\QueryForm\TaskQueryForm.cs" />
+    <Compile Include="Form\UpdateForm\TaskUpdateForm.cs" />
+    <Compile Include="Form\QueryForm\WorkflowDefinitionQueryForm.cs" />
+    <Compile Include="Form\UpdateForm\WorkflowDefinitionUpdateForm.cs" />
+    <Compile Include="Form\UpdateForm\WorkflowUpdateForm.cs" />
     <Compile Include="Model\Activity.cs" />
     <Compile Include="Model\ActivityAuth.cs" />
     <Compile Include="Model\ActivityAuthDefinition.cs" />
@@ -102,6 +108,8 @@
     <Compile Include="Model\Approval.cs" />
     <Compile Include="Model\BaseCacheEntity.cs" />
     <Compile Include="Model\Context.cs" />
+    <Compile Include="Model\DataDictionary.cs" />
+    <Compile Include="Model\DataDictionaryGroup.cs" />
     <Compile Include="Model\Link.cs" />
     <Compile Include="Model\LinkDefinition.cs" />
     <Compile Include="Model\Parameter.cs" />
@@ -109,13 +117,14 @@
     <Compile Include="Model\Workflow.cs" />
     <Compile Include="Model\WorkflowDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Form\WorkflowQueryForm.cs" />
+    <Compile Include="Form\QueryForm\WorkflowQueryForm.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="providers.config" />
     <None Include="SqlMap.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Form\ResultForm\" />
     <Folder Include="Interface\" />
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +134,8 @@
     <Content Include="SqlMapping\ActivityDefinition.xml" />
     <Content Include="SqlMapping\Approval.xml" />
     <Content Include="SqlMapping\Context.xml" />
+    <Content Include="SqlMapping\DataDictionary.xml" />
+    <Content Include="SqlMapping\DataDictionaryGroup.xml" />
     <Content Include="SqlMapping\Link.xml" />
     <Content Include="SqlMapping\LinkDefinition.xml" />
     <Content Include="SqlMapping\Parameter.xml" />
