@@ -7,7 +7,7 @@
   </alias>
   <statements>
   <select id="QueryApproval" resultClass="Approval" parameterClass="ApprovalQueryForm">
-    SELECT * FROM Approval WHERE 1=1
+    SELECT * FROM `Approval` WHERE 1=1
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
@@ -46,7 +46,7 @@
     </isNotNull>
   </select>
   <insert id="AddApproval" parameterClass="Approval">
-  INSERT INTO Approval
+  INSERT INTO `Approval`
   (
     `ID`,
     `ActivityID`,
@@ -74,7 +74,7 @@
   )
   </insert>
   <update id="UpdateApproval" parameterClass="ApprovalUpdateForm">
-  UPDATE Approval
+  UPDATE `Approval`
     <dynamic prepend="SET">
         <isNotNull prepend="," property="Entity.ActivityID">
         `ActivityID`=#Entity.ActivityID#
@@ -143,7 +143,7 @@
     </isNotNull>
   </update>
   <delete id="DeleteApproval" parameterClass="ApprovalQueryForm">
-    DELETE FROM Approval WHERE 1=1
+    DELETE FROM `Approval` WHERE 1=1
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
@@ -182,7 +182,7 @@
     </isNotNull>
   </delete>
    <select id="QueryApprovalLastUpdateTime" resultClass="DateTime">
-        SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM Approval
+        SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM `Approval`
    </select>
   </statements>
 </sqlMap>

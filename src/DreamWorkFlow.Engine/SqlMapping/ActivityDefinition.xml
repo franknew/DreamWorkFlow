@@ -7,7 +7,7 @@
   </alias>
   <statements>
   <select id="QueryActivityDefinition" resultClass="ActivityDefinition" parameterClass="ActivityDefinitionQueryForm">
-    SELECT * FROM ActivityDefinition WHERE 1=1
+    SELECT * FROM `ActivityDefinition` WHERE 1=1
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
@@ -49,7 +49,7 @@
     </isNotNull>
   </select>
   <insert id="AddActivityDefinition" parameterClass="ActivityDefinition">
-  INSERT INTO ActivityDefinition
+  INSERT INTO `ActivityDefinition`
   (
     `ID`,
     `WorkflowDefinitionID`,
@@ -79,7 +79,7 @@
   )
   </insert>
   <update id="UpdateActivityDefinition" parameterClass="ActivityDefinitionUpdateForm">
-  UPDATE ActivityDefinition
+  UPDATE `ActivityDefinition`
     <dynamic prepend="SET">
         <isNotNull prepend="," property="Entity.WorkflowDefinitionID">
         `WorkflowDefinitionID`=#Entity.WorkflowDefinitionID#
@@ -154,7 +154,7 @@
     </isNotNull>
   </update>
   <delete id="DeleteActivityDefinition" parameterClass="ActivityDefinitionQueryForm">
-    DELETE FROM ActivityDefinition WHERE 1=1
+    DELETE FROM `ActivityDefinition` WHERE 1=1
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
@@ -196,7 +196,7 @@
     </isNotNull>
   </delete>
    <select id="QueryActivityDefinitionLastUpdateTime" resultClass="DateTime">
-        SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM ActivityDefinition
+        SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM `ActivityDefinition`
    </select>
   </statements>
 </sqlMap>

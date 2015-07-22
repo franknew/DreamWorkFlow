@@ -109,6 +109,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DataDictionaryTesting.cs" />
     <Compile Include="TableCacheHelperTesting.cs" />
     <Compile Include="WorkflowTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

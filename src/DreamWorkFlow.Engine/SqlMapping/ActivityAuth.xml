@@ -7,7 +7,7 @@
   </alias>
   <statements>
   <select id="QueryActivityAuth" resultClass="ActivityAuth" parameterClass="ActivityAuthQueryForm">
-    SELECT * FROM ActivityAuth WHERE 1=1
+    SELECT * FROM `ActivityAuth` WHERE 1=1
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
@@ -49,7 +49,7 @@
     </isNotNull>
   </select>
   <insert id="AddActivityAuth" parameterClass="ActivityAuth">
-  INSERT INTO ActivityAuth
+  INSERT INTO `ActivityAuth`
   (
     `ID`,
     `Name`,
@@ -79,7 +79,7 @@
   )
   </insert>
   <update id="UpdateActivityAuth" parameterClass="ActivityAuthUpdateForm">
-  UPDATE ActivityAuth
+  UPDATE `ActivityAuth`
     <dynamic prepend="SET">
         <isNotNull prepend="," property="Entity.Name">
         `Name`=#Entity.Name#
@@ -154,7 +154,7 @@
     </isNotNull>
   </update>
   <delete id="DeleteActivityAuth" parameterClass="ActivityAuthQueryForm">
-    DELETE FROM ActivityAuth WHERE 1=1
+    DELETE FROM `ActivityAuth` WHERE 1=1
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
@@ -196,7 +196,7 @@
     </isNotNull>
   </delete>
    <select id="QueryActivityAuthLastUpdateTime" resultClass="DateTime">
-        SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM ActivityAuth
+        SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM `ActivityAuth`
    </select>
   </statements>
 </sqlMap>

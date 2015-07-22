@@ -7,7 +7,7 @@
   </alias>
   <statements>
   <select id="QueryTask" resultClass="Task" parameterClass="TaskQueryForm">
-    SELECT * FROM Task WHERE 1=1
+    SELECT * FROM `Task` WHERE 1=1
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
@@ -53,9 +53,12 @@
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
     </isNotNull>
+    <isNotNull prepend="AND" property="UserID">
+        `UserID`=#UserID#
+    </isNotNull>
   </select>
   <insert id="AddTask" parameterClass="Task">
-  INSERT INTO Task
+  INSERT INTO `Task`
   (
     `ID`,
     `AcitivityID`,
@@ -67,7 +70,8 @@
     `ReadTime`,
     `ProcessTime`,
     `LastUpdateTime`,
-    `LastUpdator`
+    `LastUpdator`,
+    `UserID`
   )
   VALUES
   (
@@ -81,11 +85,12 @@
         #ReadTime#,
         #ProcessTime#,
         #LastUpdateTime#,
-        #LastUpdator#
+        #LastUpdator#,
+        #UserID#
   )
   </insert>
   <update id="UpdateTask" parameterClass="TaskUpdateForm">
-  UPDATE Task
+  UPDATE `Task`
     <dynamic prepend="SET">
         <isNotNull prepend="," property="Entity.AcitivityID">
         `AcitivityID`=#Entity.AcitivityID#
@@ -116,6 +121,9 @@
         </isNotNull>
         <isNotNull prepend="," property="Entity.LastUpdator">
         `LastUpdator`=#Entity.LastUpdator#
+        </isNotNull>
+        <isNotNull prepend="," property="Entity.UserID">
+        `UserID`=#Entity.UserID#
         </isNotNull>
     </dynamic>
     WHERE 1=1
@@ -164,9 +172,12 @@
     <isNotNull prepend="AND" property="TaskQueryForm.LastUpdator">
         `LastUpdator`=#TaskQueryForm.LastUpdator#
     </isNotNull>
+    <isNotNull prepend="AND" property="TaskQueryForm.UserID">
+        `UserID`=#TaskQueryForm.UserID#
+    </isNotNull>
   </update>
   <delete id="DeleteTask" parameterClass="TaskQueryForm">
-    DELETE FROM Task WHERE 1=1
+    DELETE FROM `Task` WHERE 1=1
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
@@ -212,9 +223,12 @@
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
     </isNotNull>
+    <isNotNull prepend="AND" property="UserID">
+        `UserID`=#UserID#
+    </isNotNull>
   </delete>
    <select id="QueryTaskLastUpdateTime" resultClass="DateTime">
-        SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM Task
+        SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM `Task`
    </select>
   </statements>
 </sqlMap>

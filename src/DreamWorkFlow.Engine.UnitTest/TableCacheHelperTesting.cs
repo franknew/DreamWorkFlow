@@ -17,7 +17,7 @@ namespace DreamWorkflow.Engine.UnitTest
     [TestClass]
     public class TableCacheHelperTesting
     {
-        private ICache cache = CacheFactory.Create(CacheType.DefaultMemoryCache);
+        private ICache cache = CacheFactory.Create();
 
         public TableCacheHelperTesting()
         {
@@ -48,6 +48,7 @@ namespace DreamWorkflow.Engine.UnitTest
         public void Init()
         {
             WorkflowDao dao = new WorkflowDao();
+            dao.Delete(new WorkflowQueryForm { ID = "1" });
             dao.Add(new Workflow
             {
                 ID = "1",
@@ -111,7 +112,7 @@ namespace DreamWorkflow.Engine.UnitTest
             list = TableCacheHelper.GetDataFromCache<Workflow>(typeof(WorkflowDao));
             item = cache.GetItem(key);
             cacheentity = item.Value as CacheEntity<Workflow>;
-            Assert.AreSame(dt, cacheentity.LastUpdateTime);
+            Assert.AreEqual(dt.ToString("yyyyMMddHHmmss"), cacheentity.LastUpdateTime.Value.ToString("yyyyMMddHHmmss"));
         }
     }
 }

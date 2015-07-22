@@ -167,7 +167,7 @@
         `DataDictionaryGroupID`=#DataDictionaryGroupID#
     </isNotNull>
   </delete>
-   <select id="Query`DataDictionary`LastUpdateTime" resultClass="DateTime">
+   <select id="QueryDataDictionaryLastUpdateTime" resultClass="DateTime">
         SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM `DataDictionary`
    </select>
   </statements>

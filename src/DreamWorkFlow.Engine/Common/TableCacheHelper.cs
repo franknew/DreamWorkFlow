@@ -17,7 +17,7 @@ namespace DreamWorkflow.Engine
             where TEntity : SimpleEntity
         {
             string key = typeof(TEntity).FullName;
-            ICache cache = CacheFactory.Create(CacheType.DefaultMemoryCache);
+            ICache cache = CacheFactory.Create();
             var item = cache.GetItem(key);
             List<TEntity> list = null;
             if (item == null)
@@ -44,7 +44,7 @@ namespace DreamWorkflow.Engine
             {
                 object dao = Activator.CreateInstance(daoType, null);
                 string tableName = typeof(TEntity).Name;
-                var method = daoType.GetMethod("Query" + tableName + "LastUpdateTime");
+                var method = daoType.GetMethod("QueryMaxLastUpdateTime");
                 object result = method.Invoke(dao, null);
                 CacheEntity<TEntity> cacheentity = item.Value as CacheEntity<TEntity>;
                 DateTime? lastupdatetime = result as DateTime?;

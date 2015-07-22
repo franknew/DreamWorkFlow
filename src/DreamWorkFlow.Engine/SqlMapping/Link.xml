@@ -7,7 +7,7 @@
   </alias>
   <statements>
   <select id="QueryLink" resultClass="Link" parameterClass="LinkQueryForm">
-    SELECT * FROM Link WHERE 1=1
+    SELECT * FROM `Link` WHERE 1=1
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
@@ -55,7 +55,7 @@
     </isNotNull>
   </select>
   <insert id="AddLink" parameterClass="Link">
-  INSERT INTO Link
+  INSERT INTO `Link`
   (
     `ID`,
     `LinkDefinitionID`,
@@ -87,7 +87,7 @@
   )
   </insert>
   <update id="UpdateLink" parameterClass="LinkUpdateForm">
-  UPDATE Link
+  UPDATE `Link`
     <dynamic prepend="SET">
         <isNotNull prepend="," property="Entity.LinkDefinitionID">
         `LinkDefinitionID`=#Entity.LinkDefinitionID#
@@ -171,7 +171,7 @@
     </isNotNull>
   </update>
   <delete id="DeleteLink" parameterClass="LinkQueryForm">
-    DELETE FROM Link WHERE 1=1
+    DELETE FROM `Link` WHERE 1=1
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
@@ -219,7 +219,7 @@
     </isNotNull>
   </delete>
    <select id="QueryLinkLastUpdateTime" resultClass="DateTime">
-        SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM Link
+        SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM `Link`
    </select>
   </statements>
 </sqlMap>

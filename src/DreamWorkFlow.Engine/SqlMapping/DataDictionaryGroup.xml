@@ -139,7 +139,7 @@
         `LastUpdator`=#LastUpdator#
     </isNotNull>
   </delete>
-   <select id="Query`DataDictionaryGroup`LastUpdateTime" resultClass="DateTime">
+   <select id="QueryDataDictionaryGroupLastUpdateTime" resultClass="DateTime">
         SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM `DataDictionaryGroup`
    </select>
   </statements>
