@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SOAFramework.Library.DAL;
+
 namespace DreamWorkflow.Engine.Form
 {
-    public class TaskQueryForm : BaseQueryForm
+    public class TaskQueryForm : SimpleQueryForm
     {
         public string AcitivityID { get; set; }
         
@@ -20,11 +22,7 @@ namespace DreamWorkflow.Engine.Form
         
         public DateTime? ProcessTime_End { get; set; }
         
-        public DateTime? LastUpdateTime_Start { get; set; }
-        
-        public DateTime? LastUpdateTime_End { get; set; }
-        
-        public string LastUpdator { get; set; }
+        public string UserID { get; set; }
         
     }
 }

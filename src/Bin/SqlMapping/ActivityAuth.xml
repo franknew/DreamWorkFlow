@@ -7,7 +7,11 @@
   </alias>
   <statements>
   <select id="QueryActivityAuth" resultClass="ActivityAuth" parameterClass="ActivityAuthQueryForm">
-    SELECT * FROM `ActivityAuth` WHERE 1=1
+    <isGreaterThan compareProperty="PageSize" compareValue="0">
+    
+    </isGreaterThan>
+    SELECT * FROM `ActivityAuth` 
+    <dynamic prepend="WHERE">
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
@@ -46,6 +50,12 @@
     </isNotNull>
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
+    </isNotNull>
+    </dynamic>
+    <isNotNull property="PageSize">
+    <isGreaterThan property="PageSize" compareValue="0">
+     LIMIT #StartIndex#, #PageSize# 
+    </isGreaterThan>
     </isNotNull>
   </select>
   <insert id="AddActivityAuth" parameterClass="ActivityAuth">
@@ -112,7 +122,7 @@
         `LastUpdator`=#Entity.LastUpdator#
         </isNotNull>
     </dynamic>
-    WHERE 1=1
+    <dynamic prepend="WHERE">
     <isNotNull prepend="AND" property="ActivityAuthQueryForm.ID">
         `ID`=#ActivityAuthQueryForm.ID#
     </isNotNull>
@@ -152,6 +162,7 @@
     <isNotNull prepend="AND" property="ActivityAuthQueryForm.LastUpdator">
         `LastUpdator`=#ActivityAuthQueryForm.LastUpdator#
     </isNotNull>
+    </dynamic>
   </update>
   <delete id="DeleteActivityAuth" parameterClass="ActivityAuthQueryForm">
     DELETE FROM `ActivityAuth` WHERE 1=1
@@ -197,6 +208,50 @@
   </delete>
    <select id="QueryActivityAuthLastUpdateTime" resultClass="DateTime">
         SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM `ActivityAuth`
+   </select>
+   <select id="QueryActivityAuthRecordCount" resultClass="int" parameterClass="ActivityAuthQueryForm">
+   SELECT COUNT(*) FROM `ActivityAuth` 
+    <dynamic prepend="WHERE">
+    <isNotNull prepend="AND" property="ID">
+        `ID`=#ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Name">
+        `Name` LIKE '%$Name$%'
+    </isNotNull>
+    <isNotNull prepend="AND" property="Creator">
+        `Creator`=#Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_Start">
+        `CreateTime`&gt;=#CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_End">
+        `CreateTime`&lt;=#CreateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityAuthDefinitionID">
+        `ActivityAuthDefinitionID`=#ActivityAuthDefinitionID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Type">
+        `Type`=#Type#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Value">
+        `Value`=#Value#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityID">
+        `ActivityID`=#ActivityID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowID">
+        `WorkflowID`=#WorkflowID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LastUpdateTime_Start">
+        `LastUpdateTime`&gt;=#LastUpdateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LastUpdateTime_End">
+        `LastUpdateTime`&lt;=#LastUpdateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LastUpdator">
+        `LastUpdator`=#LastUpdator#
+    </isNotNull>
+    </dynamic>
    </select>
   </statements>
 </sqlMap>

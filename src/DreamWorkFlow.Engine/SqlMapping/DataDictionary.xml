@@ -7,7 +7,11 @@
   </alias>
   <statements>
   <select id="QueryDataDictionary" resultClass="DataDictionary" parameterClass="DataDictionaryQueryForm">
-    SELECT * FROM `DataDictionary` WHERE 1=1
+    <isGreaterThan compareProperty="PageSize" compareValue="0">
+    
+    </isGreaterThan>
+    SELECT * FROM `DataDictionary` 
+    <dynamic prepend="WHERE">
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
@@ -40,6 +44,12 @@
     </isNotNull>
     <isNotNull prepend="AND" property="DataDictionaryGroupID">
         `DataDictionaryGroupID`=#DataDictionaryGroupID#
+    </isNotNull>
+    </dynamic>
+    <isNotNull property="PageSize">
+    <isGreaterThan property="PageSize" compareValue="0">
+     LIMIT #StartIndex#, #PageSize# 
+    </isGreaterThan>
     </isNotNull>
   </select>
   <insert id="AddDataDictionary" parameterClass="DataDictionary">
@@ -96,7 +106,7 @@
         `DataDictionaryGroupID`=#Entity.DataDictionaryGroupID#
         </isNotNull>
     </dynamic>
-    WHERE 1=1
+    <dynamic prepend="WHERE">
     <isNotNull prepend="AND" property="DataDictionaryQueryForm.ID">
         `ID`=#DataDictionaryQueryForm.ID#
     </isNotNull>
@@ -130,6 +140,7 @@
     <isNotNull prepend="AND" property="DataDictionaryQueryForm.DataDictionaryGroupID">
         `DataDictionaryGroupID`=#DataDictionaryQueryForm.DataDictionaryGroupID#
     </isNotNull>
+    </dynamic>
   </update>
   <delete id="DeleteDataDictionary" parameterClass="DataDictionaryQueryForm">
     DELETE FROM `DataDictionary` WHERE 1=1
@@ -169,6 +180,44 @@
   </delete>
    <select id="QueryDataDictionaryLastUpdateTime" resultClass="DateTime">
         SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM `DataDictionary`
+   </select>
+   <select id="QueryDataDictionaryRecordCount" resultClass="int" parameterClass="DataDictionaryQueryForm">
+   SELECT COUNT(*) FROM `DataDictionary` 
+    <dynamic prepend="WHERE">
+    <isNotNull prepend="AND" property="ID">
+        `ID`=#ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Name">
+        `Name` LIKE '%$Name$%'
+    </isNotNull>
+    <isNotNull prepend="AND" property="Value">
+        `Value`=#Value#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Creator">
+        `Creator`=#Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_Start">
+        `CreateTime`&gt;=#CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_End">
+        `CreateTime`&lt;=#CreateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Remark">
+        `Remark` LIKE '%$Remark$%'
+    </isNotNull>
+    <isNotNull prepend="AND" property="LastUpdateTime_Start">
+        `LastUpdateTime`&gt;=#LastUpdateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LastUpdateTime_End">
+        `LastUpdateTime`&lt;=#LastUpdateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LastUpdator">
+        `LastUpdator`=#LastUpdator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="DataDictionaryGroupID">
+        `DataDictionaryGroupID`=#DataDictionaryGroupID#
+    </isNotNull>
+    </dynamic>
    </select>
   </statements>
 </sqlMap>

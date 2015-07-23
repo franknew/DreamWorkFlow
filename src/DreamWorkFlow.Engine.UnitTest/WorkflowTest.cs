@@ -13,7 +13,7 @@ namespace DreamWorkflow.Engine.UnitTest
         private WorkflowDao dao = new WorkflowDao();
 
         [TestMethod]
-        public void TestAdd()
+        public void TestWorkflowAdd()
         {
             Workflow wf = new Workflow
             {
@@ -28,6 +28,14 @@ namespace DreamWorkflow.Engine.UnitTest
             {
                 ID = wf.ID,
             };
+
+            var statement = dao.Mapper.GetMappedStatement("QueryWorkflow");
+            if (!dao.Mapper.IsSessionStarted)
+            {
+                dao.Mapper.OpenConnection();
+            }
+            RequestScope scope = statement.Statement.Sql.GetRequestScope(statement, form, dao.Mapper.LocalSession);
+            string result = scope.PreparedStatement.PreparedSql;
             var list = dao.Query(form);
             Assert.AreEqual(1, list.Count);
             Assert.AreEqual("testing add", list[0].Name);
@@ -38,7 +46,7 @@ namespace DreamWorkflow.Engine.UnitTest
         }
 
         [TestMethod]
-        public void TestQuery()
+        public void TestWorkflowQuery()
         {
             WorkflowQueryForm form = new WorkflowQueryForm
             {
@@ -52,7 +60,7 @@ namespace DreamWorkflow.Engine.UnitTest
         }
 
         [TestMethod]
-        public void TestUpdate()
+        public void TestWorkflowUpdate()
         {
             WorkflowQueryForm form = new WorkflowQueryForm
             {
@@ -84,7 +92,7 @@ namespace DreamWorkflow.Engine.UnitTest
         }
 
         [TestMethod]
-        public void TestDelete()
+        public void TestWorkflowDelete()
         {
             Workflow wf = new Workflow
             {
@@ -109,6 +117,7 @@ namespace DreamWorkflow.Engine.UnitTest
         [TestInitialize]
         public void Init()
         {
+            Cleanup();
             Workflow wf = new Workflow
             {
                 ID = "11",
@@ -118,14 +127,27 @@ namespace DreamWorkflow.Engine.UnitTest
                 CreateTime = DateTime.Now,
                 WorkflowDefinitionID = "1",
             };
-            try
+            Workflow wf2 = new Workflow
             {
-                dao.Add(wf);
-            }
-            catch (Exception ex)
+                ID = "22",
+                Creator = "test2",
+                Name = "testing2",
+                Status = 0,
+                CreateTime = DateTime.Now,
+                WorkflowDefinitionID = "1",
+            };
+            Workflow wf3 = new Workflow
             {
-
-            }
+                ID = "33",
+                Creator = "test3",
+                Name = "testing3",
+                Status = 0,
+                CreateTime = DateTime.Now,
+                WorkflowDefinitionID = "1",
+            };
+            dao.Add(wf);
+            dao.Add(wf2);
+            dao.Add(wf3);
         }
 
         [TestCleanup]
@@ -136,6 +158,8 @@ namespace DreamWorkflow.Engine.UnitTest
                 ID = "11",
             };
             dao.Delete(form);
+            dao.Delete(new WorkflowQueryForm { ID = "22" });
+            dao.Delete(new WorkflowQueryForm { ID = "33" });
         }
     }
 }

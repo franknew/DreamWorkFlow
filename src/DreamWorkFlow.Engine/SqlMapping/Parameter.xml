@@ -7,7 +7,11 @@
   </alias>
   <statements>
   <select id="QueryParameter" resultClass="Parameter" parameterClass="ParameterQueryForm">
-    SELECT * FROM `Parameter` WHERE 1=1
+    <isGreaterThan compareProperty="PageSize" compareValue="0">
+    
+    </isGreaterThan>
+    SELECT * FROM `Parameter` 
+    <dynamic prepend="WHERE">
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
@@ -19,6 +23,12 @@
     </isNotNull>
     <isNotNull prepend="AND" property="Value">
         `Value`=#Value#
+    </isNotNull>
+    </dynamic>
+    <isNotNull property="PageSize">
+    <isGreaterThan property="PageSize" compareValue="0">
+     LIMIT #StartIndex#, #PageSize# 
+    </isGreaterThan>
     </isNotNull>
   </select>
   <insert id="AddParameter" parameterClass="Parameter">
@@ -50,7 +60,7 @@
         `Value`=#Entity.Value#
         </isNotNull>
     </dynamic>
-    WHERE 1=1
+    <dynamic prepend="WHERE">
     <isNotNull prepend="AND" property="ParameterQueryForm.ID">
         `ID`=#ParameterQueryForm.ID#
     </isNotNull>
@@ -63,6 +73,7 @@
     <isNotNull prepend="AND" property="ParameterQueryForm.Value">
         `Value`=#ParameterQueryForm.Value#
     </isNotNull>
+    </dynamic>
   </update>
   <delete id="DeleteParameter" parameterClass="ParameterQueryForm">
     DELETE FROM `Parameter` WHERE 1=1
@@ -79,5 +90,22 @@
         `Value`=#Value#
     </isNotNull>
   </delete>
+   <select id="QueryParameterRecordCount" resultClass="int" parameterClass="ParameterQueryForm">
+   SELECT COUNT(*) FROM `Parameter` 
+    <dynamic prepend="WHERE">
+    <isNotNull prepend="AND" property="ID">
+        `ID`=#ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ContextID">
+        `ContextID`=#ContextID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Key">
+        `Key`=#Key#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Value">
+        `Value`=#Value#
+    </isNotNull>
+    </dynamic>
+   </select>
   </statements>
 </sqlMap>

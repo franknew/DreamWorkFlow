@@ -67,7 +67,13 @@ namespace DreamWorkflow.Engine
         {
             object dao = Activator.CreateInstance(daoType, null);
             var method = daoType.GetMethod("Query");
-            object result = method.Invoke(dao, new object[] { null });
+            var parms = method.GetParameters();
+            object paramIn = null;
+            if (parms.Length > 0)
+            {
+                paramIn = Activator.CreateInstance(parms[0].ParameterType);
+            }
+            object result = method.Invoke(dao, new object[] { paramIn });
             List<T> list = result as List<T>;
             return list;
         }

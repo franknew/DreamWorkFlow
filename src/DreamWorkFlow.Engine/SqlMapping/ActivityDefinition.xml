@@ -7,7 +7,11 @@
   </alias>
   <statements>
   <select id="QueryActivityDefinition" resultClass="ActivityDefinition" parameterClass="ActivityDefinitionQueryForm">
-    SELECT * FROM `ActivityDefinition` WHERE 1=1
+    <isGreaterThan compareProperty="PageSize" compareValue="0">
+    
+    </isGreaterThan>
+    SELECT * FROM `ActivityDefinition` 
+    <dynamic prepend="WHERE">
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
@@ -46,6 +50,12 @@
     </isNotNull>
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
+    </isNotNull>
+    </dynamic>
+    <isNotNull property="PageSize">
+    <isGreaterThan property="PageSize" compareValue="0">
+     LIMIT #StartIndex#, #PageSize# 
+    </isGreaterThan>
     </isNotNull>
   </select>
   <insert id="AddActivityDefinition" parameterClass="ActivityDefinition">
@@ -112,7 +122,7 @@
         `LastUpdator`=#Entity.LastUpdator#
         </isNotNull>
     </dynamic>
-    WHERE 1=1
+    <dynamic prepend="WHERE">
     <isNotNull prepend="AND" property="ActivityDefinitionQueryForm.ID">
         `ID`=#ActivityDefinitionQueryForm.ID#
     </isNotNull>
@@ -152,6 +162,7 @@
     <isNotNull prepend="AND" property="ActivityDefinitionQueryForm.LastUpdator">
         `LastUpdator`=#ActivityDefinitionQueryForm.LastUpdator#
     </isNotNull>
+    </dynamic>
   </update>
   <delete id="DeleteActivityDefinition" parameterClass="ActivityDefinitionQueryForm">
     DELETE FROM `ActivityDefinition` WHERE 1=1
@@ -197,6 +208,50 @@
   </delete>
    <select id="QueryActivityDefinitionLastUpdateTime" resultClass="DateTime">
         SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM `ActivityDefinition`
+   </select>
+   <select id="QueryActivityDefinitionRecordCount" resultClass="int" parameterClass="ActivityDefinitionQueryForm">
+   SELECT COUNT(*) FROM `ActivityDefinition` 
+    <dynamic prepend="WHERE">
+    <isNotNull prepend="AND" property="ID">
+        `ID`=#ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowDefinitionID">
+        `WorkflowDefinitionID`=#WorkflowDefinitionID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Page">
+        `Page`=#Page#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Name">
+        `Name` LIKE '%$Name$%'
+    </isNotNull>
+    <isNotNull prepend="AND" property="Enabled">
+        `Enabled`=#Enabled#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Type">
+        `Type`=#Type#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Creator">
+        `Creator`=#Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_Start">
+        `CreateTime`&gt;=#CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_End">
+        `CreateTime`&lt;=#CreateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Remark">
+        `Remark` LIKE '%$Remark$%'
+    </isNotNull>
+    <isNotNull prepend="AND" property="LastUpdateTime_Start">
+        `LastUpdateTime`&gt;=#LastUpdateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LastUpdateTime_End">
+        `LastUpdateTime`&lt;=#LastUpdateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LastUpdator">
+        `LastUpdator`=#LastUpdator#
+    </isNotNull>
+    </dynamic>
    </select>
   </statements>
 </sqlMap>

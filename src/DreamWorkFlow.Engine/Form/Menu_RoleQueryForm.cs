@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SOAFramework.Library.DAL;
-
 namespace DreamWorkflow.Engine.Form
 {
-    public class DataDictionaryGroupQueryForm : SimpleQueryForm
+    public class Menu_RoleQueryForm : BaseQueryForm
     {
-        public string Remark { get; set; }
+        public string MenuID { get; set; }
+        
+        public string RoleID { get; set; }
         
     }
 }

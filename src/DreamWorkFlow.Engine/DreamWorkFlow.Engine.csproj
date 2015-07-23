@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\DataDictionaryBLL.cs" />
     <Compile Include="Common\TableCacheHelper.cs" />
     <Compile Include="Core\ActivityDefinitionInstance.cs" />
     <Compile Include="Core\LinkInstance.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Form\QueryForm\ActivityAuthDefinitionQueryForm.cs" />
     <Compile Include="Form\QueryForm\DataDictionaryGroupQueryForm.cs" />
     <Compile Include="Form\QueryForm\DataDictionaryQueryForm.cs" />
+    <Compile Include="Form\ResultForm\DataDictionaryResultForm.cs" />
     <Compile Include="Form\UpdateForm\ActivityAuthDefinitionUpdateForm.cs" />
     <Compile Include="Form\QueryForm\ActivityAuthQueryForm.cs" />
     <Compile Include="Form\UpdateForm\ActivityAuthUpdateForm.cs" />
@@ -84,7 +86,6 @@
     <Compile Include="Form\UpdateForm\ActivityUpdateForm.cs" />
     <Compile Include="Form\QueryForm\ApprovalQueryForm.cs" />
     <Compile Include="Form\UpdateForm\ApprovalUpdateForm.cs" />
-    <Compile Include="Form\QueryForm\BaseQueryForm.cs" />
     <Compile Include="Form\QueryForm\ContextQueryForm.cs" />
     <Compile Include="Form\UpdateForm\ContextUpdateForm.cs" />
     <Compile Include="Form\QueryForm\LinkDefinitionQueryForm.cs" />
@@ -129,7 +130,6 @@
     <None Include="SqlMap.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Form\ResultForm\" />
     <Folder Include="Interface\" />
   </ItemGroup>
   <ItemGroup>

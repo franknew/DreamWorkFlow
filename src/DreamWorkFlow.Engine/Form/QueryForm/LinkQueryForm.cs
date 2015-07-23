@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SOAFramework.Library.DAL;
+
 namespace DreamWorkflow.Engine.Form
 {
-    public class LinkQueryForm : BaseQueryForm
+    public class LinkQueryForm : SimpleQueryForm
     {
         public string LinkDefinitionID { get; set; }
         
@@ -19,12 +21,6 @@ namespace DreamWorkflow.Engine.Form
         public DateTime? PassedTime_End { get; set; }
         
         public string WorkflowID { get; set; }
-        
-        public DateTime? LastUpdateTime_Start { get; set; }
-        
-        public DateTime? LastUpdateTime_End { get; set; }
-        
-        public string LastUpdator { get; set; }
         
     }
 }
