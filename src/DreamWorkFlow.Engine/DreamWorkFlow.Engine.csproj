@@ -57,6 +57,7 @@
     <Compile Include="Common\TableCacheHelper.cs" />
     <Compile Include="Core\ActivityDefinitionInstance.cs" />
     <Compile Include="Core\LinkInstance.cs" />
+    <Compile Include="Core\WorkflowDefinitionInstance.cs" />
     <Compile Include="Core\WorkflowInstance.cs" />
     <Compile Include="DAL\ActivityAuthDao.cs" />
     <Compile Include="DAL\ActivityAuthDefinitionDao.cs" />

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DreamWorkFlow.Engine.UnitTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinformTest", "WinformTest\WinformTest.csproj", "{A21969A1-A486-4ED0-A916-90F4F2D69659}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host", "WcfTest\Host.csproj", "{565370CD-E86C-44D0-A65A-549B248B7569}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{A21969A1-A486-4ED0-A916-90F4F2D69659}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A21969A1-A486-4ED0-A916-90F4F2D69659}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A21969A1-A486-4ED0-A916-90F4F2D69659}.Release|Any CPU.Build.0 = Release|Any CPU
+		{565370CD-E86C-44D0-A65A-549B248B7569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{565370CD-E86C-44D0-A65A-549B248B7569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{565370CD-E86C-44D0-A65A-549B248B7569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{565370CD-E86C-44D0-A65A-549B248B7569}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
