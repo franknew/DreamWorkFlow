@@ -60,11 +60,14 @@
     <isNotNull prepend="AND" property="UserID">
         `UserID`=#UserID#
     </isNotNull>
+    <isNotNull prepend="AND" property="Title">
+        `Title`=#Title#
+    </isNotNull>
     </dynamic>
     <isNotNull property="PageSize">
-    <isGreaterThan property="PageSize" compareValue="0">
-     LIMIT #StartIndex#, #PageSize# 
-    </isGreaterThan>
+        <isGreaterThan property="PageSize" compareValue="0">
+         LIMIT #StartIndex#, #PageSize# 
+        </isGreaterThan>
     </isNotNull>
   </select>
   <insert id="AddTask" parameterClass="Task">
@@ -81,7 +84,8 @@
     `ProcessTime`,
     `LastUpdateTime`,
     `LastUpdator`,
-    `UserID`
+    `UserID`,
+    `Title`
   )
   VALUES
   (
@@ -96,7 +100,8 @@
         #ProcessTime#,
         #LastUpdateTime#,
         #LastUpdator#,
-        #UserID#
+        #UserID#,
+        #Title#
   )
   </insert>
   <update id="UpdateTask" parameterClass="TaskUpdateForm">
@@ -134,6 +139,9 @@
         </isNotNull>
         <isNotNull prepend="," property="Entity.UserID">
         `UserID`=#Entity.UserID#
+        </isNotNull>
+        <isNotNull prepend="," property="Entity.Title">
+        `Title`=#Entity.Title#
         </isNotNull>
     </dynamic>
     <dynamic prepend="WHERE">
@@ -184,6 +192,9 @@
     </isNotNull>
     <isNotNull prepend="AND" property="TaskQueryForm.UserID">
         `UserID`=#TaskQueryForm.UserID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="TaskQueryForm.Title">
+        `Title`=#TaskQueryForm.Title#
     </isNotNull>
     </dynamic>
   </update>
@@ -236,6 +247,9 @@
     </isNotNull>
     <isNotNull prepend="AND" property="UserID">
         `UserID`=#UserID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Title">
+        `Title`=#Title#
     </isNotNull>
   </delete>
    <select id="QueryTaskLastUpdateTime" resultClass="DateTime">
@@ -291,6 +305,9 @@
     </isNotNull>
     <isNotNull prepend="AND" property="UserID">
         `UserID`=#UserID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Title">
+        `Title`=#Title#
     </isNotNull>
     </dynamic>
    </select>

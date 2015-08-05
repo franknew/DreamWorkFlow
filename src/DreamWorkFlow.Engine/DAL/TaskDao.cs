@@ -21,9 +21,9 @@ namespace DreamWorkflow.Engine.DAL
         {
         }
         
-        public DateTime QueryMaxLastUpdateTime()
+        public DateTime? QueryMaxLastUpdateTime()
         {
-            return Mapper.QueryForObject<DateTime>("QueryTaskLastUpdateTime", null);
+            return Mapper.QueryForObject<DateTime?>("QueryTaskLastUpdateTime", null);
         }
     }
 }

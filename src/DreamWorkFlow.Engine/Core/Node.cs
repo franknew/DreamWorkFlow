@@ -15,7 +15,13 @@ namespace DreamWorkflow.Engine
             set { children = value; }
         }
 
-        public List<Node<T>> Parents { get; set; }
+        private List<Node<T>> parents = new List<Node<T>>();
+
+        public List<Node<T>> Parents
+        {
+            get { return parents; }
+            set { parents = value; }
+        }
 
         public List<Node<T>> GetList()
         {

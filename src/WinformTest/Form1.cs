@@ -82,5 +82,21 @@ namespace WinformTest
             var result = HttpHelper.Post("http://localhost:8088/Execute/Test/Test1", Encoding.UTF8.GetBytes("{\"UserName\":\"Frank\"}"));
             MessageBox.Show(result);
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var workflow = WorkflowDefinitionModel.Load("1");
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            var workflow = WorkflowDefinitionModel.Load("1");
+            workflow.StartNew("frank");
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            var workflow = WorkflowModel.Load("66c728aa03bb4f8aa6f26b43c705e70f");
+        }
     }
 }

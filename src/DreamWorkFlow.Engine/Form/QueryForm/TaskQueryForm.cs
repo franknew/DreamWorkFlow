@@ -24,5 +24,7 @@ namespace DreamWorkflow.Engine.Form
         
         public string UserID { get; set; }
         
+        public string Title { get; set; }
+        
     }
 }

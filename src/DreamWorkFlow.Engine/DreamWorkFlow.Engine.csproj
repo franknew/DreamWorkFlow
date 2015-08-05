@@ -43,6 +43,13 @@
     <Reference Include="SOAFramework.Library.DAL">
       <HintPath>..\CommonDll\SOAFramework.Library.DAL.dll</HintPath>
     </Reference>
+    <Reference Include="SOAFramework.Library.Extension, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9a50c39ae211549b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CommonDll\SOAFramework.Library.Extension.dll</HintPath>
+    </Reference>
+    <Reference Include="SOAFramework.Library.Lib">
+      <HintPath>..\..\..\RiskMgr\source\background\RiskMgr\CommonDll\SOAFramework.Library.Lib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
@@ -55,10 +62,12 @@
   <ItemGroup>
     <Compile Include="BLL\DataDictionaryBLL.cs" />
     <Compile Include="Common\TableCacheHelper.cs" />
-    <Compile Include="Core\ActivityDefinitionInstance.cs" />
-    <Compile Include="Core\LinkInstance.cs" />
-    <Compile Include="Core\WorkflowDefinitionInstance.cs" />
-    <Compile Include="Core\WorkflowInstance.cs" />
+    <Compile Include="Core\ActivityDefinitionModel.cs" />
+    <Compile Include="Core\BaseModel.cs" />
+    <Compile Include="Core\LinkDefinitionModel.cs" />
+    <Compile Include="Core\LinkModel.cs" />
+    <Compile Include="Core\WorkflowDefinitionModel.cs" />
+    <Compile Include="Core\WorkflowModel.cs" />
     <Compile Include="DAL\ActivityAuthDao.cs" />
     <Compile Include="DAL\ActivityAuthDefinitionDao.cs" />
     <Compile Include="DAL\ActivityDao.cs" />
@@ -102,24 +111,24 @@
     <Compile Include="Form\QueryForm\WorkflowDefinitionQueryForm.cs" />
     <Compile Include="Form\UpdateForm\WorkflowDefinitionUpdateForm.cs" />
     <Compile Include="Form\UpdateForm\WorkflowUpdateForm.cs" />
-    <Compile Include="Model\Activity.cs" />
-    <Compile Include="Model\ActivityAuth.cs" />
-    <Compile Include="Model\ActivityAuthDefinition.cs" />
-    <Compile Include="Model\ActivityDefinition.cs" />
-    <Compile Include="Core\ActivityInstance.cs" />
+    <Compile Include="Entity\Activity.cs" />
+    <Compile Include="Entity\ActivityAuth.cs" />
+    <Compile Include="Entity\ActivityAuthDefinition.cs" />
+    <Compile Include="Entity\ActivityDefinition.cs" />
+    <Compile Include="Core\ActivityModel.cs" />
     <Compile Include="Core\Node.cs" />
-    <Compile Include="Model\Approval.cs" />
-    <Compile Include="Model\BaseCacheEntity.cs" />
-    <Compile Include="Model\Context.cs" />
-    <Compile Include="Model\DataDictionary.cs" />
-    <Compile Include="Model\DataDictionaryGroup.cs" />
-    <Compile Include="Model\DataDictionaryGroupAndItem.cs" />
-    <Compile Include="Model\Link.cs" />
-    <Compile Include="Model\LinkDefinition.cs" />
-    <Compile Include="Model\Parameter.cs" />
-    <Compile Include="Model\Task.cs" />
-    <Compile Include="Model\Workflow.cs" />
-    <Compile Include="Model\WorkflowDefinition.cs" />
+    <Compile Include="Entity\Approval.cs" />
+    <Compile Include="Entity\BaseCacheEntity.cs" />
+    <Compile Include="Entity\Context.cs" />
+    <Compile Include="Entity\DataDictionary.cs" />
+    <Compile Include="Entity\DataDictionaryGroup.cs" />
+    <Compile Include="Entity\DataDictionaryGroupAndItem.cs" />
+    <Compile Include="Entity\Link.cs" />
+    <Compile Include="Entity\LinkDefinition.cs" />
+    <Compile Include="Entity\Parameter.cs" />
+    <Compile Include="Entity\Task.cs" />
+    <Compile Include="Entity\Workflow.cs" />
+    <Compile Include="Entity\WorkflowDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Form\QueryForm\WorkflowQueryForm.cs" />
     <Content Include="SqlMapping\DataDictionaryGroupAndItem.xml">

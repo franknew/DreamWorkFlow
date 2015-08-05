@@ -18,5 +18,7 @@ namespace DreamWorkflow.Engine.Form
         
         public string Remark { get; set; }
         
+        public string Title { get; set; }
+        
     }
 }

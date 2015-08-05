@@ -63,11 +63,14 @@
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
     </isNotNull>
+    <isNotNull prepend="AND" property="Title">
+        `Title`=#Title#
+    </isNotNull>
     </dynamic>
     <isNotNull property="PageSize">
-    <isGreaterThan property="PageSize" compareValue="0">
-     LIMIT #StartIndex#, #PageSize# 
-    </isGreaterThan>
+        <isGreaterThan property="PageSize" compareValue="0">
+         LIMIT #StartIndex#, #PageSize# 
+        </isGreaterThan>
     </isNotNull>
   </select>
   <insert id="AddActivity" parameterClass="Activity">
@@ -85,7 +88,8 @@
     `ReadTime`,
     `ProcessTime`,
     `LastUpdateTime`,
-    `LastUpdator`
+    `LastUpdator`,
+    `Title`
   )
   VALUES
   (
@@ -101,7 +105,8 @@
         #ReadTime#,
         #ProcessTime#,
         #LastUpdateTime#,
-        #LastUpdator#
+        #LastUpdator#,
+        #Title#
   )
   </insert>
   <update id="UpdateActivity" parameterClass="ActivityUpdateForm">
@@ -142,6 +147,9 @@
         </isNotNull>
         <isNotNull prepend="," property="Entity.LastUpdator">
         `LastUpdator`=#Entity.LastUpdator#
+        </isNotNull>
+        <isNotNull prepend="," property="Entity.Title">
+        `Title`=#Entity.Title#
         </isNotNull>
     </dynamic>
     <dynamic prepend="WHERE">
@@ -195,6 +203,9 @@
     </isNotNull>
     <isNotNull prepend="AND" property="ActivityQueryForm.LastUpdator">
         `LastUpdator`=#ActivityQueryForm.LastUpdator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityQueryForm.Title">
+        `Title`=#ActivityQueryForm.Title#
     </isNotNull>
     </dynamic>
   </update>
@@ -250,6 +261,9 @@
     </isNotNull>
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Title">
+        `Title`=#Title#
     </isNotNull>
   </delete>
    <select id="QueryActivityLastUpdateTime" resultClass="DateTime">
@@ -308,6 +322,9 @@
     </isNotNull>
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Title">
+        `Title`=#Title#
     </isNotNull>
     </dynamic>
    </select>

@@ -12,7 +12,7 @@ namespace DreamWorkflow.Engine.Form
         
         public string Page { get; set; }
         
-        public string Type { get; set; }
+        public Int32? Type { get; set; }
         
         public string WorkflowID { get; set; }
         
@@ -25,6 +25,8 @@ namespace DreamWorkflow.Engine.Form
         public DateTime? ProcessTime_Start { get; set; }
         
         public DateTime? ProcessTime_End { get; set; }
+        
+        public string Title { get; set; }
         
     }
 }

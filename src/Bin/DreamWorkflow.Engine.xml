@@ -4,5 +4,110 @@
         <name>DreamWorkflow.Engine</name>
     </assembly>
     <members>
+        <member name="P:DreamWorkflow.Engine.Model.Activity.ActivityDefinitionID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Activity.Page">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Activity.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Activity.WorkflowID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Activity.Status">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Activity.ReadTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Activity.ProcessTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Activity.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityDefinition.WorkflowDefinitionID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityDefinition.Page">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityDefinition.Enabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityDefinition.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityDefinition.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityDefinition.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Task.AcitivityID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Task.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Task.Status">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Task.ReadTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Task.ProcessTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Task.UserID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Task.Title">
+            <summary>
+            
+            </summary>
+        </member>
     </members>
 </doc>

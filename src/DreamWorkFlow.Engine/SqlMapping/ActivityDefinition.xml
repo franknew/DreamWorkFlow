@@ -51,11 +51,14 @@
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
     </isNotNull>
+    <isNotNull prepend="AND" property="Title">
+        `Title`=#Title#
+    </isNotNull>
     </dynamic>
     <isNotNull property="PageSize">
-    <isGreaterThan property="PageSize" compareValue="0">
-     LIMIT #StartIndex#, #PageSize# 
-    </isGreaterThan>
+        <isGreaterThan property="PageSize" compareValue="0">
+         LIMIT #StartIndex#, #PageSize# 
+        </isGreaterThan>
     </isNotNull>
   </select>
   <insert id="AddActivityDefinition" parameterClass="ActivityDefinition">
@@ -71,7 +74,8 @@
     `CreateTime`,
     `Remark`,
     `LastUpdateTime`,
-    `LastUpdator`
+    `LastUpdator`,
+    `Title`
   )
   VALUES
   (
@@ -85,7 +89,8 @@
         #CreateTime#,
         #Remark#,
         #LastUpdateTime#,
-        #LastUpdator#
+        #LastUpdator#,
+        #Title#
   )
   </insert>
   <update id="UpdateActivityDefinition" parameterClass="ActivityDefinitionUpdateForm">
@@ -120,6 +125,9 @@
         </isNotNull>
         <isNotNull prepend="," property="Entity.LastUpdator">
         `LastUpdator`=#Entity.LastUpdator#
+        </isNotNull>
+        <isNotNull prepend="," property="Entity.Title">
+        `Title`=#Entity.Title#
         </isNotNull>
     </dynamic>
     <dynamic prepend="WHERE">
@@ -161,6 +169,9 @@
     </isNotNull>
     <isNotNull prepend="AND" property="ActivityDefinitionQueryForm.LastUpdator">
         `LastUpdator`=#ActivityDefinitionQueryForm.LastUpdator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ActivityDefinitionQueryForm.Title">
+        `Title`=#ActivityDefinitionQueryForm.Title#
     </isNotNull>
     </dynamic>
   </update>
@@ -204,6 +215,9 @@
     </isNotNull>
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Title">
+        `Title`=#Title#
     </isNotNull>
   </delete>
    <select id="QueryActivityDefinitionLastUpdateTime" resultClass="DateTime">
@@ -250,6 +264,9 @@
     </isNotNull>
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Title">
+        `Title`=#Title#
     </isNotNull>
     </dynamic>
    </select>
