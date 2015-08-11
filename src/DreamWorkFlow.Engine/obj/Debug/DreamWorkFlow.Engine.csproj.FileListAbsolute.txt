@@ -1,0 +1,6 @@
+E:\AppLib\DreamWorkFlow\src\Bin\DreamWorkFlow.Engine.dll
+E:\AppLib\DreamWorkFlow\src\Bin\DreamWorkFlow.Engine.pdb
+E:\AppLib\DreamWorkFlow\src\DreamWorkFlow.Engine\obj\Debug\DreamWorkFlow.Engine.dll
+E:\AppLib\DreamWorkFlow\src\DreamWorkFlow.Engine\obj\Debug\DreamWorkFlow.Engine.pdb
+E:\AppLib\DreamWorkFlow\src\Bin\DreamWorkflow.Engine.xml
+E:\AppLib\DreamWorkFlow\src\DreamWorkFlow.Engine\obj\Debug\DreamWorkFlow.Engine.csprojResolveAssemblyReference.cache

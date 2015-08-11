@@ -79,7 +79,9 @@ namespace WinformTest
 
         private void button5_Click(object sender, EventArgs e)
         {
-            var result = HttpHelper.Post("http://localhost:8088/Execute/Test/Test1", Encoding.UTF8.GetBytes("{\"UserName\":\"Frank\"}"));
+            //var result = HttpHelper.Post("http://localhost:8088/Execute/RiskMgr.Api.LogonApi/Logon", Encoding.UTF8.GetBytes("{\"form\":{\"UserName\":\"admin\",\"Password\":\"admin\"}}"));
+            //var result = HttpHelper.Post("http://203.195.163.209/Service/Execute/RiskMgr.Api.LogonApi/Logon", Encoding.UTF8.GetBytes("{\"form\":{\"UserName\":\"admin\",\"Password\":\"admin\"}}"));
+            var result = HttpHelper.Post("http://localhost/Service/Execute/RiskMgr.Api.LogonApi/Logon", Encoding.UTF8.GetBytes("{\"form\":{\"UserName\":\"admin\",\"Password\":\"admin\"}}"));
             MessageBox.Show(result);
         }
 
@@ -91,12 +93,20 @@ namespace WinformTest
         private void button7_Click(object sender, EventArgs e)
         {
             var workflow = WorkflowDefinitionModel.Load("1");
-            workflow.StartNew("frank");
+            workflow.StartNew("frank", new GetUser());
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             var workflow = WorkflowModel.Load("66c728aa03bb4f8aa6f26b43c705e70f");
+        }
+    }
+    public class GetUser : IWorkflowAuthority
+    {
+
+        public List<string> GetUserIDList(System.Collections.Generic.List<ActivityAuth> auth)
+        {
+            return new List<string> { "1", "2" };
         }
     }
 }

@@ -34,7 +34,6 @@ namespace DreamWorkflow.Engine
             }
             #region query data
             ISqlMapper mapper = Mapper.Instance();
-            mapper.BeginTransaction();
             WorkflowDao wfdao = new WorkflowDao(mapper);
             ActivityDao activitydao = new ActivityDao(mapper);
             LinkDao linkDao = new LinkDao(mapper);
@@ -54,6 +53,7 @@ namespace DreamWorkflow.Engine
             }
             try
             {
+                mapper.BeginTransaction();
                 workflow = wfdao.Query(new WorkflowQueryForm { ID = id }).FirstOrDefault();
                 activitylist = activitydao.Query(new ActivityQueryForm { WorkflowID = id });
                 linkList = linkDao.Query(new LinkQueryForm { WorkflowID = id });
@@ -181,8 +181,6 @@ namespace DreamWorkflow.Engine
                 {
                     linkdao.Add(link);
                 }
-
-
                 mapper.CommitTransaction();
             }
             catch
@@ -197,8 +195,53 @@ namespace DreamWorkflow.Engine
         {
             get
             {
-                return null;
+                return Root.GetList().Find(t => t.Value.Status.Value == (int)ActivityProcessStatus.Processing) as ActivityModel;
             }
+        }
+
+        public void ProcessActivity(string activityid, Approval approval, string processor, IWorkflowAuthority auth)
+        {
+            var activities = this.Root.GetList();
+            var activity = activities.Find(t => t.Value.ID.Equals(activityid)) as ActivityModel;
+            activity.Process(approval, processor, auth);
+        }
+
+        public void Remove()
+        {
+            ISqlMapper mapper = Mapper.Instance();
+            WorkflowDao wfdao = new WorkflowDao(mapper);
+            ActivityDao activitydao = new ActivityDao(mapper);
+            LinkDao linkDao = new LinkDao(mapper);
+            ActivityAuthDao authdao = new ActivityAuthDao(mapper);
+            ApprovalDao approvalDao = new ApprovalDao(mapper);
+            TaskDao taskdao = new TaskDao(mapper);
+            try
+            {
+                mapper.BeginTransaction();
+                string id = this.value.ID;
+                var activities = activitydao.Query(new ActivityQueryForm { WorkflowID = id });
+                foreach (var a in activities)
+                {
+                    taskdao.Delete(new TaskQueryForm { AcitivityID = a.ID });
+                }
+                wfdao.Delete(new WorkflowQueryForm { ID = id });
+                activitydao.Delete(new ActivityQueryForm { WorkflowID = id });
+                linkDao.Delete(new LinkQueryForm { WorkflowID = id });
+                approvalDao.Delete(new ApprovalQueryForm { WorkflowID = id });
+                authdao.Delete(new ActivityAuthQueryForm { WorkflowID = id });
+                mapper.CommitTransaction();
+            }
+            catch
+            {
+                mapper.RollBackTransaction();
+                throw;
+            }
+
+        }
+
+        public void ReadTask()
+        {
+
         }
     }
 }

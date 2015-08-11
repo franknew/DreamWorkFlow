@@ -52,8 +52,9 @@
     <Reference Include="SOAFramework.Library.Zip">
       <HintPath>..\..\..\RiskMgr\source\background\RiskMgr\CommonDll\SOAFramework.Library.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="SOAFramework.Service.Core">
-      <HintPath>..\..\..\RiskMgr\source\background\RiskMgr\CommonDll\SOAFramework.Service.Core.dll</HintPath>
+    <Reference Include="SOAFramework.Service.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9a50c39ae211549b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\CommonDll\SOAFramework.Service.Core.dll</HintPath>
     </Reference>
     <Reference Include="SOAFramework.Service.Core.Model">
       <HintPath>..\..\..\RiskMgr\source\background\RiskMgr\CommonDll\SOAFramework.Service.Core.Model.dll</HintPath>
@@ -94,6 +95,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\PublishProfiles\web.config.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

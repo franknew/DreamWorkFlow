@@ -117,6 +117,7 @@ namespace DreamWorkflow.Engine.UnitTest
         [TestInitialize]
         public void Init()
         {
+            #region workflow
             Cleanup();
             Workflow wf = new Workflow
             {
@@ -148,6 +149,7 @@ namespace DreamWorkflow.Engine.UnitTest
             dao.Add(wf);
             dao.Add(wf2);
             dao.Add(wf3);
+            #endregion
         }
 
         [TestCleanup]
