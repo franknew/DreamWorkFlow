@@ -26,5 +26,7 @@ namespace DreamWorkflow.Engine.Form
         
         public string Title { get; set; }
         
+        public string WorkflowID { get; set; }
+        
     }
 }

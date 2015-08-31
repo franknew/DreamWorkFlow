@@ -73,161 +73,143 @@ namespace DreamWorkflow.Engine
 
         public bool Save()
         {
-            ISqlMapper mapper = Mapper.Instance();
+            ISqlMapper mapper = MapperHelper.GetMapper();
             WorkflowDefinitionDao wddao = new WorkflowDefinitionDao(mapper);
             ActivityAuthDefinitionDao aaddao = new ActivityAuthDefinitionDao(mapper);
             ActivityDefinitionDao addao = new ActivityDefinitionDao(mapper);
             LinkDefinitionDao linkdao = new LinkDefinitionDao(mapper);
             ActivityAuthDefinitionDao aadd = new ActivityAuthDefinitionDao(mapper);
-            try
+            var workflowdefinition = wddao.Query(new WorkflowDefinitionQueryForm { ID = this.value.ID }).FirstOrDefault();
+            if (workflowdefinition == null)
             {
-                mapper.BeginTransaction();
-                var workflowdefinition = wddao.Query(new WorkflowDefinitionQueryForm { ID = this.value.ID }).FirstOrDefault();
-                if (workflowdefinition == null)
-                {
-                    wddao.Add(this.value);
-                }
-                else
-                {
-                    wddao.Update(new WorkflowDefinitionUpdateForm { Entity = this.value, WorkflowDefinitionQueryForm = new WorkflowDefinitionQueryForm { ID = this.value.ID } });
-                }
-                var activityList = this.Root.GetList();
-                foreach (var a in activityList)
-                {
-                    var acitivitydefinitioninstance = a as ActivityDefinitionModel;
-                    acitivitydefinitioninstance.Save(mapper);
-                }
+                wddao.Add(this.value);
+            }
+            else
+            {
+                wddao.Update(new WorkflowDefinitionUpdateForm { Entity = this.value, WorkflowDefinitionQueryForm = new WorkflowDefinitionQueryForm { ID = this.value.ID } });
+            }
+            var activityList = this.Root.GetList();
+            foreach (var a in activityList)
+            {
+                var acitivitydefinitioninstance = a as ActivityDefinitionModel;
+                acitivitydefinitioninstance.Save(mapper);
+            }
 
-                foreach (var link in LinkDefinitionList)
-                {
-                    link.Save(mapper);
-                }
-                var item = cache.GetItem(this.value.ID);
-                if (item == null)
-                {
-                    item = new CacheItem(this.value.ID, this);
-                    cache.AddItem(item, 30 * 60);
-                }
-                else
-                {
-                    item.Value = this;
-                    cache.UpdateItem(item);
-                }
-                mapper.CommitTransaction();
-            }
-            catch
+            foreach (var link in LinkDefinitionList)
             {
-                mapper.RollBackTransaction();
-                throw;
+                link.Save(mapper);
             }
+            var item = cache.GetItem(this.value.ID);
+            if (item == null)
+            {
+                item = new CacheItem(this.value.ID, this);
+                cache.AddItem(item, 30 * 60);
+            }
+            else
+            {
+                item.Value = this;
+                cache.UpdateItem(item);
+            }
+
             return true;
         }
 
-        public WorkflowModel StartNew(string creator, IWorkflowAuthority iauth)
+        public WorkflowModel StartNew(string creator, string processid, IWorkflowAuthority iauth)
         {
-            var mapper = Mapper.Instance();
+            var mapper = MapperHelper.GetMapper();
             WorkflowDao workflowdao = new WorkflowDao(mapper);
             ActivityDao activitydao = new ActivityDao(mapper);
             LinkDao linkdao = new LinkDao(mapper);
             ActivityAuthDao aadd = new ActivityAuthDao(mapper);
             TaskDao taskdao = new TaskDao(mapper);
             WorkflowModel model = null;
-            try
+            Workflow wf = this.value.ConvertTo<Workflow>();
+            wf.ID = null;
+            wf.Creator = creator;
+            wf.Status = (int)WorkflowProcessStatus.Started;
+            wf.WorkflowDefinitionID = this.value.ID;
+            wf.ProcessID = processid;
+            workflowdao.Add(wf);
+
+            var activites = this.ActivityDefinitionList;
+            var links = this.LinkDefinitionList;
+            List<Activity> activityEntities = new List<Activity>();
+            foreach (var a in activites)
             {
-                mapper.BeginTransaction();
-                Workflow wf = this.value.ConvertTo<Workflow>();
-                wf.ID = null;
-                wf.Creator = creator;
-                wf.Status = (int)WorkflowProcessStatus.Started;
-                wf.WorkflowDefinitionID = this.value.ID;
-                workflowdao.Add(wf);
+                Activity activity = a.Value.ConvertTo<Activity>();
+                activity.Creator = creator;
+                activity.ID = null;
+                activity.WorkflowID = wf.ID;
+                activity.ActivityDefinitionID = a.Value.ID;
+                activity.Title = a.Value.Title;
+                activity.Status = (int)ActivityProcessStatus.Started;
 
-                var activites = this.ActivityDefinitionList;
-                var links = this.LinkDefinitionList;
-                List<Activity> activityEntities = new List<Activity>();
-                foreach (var a in activites)
+                List<ActivityAuth> authList = new List<ActivityAuth>();
+                //权限处理
+                foreach (var ad in a.AuthDefinition)
                 {
-                    Activity activity = a.Value.ConvertTo<Activity>();
-                    activity.Creator = creator;
-                    activity.ID = null;
-                    activity.WorkflowID = wf.ID;
-                    activity.ActivityDefinitionID = a.Value.ID;
-                    activity.Title = a.Value.Title;
-                    activity.Status = (int)ActivityProcessStatus.Started;
-
-                    List<ActivityAuth> authList = new List<ActivityAuth>();
-                    //权限处理
-                    foreach (var ad in a.AuthDefinition)
-                    {
-                        ActivityAuth auth = ad.ConvertTo<ActivityAuth>();
-                        auth.Creator = creator;
-                        auth.WorkflowID = wf.ID;
-                        auth.ID = null;
-                        auth.ActivityAuthDefinitionID = ad.ID;
-                        aadd.Add(auth);
-                        authList.Add(auth);
-                    }
-
-                    //如果是开始节点，就设置为已处理
-                    if (this.Root.Equals(a))
-                    {
-                        activity.Status = (int)ActivityProcessStatus.Processed;
-                        activity.ProcessTime = DateTime.Now;
-                    }
-                    //如果是第二节点，就设置成正在处理
-                    if (this.Root.Children.Count > 0 && this.Root.Children[0].Equals(a))
-                    {
-                        activity.Status = (int)ActivityProcessStatus.Processing;
-                        ActivityModel activitymodel = new ActivityModel
-                        {
-                            Value = activity,
-                        };
-                        var idlist = iauth.GetUserIDList(authList);
-                        var tasklist = activitymodel.GetTask(creator, idlist);
-                        foreach (var task in tasklist)
-                        {
-                            taskdao.Add(task);
-                        }
-                    }
-                    activitydao.Add(activity);
-                    activityEntities.Add(activity);
+                    ActivityAuth auth = ad.ConvertTo<ActivityAuth>();
+                    auth.Creator = creator;
+                    auth.WorkflowID = wf.ID;
+                    auth.ID = null;
+                    auth.ActivityAuthDefinitionID = ad.ID;
+                    aadd.Add(auth);
+                    authList.Add(auth);
                 }
 
-                foreach (var l in links)
+                //如果是开始节点，就设置为已处理
+                if (this.Root.Equals(a))
                 {
-                    Link link = l.Value.ConvertTo<Link>();
-                    link.Creator = creator;
-                    link.WorkflowID = wf.ID;
-                    link.ID = null;
-                    link.LinkDefinitionID = l.Value.ID;
-                    var fromactivity = activityEntities.Find(t => t.ActivityDefinitionID == l.Value.FromActivityDefinitionID);
-                    var totactivity = activityEntities.Find(t => t.ActivityDefinitionID == l.Value.ToActivityDefinitionID);
-                    if (fromactivity != null)
-                    {
-                        link.FromActivityID = fromactivity.ID;
-                    }
-                    if (totactivity != null)
-                    {
-                        link.ToAcivityID = totactivity.ID;
-                    }
-                    linkdao.Add(link);
+                    activity.Status = (int)ActivityProcessStatus.Processed;
+                    activity.ProcessTime = DateTime.Now;
                 }
-                mapper.CommitTransaction();
+                //如果是第二节点，就设置成正在处理
+                if (this.Root.Children.Count > 0 && this.Root.Children[0].Equals(a))
+                {
+                    activity.Status = (int)ActivityProcessStatus.Processing;
+                    ActivityModel activitymodel = new ActivityModel
+                    {
+                        Value = activity,
+                    };
+                    var idlist = iauth.GetUserIDList(authList);
+                    var tasklist = activitymodel.GetTask(creator, idlist);
+                    foreach (var task in tasklist)
+                    {
+                        taskdao.Add(task);
+                    }
+                }
+                activitydao.Add(activity);
+                activityEntities.Add(activity);
+            }
 
-                model = WorkflowModel.Load(wf.ID);
-                return model;
-            }
-            catch
+            foreach (var l in links)
             {
-                mapper.RollBackTransaction();
-                throw;
+                Link link = l.Value.ConvertTo<Link>();
+                link.Creator = creator;
+                link.WorkflowID = wf.ID;
+                link.ID = null;
+                link.LinkDefinitionID = l.Value.ID;
+                var fromactivity = activityEntities.Find(t => t.ActivityDefinitionID == l.Value.FromActivityDefinitionID);
+                var totactivity = activityEntities.Find(t => t.ActivityDefinitionID == l.Value.ToActivityDefinitionID);
+                if (fromactivity != null)
+                {
+                    link.FromActivityID = fromactivity.ID;
+                }
+                if (totactivity != null)
+                {
+                    link.ToAcivityID = totactivity.ID;
+                }
+                linkdao.Add(link);
             }
+
+            model = WorkflowModel.Load(wf.ID);
+            return model;
 
         }
 
         public static WorkflowDefinitionModel Load(string id)
         {
-            var mapper = Mapper.Instance();
+            var mapper = MapperHelper.GetMapper();
             WorkflowDefinitionDao wfdao = new WorkflowDefinitionDao(mapper);
             ActivityDefinitionDao addao = new ActivityDefinitionDao(mapper);
             LinkDefinitionDao linkdao = new LinkDefinitionDao(mapper);
@@ -243,20 +225,10 @@ namespace DreamWorkflow.Engine
                 model = item.Value as WorkflowDefinitionModel;
                 return model;
             }
-            try
-            {
-
-                mapper.BeginTransaction();
-                workflow = wfdao.Query(new WorkflowDefinitionQueryForm { ID = id, Enabled = 1 }).FirstOrDefault();
-                activityList = addao.Query(new ActivityDefinitionQueryForm { WorkflowDefinitionID = id, Enabled = 1 });
-                linkList = linkdao.Query(new LinkDefinitionQueryForm { WorkflowDefinitionID = id });
-                authList = aadd.Query(new ActivityAuthDefinitionQueryForm { WorkflowDefinitionID = id });
-                mapper.CommitTransaction();
-            }
-            catch
-            {
-                throw;
-            }
+            workflow = wfdao.Query(new WorkflowDefinitionQueryForm { ID = id, Enabled = 1 }).FirstOrDefault();
+            activityList = addao.Query(new ActivityDefinitionQueryForm { WorkflowDefinitionID = id, Enabled = 1 });
+            linkList = linkdao.Query(new LinkDefinitionQueryForm { WorkflowDefinitionID = id });
+            authList = aadd.Query(new ActivityAuthDefinitionQueryForm { WorkflowDefinitionID = id });
             if (workflow != null)
             {
                 List<ActivityDefinitionModel> activityModelList = new List<ActivityDefinitionModel>();
@@ -276,17 +248,20 @@ namespace DreamWorkflow.Engine
                 foreach (var activity in activityList)
                 {
                     List<LinkDefinitionModel> preLinks = new List<LinkDefinitionModel>();
-                    var preLinksTemp = linkModelList.FindAll(t => t.Value.ToActivityDefinitionID.Equals(activity.ID));
+                    var preLinksTemp = linkModelList.FindAll(t => t.Value.ToActivityDefinitionID == activity.ID);
 
                     List<LinkDefinitionModel> nextLinks = new List<LinkDefinitionModel>();
-                    var nextLinksTemp = linkModelList.FindAll(t => t.Value.FromActivityDefinitionID.Equals(activity.ID));
+                    var nextLinksTemp = linkModelList.FindAll(t => t.Value.FromActivityDefinitionID == activity.ID);
 
 
                     ActivityDefinitionModel activitymodel = new ActivityDefinitionModel
                     {
                         Value = activity,
-                        AuthDefinition = authList.FindAll(t => t.ActivityDefinitionID == activity.ID),
                     };
+                    if (authList != null)
+                    {
+                        activitymodel.AuthDefinition = authList.FindAll(t => t.ActivityDefinitionID == activity.ID);
+                    }
                     activitymodel.PreLinks = preLinksTemp;
                     activitymodel.NextLinks = nextLinksTemp;
                     activityModelList.Add(activitymodel);
@@ -304,28 +279,31 @@ namespace DreamWorkflow.Engine
             return model;
         }
 
+        public static WorkflowDefinitionModel LoadByName(string name)
+        {
+            var mapper = MapperHelper.GetMapper();
+            WorkflowDefinitionModel wfdm = null;
+            WorkflowDefinitionDao wfdao = new WorkflowDefinitionDao(mapper);
+            var wfd = wfdao.Query(new WorkflowDefinitionQueryForm { Name = name }).FirstOrDefault();
+            if (wfd != null)
+            {
+                wfdm = Load(wfd.ID);
+            }
+            return wfdm;
+        }
+
         public void Remove()
         {
-            var mapper = Mapper.Instance();
+            var mapper = MapperHelper.GetMapper();
             WorkflowDefinitionDao wfdao = new WorkflowDefinitionDao(mapper);
             ActivityDefinitionDao addao = new ActivityDefinitionDao(mapper);
             LinkDefinitionDao linkdao = new LinkDefinitionDao(mapper);
             ActivityAuthDefinitionDao aadd = new ActivityAuthDefinitionDao(mapper);
-            try
-            {
-                mapper.BeginTransaction();
-                string id = this.value.ID;
-                wfdao.Delete(new WorkflowDefinitionQueryForm { ID = id });
-                addao.Delete(new ActivityDefinitionQueryForm { WorkflowDefinitionID = id });
-                linkdao.Delete(new LinkDefinitionQueryForm { WorkflowDefinitionID = id });
-                aadd.Delete(new ActivityAuthDefinitionQueryForm { WorkflowDefinitionID = id });
-                mapper.CommitTransaction();
-            }
-            catch
-            {
-                mapper.RollBackTransaction();
-                throw;
-            }
+            string id = this.value.ID;
+            wfdao.Delete(new WorkflowDefinitionQueryForm { ID = id });
+            addao.Delete(new ActivityDefinitionQueryForm { WorkflowDefinitionID = id });
+            linkdao.Delete(new LinkDefinitionQueryForm { WorkflowDefinitionID = id });
+            aadd.Delete(new ActivityAuthDefinitionQueryForm { WorkflowDefinitionID = id });
         }
     }
 }

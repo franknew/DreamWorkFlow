@@ -22,7 +22,7 @@
         `ToActivityDefinitionID`=#ToActivityDefinitionID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Creator">
         `Creator`=#Creator#
@@ -50,10 +50,54 @@
     </isNotNull>
     </dynamic>
     <isNotNull property="PageSize">
-    <isGreaterThan property="PageSize" compareValue="0">
-     LIMIT #StartIndex#, #PageSize# 
-    </isGreaterThan>
+        <isGreaterThan property="PageSize" compareValue="0">
+         LIMIT #StartIndex#, #PageSize# 
+        </isGreaterThan>
     </isNotNull>
+  </select>
+  <select id="QueryLinkDefinitionByIds" resultClass="LinkDefinition" parameterClass="LinkDefinitionQueryForm" >
+    SELECT * FROM `LinkDefinition` 
+    <dynamic prepend="WHERE">
+     <iterate property="Ids" open="(" close=")" conjunction="OR">
+     Ids=#Ids[]#
+     </iterate>
+    <isNotNull prepend="AND" property="ID">
+        `ID`=#ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="FromActivityDefinitionID">
+        `FromActivityDefinitionID`=#FromActivityDefinitionID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ToActivityDefinitionID">
+        `ToActivityDefinitionID`=#ToActivityDefinitionID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Name">
+        `Name`=#Name#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Creator">
+        `Creator`=#Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_Start">
+        `CreateTime`&gt;=#CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_End">
+        `CreateTime`&lt;=#CreateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Remark">
+        `Remark` LIKE '%$Remark$%'
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowDefinitionID">
+        `WorkflowDefinitionID`=#WorkflowDefinitionID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LastUpdateTime_Start">
+        `LastUpdateTime`&gt;=#LastUpdateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LastUpdateTime_End">
+        `LastUpdateTime`&lt;=#LastUpdateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LastUpdator">
+        `LastUpdator`=#LastUpdator#
+    </isNotNull>
+    </dynamic>
   </select>
   <insert id="AddLinkDefinition" parameterClass="LinkDefinition">
   INSERT INTO `LinkDefinition`
@@ -125,7 +169,7 @@
         `ToActivityDefinitionID`=#LinkDefinitionQueryForm.ToActivityDefinitionID#
     </isNotNull>
     <isNotNull prepend="AND" property="LinkDefinitionQueryForm.Name">
-        `Name` LIKE '%$LinkDefinitionQueryForm.Name$%'
+        `Name`=#LinkDefinitionQueryForm.Name#
     </isNotNull>
     <isNotNull prepend="AND" property="LinkDefinitionQueryForm.Creator">
         `Creator`=#LinkDefinitionQueryForm.Creator#
@@ -208,7 +252,7 @@
         `ToActivityDefinitionID`=#ToActivityDefinitionID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Creator">
         `Creator`=#Creator#

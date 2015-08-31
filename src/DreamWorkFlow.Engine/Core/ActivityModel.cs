@@ -65,51 +65,62 @@ namespace DreamWorkflow.Engine
             get { return tasks; }
             set { tasks = value; }
         }
-        
 
+        /// <summary>
+        /// 处理指定活动点
+        /// </summary>
+        /// <param name="approval"></param>
+        /// <param name="processor"></param>
+        /// <param name="auth"></param>
+        /// <returns></returns>
         public bool Process(Approval approval, string processor, IWorkflowAuthority auth)
         {
-            ISqlMapper mapper = Mapper.Instance();
+            ISqlMapper mapper = MapperHelper.GetMapper();
             ActivityDao activitydao = new ActivityDao(mapper);
             TaskDao taskdao = new TaskDao(mapper);
-            mapper.BeginTransaction();
-            try
+            this.Value.Status = (int)ActivityProcessStatus.Processed;
+            this.Value.ProcessTime = DateTime.Now;
+            this.Value.LastUpdator = processor;
+            //新增审批意见
+            if (approval != null)
             {
-                this.Value.Status = (int)ActivityProcessStatus.Processed;
-                this.Value.ProcessTime = DateTime.Now;
-                this.Value.LastUpdator = processor;
-                if (approval != null)
+                ApprovalDao ad = new ApprovalDao(mapper);
+                approval.Creator = processor;
+                ad.Add(approval);
+            }
+            //设置当前活动点状态
+            activitydao.Update(new ActivityUpdateForm
+            {
+                Entity = new Activity { Status = this.Value.Status, ProcessTime = this.Value.ProcessTime, LastUpdator = this.Value.LastUpdator },
+                ActivityQueryForm = new ActivityQueryForm { ID = this.Value.ID }
+            });
+
+            //设置当前节点任务为已处理
+            foreach (var task in Tasks)
+            {
+                taskdao.Update(new TaskUpdateForm
                 {
-                    ApprovalDao ad = new ApprovalDao(mapper);
-                    approval.Creator = processor;
-                    ad.Add(approval);
-                }
+                    Entity = new Task { ProcessTime = DateTime.Now, Status = (int)TaskProcessStatus.Processed },
+                    TaskQueryForm = new TaskQueryForm { ID = task.ID },
+                });
+            }
+            //设置下个活动点的状态
+            if (this.Children.Count > 0)
+            {
+                string nextactivityid = this.Children[0].Value.ID;
+                var nextActivityModel = this.Children[0] as ActivityModel;
                 activitydao.Update(new ActivityUpdateForm
                 {
-                    Entity = new Activity { Status = this.Value.Status, ProcessTime = this.Value.ProcessTime, LastUpdator = this.Value.LastUpdator },
-                    ActivityQueryForm = new ActivityQueryForm { ID = this.Value.ID }
+                    Entity = new Activity { Status = (int)ActivityProcessStatus.Processing, LastUpdator = processor },
+                    ActivityQueryForm = new ActivityQueryForm { ID = nextactivityid },
                 });
-                if (this.Children.Count > 0)
-                {
-                    string nextactivityid = this.Children[0].Value.ID;
-                    activitydao.Update(new ActivityUpdateForm
-                    {
-                        Entity = new Activity { Status = (int)ActivityProcessStatus.Processing, LastUpdator = processor },
-                        ActivityQueryForm = new ActivityQueryForm { ID = nextactivityid },
-                    });
-                }
-                var userlist = auth.GetUserIDList(this.auth);
+                //新增下个活动点的任务
+                var userlist = auth.GetUserIDList(nextActivityModel.Auth);
                 var tasklist = GetTask(processor, userlist);
                 foreach (var task in tasklist)
                 {
                     taskdao.Add(task);
                 }
-                mapper.CommitTransaction();
-            }
-            catch
-            {
-                mapper.RollBackTransaction();
-                throw;
             }
 
             return true;
@@ -128,6 +139,7 @@ namespace DreamWorkflow.Engine
                     UserID = id,
                     AcitivityID = this.Value.ID,
                     Creator = processor,
+                    WorkflowID = this.Value.WorkflowID,
                 };
                 list.Add(task);
             }

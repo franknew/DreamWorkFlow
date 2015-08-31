@@ -126,7 +126,7 @@ namespace DreamWorkflow.Engine.UnitTest
         {
             model = WorkflowDefinitionModel.Load("unittest1");
 
-            WorkflowModel workflow = model.StartNew("frank", new GetUser());
+            WorkflowModel workflow = model.StartNew("frank", "1", new GetUser());
 
             Assert.AreEqual(3, workflow.Root.Value.Status);
             Assert.AreEqual(2, workflow.Root.Children[0].Value.Status);

@@ -19,17 +19,17 @@ namespace DreamWorkflow.Engine.Model
         public string Remark { get; set; }
         
         /// <summary>
-        /// 
+        /// 状态 1.启动 2.已读 3.已处理
         /// </summary>
         public int? Status { get; set; }
         
         /// <summary>
-        /// 
+        /// 已读时间
         /// </summary>
         public DateTime? ReadTime { get; set; }
         
         /// <summary>
-        /// 
+        /// 处理时间
         /// </summary>
         public DateTime? ProcessTime { get; set; }
         
@@ -42,6 +42,11 @@ namespace DreamWorkflow.Engine.Model
         /// 
         /// </summary>
         public string Title { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public string WorkflowID { get; set; }
         
     }
 }

@@ -45,7 +45,8 @@ Creator VARCHAR(32) NULL,
 CreateTime DATETIME NULL,
 Status INT NULL,
 LastUpdateTime DATETIME NULL,
-LastUpdator VARCHAR(32) NULL
+LastUpdator VARCHAR(32) NULL,
+ProcessID VARCHAR(32) NULL
 );
 
 CREATE TABLE Activity(
@@ -118,7 +119,8 @@ ProcessTime DATETIME NULL,
 LastUpdateTime DATETIME NULL,
 LastUpdator VARCHAR(32) NULL,
 UserID VARCHAR(32) NULL,
-Title NVARCHAR(200) NULL
+Title NVARCHAR(200) NULL,
+WorkflowID VARCHAR(32) NULL
 );
 
 CREATE TABLE ActivityAuthDefinition(

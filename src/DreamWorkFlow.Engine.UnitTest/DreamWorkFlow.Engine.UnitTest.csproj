@@ -111,6 +111,7 @@
   <ItemGroup>
     <Compile Include="DataDictionaryTesting.cs" />
     <Compile Include="TableCacheHelperTesting.cs" />
+    <Compile Include="WorkflowDefinitionModelTesting.cs" />
     <Compile Include="WorkflowTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

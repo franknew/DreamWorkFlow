@@ -19,7 +19,7 @@
         `AcitivityID`=#AcitivityID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Creator">
         `Creator`=#Creator#
@@ -63,12 +63,77 @@
     <isNotNull prepend="AND" property="Title">
         `Title`=#Title#
     </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowID">
+        `WorkflowID`=#WorkflowID#
+    </isNotNull>
     </dynamic>
     <isNotNull property="PageSize">
         <isGreaterThan property="PageSize" compareValue="0">
          LIMIT #StartIndex#, #PageSize# 
         </isGreaterThan>
     </isNotNull>
+  </select>
+  <select id="QueryTaskByIds" resultClass="Task" parameterClass="TaskQueryForm" >
+    SELECT * FROM `Task` 
+    <dynamic prepend="WHERE">
+     <iterate property="Ids" open="(" close=")" conjunction="OR">
+     Ids=#Ids[]#
+     </iterate>
+    <isNotNull prepend="AND" property="ID">
+        `ID`=#ID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="AcitivityID">
+        `AcitivityID`=#AcitivityID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Name">
+        `Name`=#Name#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Creator">
+        `Creator`=#Creator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_Start">
+        `CreateTime`&gt;=#CreateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="CreateTime_End">
+        `CreateTime`&lt;=#CreateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Remark">
+        `Remark` LIKE '%$Remark$%'
+    </isNotNull>
+    <isNotNull prepend="AND" property="Status">
+        `Status`=#Status#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ReadTime_Start">
+        `ReadTime`&gt;=#ReadTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ReadTime_End">
+        `ReadTime`&lt;=#ReadTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ProcessTime_Start">
+        `ProcessTime`&gt;=#ProcessTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ProcessTime_End">
+        `ProcessTime`&lt;=#ProcessTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LastUpdateTime_Start">
+        `LastUpdateTime`&gt;=#LastUpdateTime_Start#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LastUpdateTime_End">
+        `LastUpdateTime`&lt;=#LastUpdateTime_End#
+    </isNotNull>
+    <isNotNull prepend="AND" property="LastUpdator">
+        `LastUpdator`=#LastUpdator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="UserID">
+        `UserID`=#UserID#
+    </isNotNull>
+    <isNotNull prepend="AND" property="Title">
+        `Title`=#Title#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowID">
+        `WorkflowID`=#WorkflowID#
+    </isNotNull>
+    </dynamic>
   </select>
   <insert id="AddTask" parameterClass="Task">
   INSERT INTO `Task`
@@ -85,7 +150,8 @@
     `LastUpdateTime`,
     `LastUpdator`,
     `UserID`,
-    `Title`
+    `Title`,
+    `WorkflowID`
   )
   VALUES
   (
@@ -101,7 +167,8 @@
         #LastUpdateTime#,
         #LastUpdator#,
         #UserID#,
-        #Title#
+        #Title#,
+        #WorkflowID#
   )
   </insert>
   <update id="UpdateTask" parameterClass="TaskUpdateForm">
@@ -143,6 +210,9 @@
         <isNotNull prepend="," property="Entity.Title">
         `Title`=#Entity.Title#
         </isNotNull>
+        <isNotNull prepend="," property="Entity.WorkflowID">
+        `WorkflowID`=#Entity.WorkflowID#
+        </isNotNull>
     </dynamic>
     <dynamic prepend="WHERE">
     <isNotNull prepend="AND" property="TaskQueryForm.ID">
@@ -152,7 +222,7 @@
         `AcitivityID`=#TaskQueryForm.AcitivityID#
     </isNotNull>
     <isNotNull prepend="AND" property="TaskQueryForm.Name">
-        `Name` LIKE '%$TaskQueryForm.Name$%'
+        `Name`=#TaskQueryForm.Name#
     </isNotNull>
     <isNotNull prepend="AND" property="TaskQueryForm.Creator">
         `Creator`=#TaskQueryForm.Creator#
@@ -195,6 +265,9 @@
     </isNotNull>
     <isNotNull prepend="AND" property="TaskQueryForm.Title">
         `Title`=#TaskQueryForm.Title#
+    </isNotNull>
+    <isNotNull prepend="AND" property="TaskQueryForm.WorkflowID">
+        `WorkflowID`=#TaskQueryForm.WorkflowID#
     </isNotNull>
     </dynamic>
   </update>
@@ -251,6 +324,9 @@
     <isNotNull prepend="AND" property="Title">
         `Title`=#Title#
     </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowID">
+        `WorkflowID`=#WorkflowID#
+    </isNotNull>
   </delete>
    <select id="QueryTaskLastUpdateTime" resultClass="DateTime">
         SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM `Task`
@@ -265,7 +341,7 @@
         `AcitivityID`=#AcitivityID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Creator">
         `Creator`=#Creator#
@@ -308,6 +384,9 @@
     </isNotNull>
     <isNotNull prepend="AND" property="Title">
         `Title`=#Title#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowID">
+        `WorkflowID`=#WorkflowID#
     </isNotNull>
     </dynamic>
    </select>

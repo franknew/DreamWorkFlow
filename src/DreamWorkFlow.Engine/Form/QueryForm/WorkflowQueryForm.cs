@@ -8,10 +8,11 @@ namespace DreamWorkflow.Engine.Form
 {
     public class WorkflowQueryForm : SimpleQueryForm
     {
-
         public string WorkflowDefinitionID { get; set; }
         
         public Int32? Status { get; set; }
+        
+        public string ProcessID { get; set; }
         
     }
 }

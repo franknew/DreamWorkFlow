@@ -8,9 +8,20 @@ namespace DreamWorkflow.Engine.Model
 {
     public class Workflow : SimpleEntity
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string WorkflowDefinitionID { get; set; }
         
-        public Int32? Status { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int? Status { get; set; }
+        
+        /// <summary>
+        /// 外接项目ID
+        /// </summary>
+        public string ProcessID { get; set; }
         
     }
 }

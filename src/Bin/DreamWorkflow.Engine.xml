@@ -86,17 +86,17 @@
         </member>
         <member name="P:DreamWorkflow.Engine.Model.Task.Status">
             <summary>
-            
+            状态 1.启动 2.已读 3.已处理
             </summary>
         </member>
         <member name="P:DreamWorkflow.Engine.Model.Task.ReadTime">
             <summary>
-            
+            已读时间
             </summary>
         </member>
         <member name="P:DreamWorkflow.Engine.Model.Task.ProcessTime">
             <summary>
-            
+            处理时间
             </summary>
         </member>
         <member name="P:DreamWorkflow.Engine.Model.Task.UserID">
@@ -108,6 +108,35 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Task.WorkflowID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Workflow.WorkflowDefinitionID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Workflow.Status">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Workflow.ProcessID">
+            <summary>
+            外接项目ID
+            </summary>
+        </member>
+        <member name="M:DreamWorkflow.Engine.ActivityModel.Process(DreamWorkflow.Engine.Model.Approval,System.String,DreamWorkflow.Engine.IWorkflowAuthority)">
+            <summary>
+            处理指定活动点
+            </summary>
+            <param name="approval"></param>
+            <param name="processor"></param>
+            <param name="auth"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>
