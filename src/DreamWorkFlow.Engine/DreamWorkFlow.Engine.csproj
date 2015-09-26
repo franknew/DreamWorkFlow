@@ -72,8 +72,11 @@
     <Compile Include="Common\MapperHelper.cs" />
     <Compile Include="Common\TableCacheHelper.cs" />
     <Compile Include="Core\ActivityDefinitionModel.cs" />
+    <Compile Include="Core\AgreeProcessAction.cs" />
     <Compile Include="Core\BaseModel.cs" />
+    <Compile Include="Core\DisagreeProcessAction.cs" />
     <Compile Include="Core\Enums.cs" />
+    <Compile Include="Core\IProcessAction.cs" />
     <Compile Include="Core\LinkDefinitionModel.cs" />
     <Compile Include="Core\LinkModel.cs" />
     <Compile Include="Core\WorkflowDefinitionModel.cs" />
@@ -164,7 +167,9 @@
     <Content Include="SqlMapping\LinkDefinition.xml" />
     <Content Include="SqlMapping\Parameter.xml" />
     <Content Include="SqlMapping\Task.xml" />
-    <Content Include="SqlMapping\Workflow.xml" />
+    <Content Include="SqlMapping\Workflow.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SqlMapping\dbsql.sql" />
     <Content Include="SqlMapping\WorkflowDefinition.xml" />
   </ItemGroup>

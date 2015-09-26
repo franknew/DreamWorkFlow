@@ -66,6 +66,8 @@ namespace DreamWorkflow.Engine
             set { tasks = value; }
         }
 
+        public WorkflowModel OwnerWorkflow { get; set; }
+
         /// <summary>
         /// 处理指定活动点
         /// </summary>

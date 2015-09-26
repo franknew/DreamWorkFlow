@@ -32,6 +32,7 @@ namespace DreamWorkflow.Engine
             {
                 return null;
             }
+
             #region query data
             ISqlMapper mapper = MapperHelper.GetMapper();
             WorkflowDao wfdao = new WorkflowDao(mapper);
@@ -47,6 +48,7 @@ namespace DreamWorkflow.Engine
             List<Task> tasks = new List<Task>();
             WorkflowModel model = null;
             Workflow workflow = null;
+            //先从缓存取值
             var item = cache.GetItem(id);
             if (item != null)
             {
@@ -93,6 +95,7 @@ namespace DreamWorkflow.Engine
                         PreLinks = preLink,
                         NextLinks = nextLink,
                         Tasks = tasks.FindAll(t => t.AcitivityID == activity.ID),
+                        OwnerWorkflow = model,
                     };
 
                     //处理权限

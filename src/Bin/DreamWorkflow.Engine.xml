@@ -4,6 +4,35 @@
         <name>DreamWorkflow.Engine</name>
     </assembly>
     <members>
+        <member name="M:DreamWorkflow.Engine.DataDictionaryBLL.QueryAll">
+            <summary>
+            查询所有数据字典
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DreamWorkflow.Engine.DataDictionaryBLL.AddGroup(DreamWorkflow.Engine.Model.DataDictionaryGroup)">
+            <summary>
+            新增数据字典组
+            </summary>
+            <param name="group"></param>
+            <param name="items"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DreamWorkflow.Engine.DataDictionaryBLL.AddItems(System.Collections.Generic.List{DreamWorkflow.Engine.Model.DataDictionary})">
+            <summary>
+            新增数据字典明细
+            </summary>
+            <param name="items"></param>
+            <returns>返回数据组回传加上了id</returns>
+        </member>
+        <member name="M:DreamWorkflow.Engine.DataDictionaryBLL.Update(DreamWorkflow.Engine.Model.DataDictionaryGroup,System.Collections.Generic.List{DreamWorkflow.Engine.Model.DataDictionary})">
+            <summary>
+            更新数据字典
+            </summary>
+            <param name="group"></param>
+            <param name="items"></param>
+            <returns></returns>
+        </member>
         <member name="P:DreamWorkflow.Engine.Model.Activity.ActivityDefinitionID">
             <summary>
             
