@@ -1,4 +1,5 @@
 ﻿
+using DreamWorkflow.Engine.Core;
 using DreamWorkflow.Engine.DAL;
 using DreamWorkflow.Engine.Form;
 using DreamWorkflow.Engine.Model;
@@ -75,55 +76,15 @@ namespace DreamWorkflow.Engine
         /// <param name="processor"></param>
         /// <param name="auth"></param>
         /// <returns></returns>
-        public bool Process(Approval approval, string processor, IWorkflowAuthority auth)
+        public bool Process(Approval approval, string taskid, string processor, IWorkflowAuthority auth)
         {
-            ISqlMapper mapper = MapperHelper.GetMapper();
-            ActivityDao activitydao = new ActivityDao(mapper);
-            TaskDao taskdao = new TaskDao(mapper);
-            this.Value.Status = (int)ActivityProcessStatus.Processed;
-            this.Value.ProcessTime = DateTime.Now;
-            this.Value.LastUpdator = processor;
-            //新增审批意见
-            if (approval != null)
+            IProcessAction actionprocess = ApprovalProcessFacotry.Create((ApprovalStatus)approval.Status.Value);
+            List<ActivityAuth> list = new List<ActivityAuth>();
+            if (this.Children != null && this.Children.Count > 0)
             {
-                ApprovalDao ad = new ApprovalDao(mapper);
-                approval.Creator = processor;
-                ad.Add(approval);
+                list = (this.Children[0] as ActivityModel).Auth;
             }
-            //设置当前活动点状态
-            activitydao.Update(new ActivityUpdateForm
-            {
-                Entity = new Activity { Status = this.Value.Status, ProcessTime = this.Value.ProcessTime, LastUpdator = this.Value.LastUpdator },
-                ActivityQueryForm = new ActivityQueryForm { ID = this.Value.ID }
-            });
-
-            //设置当前节点任务为已处理
-            foreach (var task in Tasks)
-            {
-                taskdao.Update(new TaskUpdateForm
-                {
-                    Entity = new Task { ProcessTime = DateTime.Now, Status = (int)TaskProcessStatus.Processed },
-                    TaskQueryForm = new TaskQueryForm { ID = task.ID },
-                });
-            }
-            //设置下个活动点的状态
-            if (this.Children.Count > 0)
-            {
-                string nextactivityid = this.Children[0].Value.ID;
-                var nextActivityModel = this.Children[0] as ActivityModel;
-                activitydao.Update(new ActivityUpdateForm
-                {
-                    Entity = new Activity { Status = (int)ActivityProcessStatus.Processing, LastUpdator = processor },
-                    ActivityQueryForm = new ActivityQueryForm { ID = nextactivityid },
-                });
-                //新增下个活动点的任务
-                var userlist = auth.GetUserIDList(nextActivityModel.Auth);
-                var tasklist = GetTask(processor, userlist);
-                foreach (var task in tasklist)
-                {
-                    taskdao.Add(task);
-                }
-            }
+            actionprocess.Process(this, approval, taskid, processor, auth.GetUserIDList(list));
 
             return true;
         }
@@ -139,7 +100,7 @@ namespace DreamWorkflow.Engine
                     Title = this.Value.Title,
                     Status = (int)TaskProcessStatus.Started,
                     UserID = id,
-                    AcitivityID = this.Value.ID,
+                    ActivityID = this.Value.ID,
                     Creator = processor,
                     WorkflowID = this.Value.WorkflowID,
                 };

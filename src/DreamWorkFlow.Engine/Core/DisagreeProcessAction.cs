@@ -11,7 +11,7 @@ namespace DreamWorkflow.Engine.Core
 {
     public class DisagreeProcessAction : IProcessAction
     {
-        public void Process(ActivityModel activity, Approval approval, string taskid, string processor, IWorkflowAuthority auth)
+        public void Process(ActivityModel activity, Approval approval, string taskid, string processor, List<string> useridList)
         {
             ISqlMapper mapper = MapperHelper.GetMapper();
             ActivityDao activitydao = new ActivityDao(mapper);
@@ -26,6 +26,7 @@ namespace DreamWorkflow.Engine.Core
                 approval.Creator = processor;
                 ad.Add(approval);
             }
+            //处理当前任务
             var task = activity.Tasks.Find(t => t.ID == taskid);
             if (task != null)
             {
@@ -44,11 +45,23 @@ namespace DreamWorkflow.Engine.Core
                 ActivityQueryForm = new ActivityQueryForm { ID = activity.Value.ID }
             });
             activity.OwnerWorkflow.Root.Value.Status = (int)ActivityProcessStatus.Started;
+            var root = activity.OwnerWorkflow.Root;
             activitydao.Update(new ActivityUpdateForm
             {
-                Entity = new Activity { Status = activity.OwnerWorkflow.Root.Value.Status },
-                ActivityQueryForm = new ActivityQueryForm { ID = activity.OwnerWorkflow.Root.Value.ID },
+                Entity = new Activity { Status = root.Value.Status },
+                ActivityQueryForm = new ActivityQueryForm { ID = root.Value.ID },
             });
+            //生成退回任务
+            Task roottask = new Task
+            {
+                ActivityID = root.Value.ID,
+                Name = root.Value.Name,
+                Title = root.Value.Title + "(退回)",
+                UserID = activity.OwnerWorkflow.Value.Creator,
+                WorkflowID = activity.OwnerWorkflow.Value.ID,
+                Status = (int)TaskProcessStatus.Started,
+            };
+            taskdao.Add(roottask);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace DreamWorkflow.Engine.Form
 {
     public class TaskQueryForm : SimpleQueryForm
     {
-        public string AcitivityID { get; set; }
+        public string ActivityID { get; set; }
         
         public string Remark { get; set; }
         

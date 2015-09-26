@@ -11,7 +11,7 @@ namespace DreamWorkflow.Engine.Core
 {
     public class AgreeProcessAction : IProcessAction
     {
-        public void Process(ActivityModel activity, Approval approval, string processor, IWorkflowAuthority auth)
+        public void Process(ActivityModel activity, Approval approval, string taskid, string processor, List<string> useridList)
         {
             ISqlMapper mapper = MapperHelper.GetMapper();
             ActivityDao activitydao = new ActivityDao(mapper);
@@ -53,8 +53,7 @@ namespace DreamWorkflow.Engine.Core
                     ActivityQueryForm = new ActivityQueryForm { ID = nextactivityid },
                 });
                 //新增下个活动点的任务
-                var userlist = auth.GetUserIDList(nextActivityModel.Auth);
-                var tasklist = activity.GetTask(processor, userlist);
+                var tasklist = activity.GetTask(processor, useridList);
                 foreach (var task in tasklist)
                 {
                     taskdao.Add(task);

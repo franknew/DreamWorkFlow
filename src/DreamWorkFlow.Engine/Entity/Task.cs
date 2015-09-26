@@ -11,7 +11,7 @@ namespace DreamWorkflow.Engine.Model
         /// <summary>
         /// 
         /// </summary>
-        public string AcitivityID { get; set; }
+        public string ActivityID { get; set; }
         
         /// <summary>
         /// 

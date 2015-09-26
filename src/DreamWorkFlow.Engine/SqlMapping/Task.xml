@@ -15,8 +15,8 @@
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
-    <isNotNull prepend="AND" property="AcitivityID">
-        `AcitivityID`=#AcitivityID#
+    <isNotNull prepend="AND" property="ActivityID">
+        `ActivityID`=#ActivityID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
         `Name`=#Name#
@@ -82,7 +82,7 @@
   INSERT INTO `Task`
   (
     `ID`,
-    `AcitivityID`,
+    `ActivityID`,
     `Name`,
     `Creator`,
     `CreateTime`,
@@ -99,7 +99,7 @@
   VALUES
   (
         #ID#,
-        #AcitivityID#,
+        #ActivityID#,
         #Name#,
         #Creator#,
         #CreateTime#,
@@ -117,8 +117,8 @@
   <update id="UpdateTask" parameterClass="TaskUpdateForm">
   UPDATE `Task`
     <dynamic prepend="SET">
-        <isNotNull prepend="," property="Entity.AcitivityID">
-        `AcitivityID`=#Entity.AcitivityID#
+        <isNotNull prepend="," property="Entity.ActivityID">
+        `ActivityID`=#Entity.ActivityID#
         </isNotNull>
         <isNotNull prepend="," property="Entity.Name">
         `Name`=#Entity.Name#
@@ -161,8 +161,8 @@
     <isNotNull prepend="AND" property="TaskQueryForm.ID">
         `ID`=#TaskQueryForm.ID#
     </isNotNull>
-    <isNotNull prepend="AND" property="TaskQueryForm.AcitivityID">
-        `AcitivityID`=#TaskQueryForm.AcitivityID#
+    <isNotNull prepend="AND" property="TaskQueryForm.ActivityID">
+        `ActivityID`=#TaskQueryForm.ActivityID#
     </isNotNull>
     <isNotNull prepend="AND" property="TaskQueryForm.Name">
         `Name`=#TaskQueryForm.Name#
@@ -219,8 +219,8 @@
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
-    <isNotNull prepend="AND" property="AcitivityID">
-        `AcitivityID`=#AcitivityID#
+    <isNotNull prepend="AND" property="ActivityID">
+        `ActivityID`=#ActivityID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
         `Name`=#Name#
@@ -280,8 +280,8 @@
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
-    <isNotNull prepend="AND" property="AcitivityID">
-        `AcitivityID`=#AcitivityID#
+    <isNotNull prepend="AND" property="ActivityID">
+        `ActivityID`=#ActivityID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
         `Name`=#Name#

@@ -103,7 +103,7 @@
             
             </summary>
         </member>
-        <member name="P:DreamWorkflow.Engine.Model.Task.AcitivityID">
+        <member name="P:DreamWorkflow.Engine.Model.Task.ActivityID">
             <summary>
             
             </summary>
@@ -158,7 +158,7 @@
             外接项目ID
             </summary>
         </member>
-        <member name="M:DreamWorkflow.Engine.ActivityModel.Process(DreamWorkflow.Engine.Model.Approval,System.String,DreamWorkflow.Engine.IWorkflowAuthority)">
+        <member name="M:DreamWorkflow.Engine.ActivityModel.Process(DreamWorkflow.Engine.Model.Approval,System.String,System.String,DreamWorkflow.Engine.IWorkflowAuthority)">
             <summary>
             处理指定活动点
             </summary>

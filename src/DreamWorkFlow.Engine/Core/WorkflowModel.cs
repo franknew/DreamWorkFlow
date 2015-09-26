@@ -94,7 +94,7 @@ namespace DreamWorkflow.Engine
                         Approvals = model.Approval.FindAll(t => t.ActivityID == activity.ID),
                         PreLinks = preLink,
                         NextLinks = nextLink,
-                        Tasks = tasks.FindAll(t => t.AcitivityID == activity.ID),
+                        Tasks = tasks.FindAll(t => t.ActivityID == activity.ID),
                         OwnerWorkflow = model,
                     };
 
@@ -186,11 +186,11 @@ namespace DreamWorkflow.Engine
             }
         }
 
-        public void ProcessActivity(string activityid, Approval approval, string processor, IWorkflowAuthority auth)
+        public void ProcessActivity(string activityid, Approval approval, string taskid, string processor, IWorkflowAuthority auth)
         {
             var activities = this.Root.GetList();
             var activity = activities.Find(t => t.Value.ID.Equals(activityid)) as ActivityModel;
-            activity.Process(approval, processor, auth);
+            activity.Process(approval, taskid, processor, auth);
         }
 
         public void Remove()
