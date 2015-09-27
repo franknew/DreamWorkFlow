@@ -16,7 +16,7 @@
         `ID`=#ID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Creator">
         `Creator`=#Creator#
@@ -43,7 +43,7 @@
         `Source`=#Source#
     </isNotNull>
     <isNotNull prepend="AND" property="AgentName">
-        `AgentName` LIKE '%$AgentName$%'
+        `AgentName`=#AgentName#
     </isNotNull>
     <isNotNull prepend="AND" property="CertificateData_Start">
         `CertificateData`&gt;=#CertificateData_Start#
@@ -175,7 +175,7 @@
         `CustomerPredepositMoney`&lt;=#CustomerPredepositMoney_End#
     </isNotNull>
     <isNotNull prepend="AND" property="CreditReceiverName">
-        `CreditReceiverName` LIKE '%$CreditReceiverName$%'
+        `CreditReceiverName`=#CreditReceiverName#
     </isNotNull>
     <isNotNull prepend="AND" property="CreditReceiverBank">
         `CreditReceiverBank`=#CreditReceiverBank#
@@ -209,6 +209,11 @@
     </isNotNull>
     <isNotNull prepend="AND" property="Stagnationer">
         `Stagnationer`=#Stagnationer#
+    </isNotNull>
+    <isNotNull property="Ids">
+        <iterate property="Ids" open="(" close=")" conjunction="OR">
+         Id=#Ids[]#
+        </iterate>
     </isNotNull>
     </dynamic>
     <isNotNull property="PageSize">
@@ -481,7 +486,7 @@
         `ID`=#ProjectQueryForm.ID#
     </isNotNull>
     <isNotNull prepend="AND" property="ProjectQueryForm.Name">
-        `Name` LIKE '%$ProjectQueryForm.Name$%'
+        `Name`=#ProjectQueryForm.Name#
     </isNotNull>
     <isNotNull prepend="AND" property="ProjectQueryForm.Creator">
         `Creator`=#ProjectQueryForm.Creator#
@@ -508,7 +513,7 @@
         `Source`=#ProjectQueryForm.Source#
     </isNotNull>
     <isNotNull prepend="AND" property="ProjectQueryForm.AgentName">
-        `AgentName` LIKE '%$ProjectQueryForm.AgentName$%'
+        `AgentName`=#ProjectQueryForm.AgentName#
     </isNotNull>
     <isNotNull prepend="AND" property="ProjectQueryForm.CertificateData_Start">
         `CertificateData`&gt;=#ProjectQueryForm.CertificateData_Start#
@@ -640,7 +645,7 @@
         `CustomerPredepositMoney`&lt;=#ProjectQueryForm.CustomerPredepositMoney_End#
     </isNotNull>
     <isNotNull prepend="AND" property="ProjectQueryForm.CreditReceiverName">
-        `CreditReceiverName` LIKE '%$ProjectQueryForm.CreditReceiverName$%'
+        `CreditReceiverName`=#ProjectQueryForm.CreditReceiverName#
     </isNotNull>
     <isNotNull prepend="AND" property="ProjectQueryForm.CreditReceiverBank">
         `CreditReceiverBank`=#ProjectQueryForm.CreditReceiverBank#
@@ -888,7 +893,7 @@
         `ID`=#ID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Creator">
         `Creator`=#Creator#
@@ -915,7 +920,7 @@
         `Source`=#Source#
     </isNotNull>
     <isNotNull prepend="AND" property="AgentName">
-        `AgentName` LIKE '%$AgentName$%'
+        `AgentName`=#AgentName#
     </isNotNull>
     <isNotNull prepend="AND" property="CertificateData_Start">
         `CertificateData`&gt;=#CertificateData_Start#
@@ -1047,7 +1052,7 @@
         `CustomerPredepositMoney`&lt;=#CustomerPredepositMoney_End#
     </isNotNull>
     <isNotNull prepend="AND" property="CreditReceiverName">
-        `CreditReceiverName` LIKE '%$CreditReceiverName$%'
+        `CreditReceiverName`=#CreditReceiverName#
     </isNotNull>
     <isNotNull prepend="AND" property="CreditReceiverBank">
         `CreditReceiverBank`=#CreditReceiverBank#

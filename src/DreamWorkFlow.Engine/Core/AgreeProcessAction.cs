@@ -32,9 +32,9 @@ namespace DreamWorkflow.Engine.Core
                 Entity = new Activity { Status = activity.Value.Status, ProcessTime = activity.Value.ProcessTime, LastUpdator = activity.Value.LastUpdator },
                 ActivityQueryForm = new ActivityQueryForm { ID = activity.Value.ID }
             });
-
-            //设置当前节点任务为已处理
-            foreach (var task in activity.Tasks)
+            //处理任务
+            var task = activity.Tasks.Find(t => t.ID == taskid);
+            if (task != null)
             {
                 taskdao.Update(new TaskUpdateForm
                 {
@@ -53,10 +53,10 @@ namespace DreamWorkflow.Engine.Core
                     ActivityQueryForm = new ActivityQueryForm { ID = nextactivityid },
                 });
                 //新增下个活动点的任务
-                var tasklist = activity.GetTask(processor, useridList);
-                foreach (var task in tasklist)
+                var tasklist = nextActivityModel.GetTask(processor, useridList);
+                foreach (var t in tasklist)
                 {
-                    taskdao.Add(task);
+                    taskdao.Add(t);
                 }
             }
         }

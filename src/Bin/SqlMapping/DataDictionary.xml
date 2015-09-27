@@ -16,7 +16,7 @@
         `ID`=#ID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Value">
         `Value`=#Value#
@@ -45,11 +45,16 @@
     <isNotNull prepend="AND" property="DataDictionaryGroupID">
         `DataDictionaryGroupID`=#DataDictionaryGroupID#
     </isNotNull>
+    <isNotNull property="Ids">
+        <iterate property="Ids" open="(" close=")" conjunction="OR">
+         Id=#Ids[]#
+        </iterate>
+    </isNotNull>
     </dynamic>
     <isNotNull property="PageSize">
-    <isGreaterThan property="PageSize" compareValue="0">
-     LIMIT #StartIndex#, #PageSize# 
-    </isGreaterThan>
+        <isGreaterThan property="PageSize" compareValue="0">
+         LIMIT #StartIndex#, #PageSize# 
+        </isGreaterThan>
     </isNotNull>
   </select>
   <insert id="AddDataDictionary" parameterClass="DataDictionary">
@@ -111,7 +116,7 @@
         `ID`=#DataDictionaryQueryForm.ID#
     </isNotNull>
     <isNotNull prepend="AND" property="DataDictionaryQueryForm.Name">
-        `Name` LIKE '%$DataDictionaryQueryForm.Name$%'
+        `Name`=#DataDictionaryQueryForm.Name#
     </isNotNull>
     <isNotNull prepend="AND" property="DataDictionaryQueryForm.Value">
         `Value`=#DataDictionaryQueryForm.Value#
@@ -188,7 +193,7 @@
         `ID`=#ID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Value">
         `Value`=#Value#

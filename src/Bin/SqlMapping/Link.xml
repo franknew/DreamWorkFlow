@@ -25,7 +25,7 @@
         `ToAcivityID`=#ToAcivityID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Creator">
         `Creator`=#Creator#
@@ -57,11 +57,16 @@
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
     </isNotNull>
+    <isNotNull property="Ids">
+        <iterate property="Ids" open="(" close=")" conjunction="OR">
+         Id=#Ids[]#
+        </iterate>
+    </isNotNull>
     </dynamic>
     <isNotNull property="PageSize">
-    <isGreaterThan property="PageSize" compareValue="0">
-     LIMIT #StartIndex#, #PageSize# 
-    </isGreaterThan>
+        <isGreaterThan property="PageSize" compareValue="0">
+         LIMIT #StartIndex#, #PageSize# 
+        </isGreaterThan>
     </isNotNull>
   </select>
   <insert id="AddLink" parameterClass="Link">
@@ -147,7 +152,7 @@
         `ToAcivityID`=#LinkQueryForm.ToAcivityID#
     </isNotNull>
     <isNotNull prepend="AND" property="LinkQueryForm.Name">
-        `Name` LIKE '%$LinkQueryForm.Name$%'
+        `Name`=#LinkQueryForm.Name#
     </isNotNull>
     <isNotNull prepend="AND" property="LinkQueryForm.Creator">
         `Creator`=#LinkQueryForm.Creator#
@@ -248,7 +253,7 @@
         `ToAcivityID`=#ToAcivityID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Creator">
         `Creator`=#Creator#

@@ -4,3 +4,9 @@ E:\AppLib\DreamWorkFlow\src\DreamWorkFlow.Engine\obj\Debug\DreamWorkFlow.Engine.
 E:\AppLib\DreamWorkFlow\src\DreamWorkFlow.Engine\obj\Debug\DreamWorkFlow.Engine.pdb
 E:\AppLib\DreamWorkFlow\src\Bin\DreamWorkflow.Engine.xml
 E:\AppLib\DreamWorkFlow\src\DreamWorkFlow.Engine\obj\Debug\DreamWorkFlow.Engine.csprojResolveAssemblyReference.cache
+F:\Source Codes\DreamWorkFlow\src\Bin\DreamWorkflow.Engine.xml
+F:\Source Codes\DreamWorkFlow\src\Bin\DreamWorkflow.Engine.dll
+F:\Source Codes\DreamWorkFlow\src\Bin\DreamWorkflow.Engine.pdb
+F:\Source Codes\DreamWorkFlow\src\DreamWorkFlow.Engine\obj\Debug\DreamWorkFlow.Engine.csprojResolveAssemblyReference.cache
+F:\Source Codes\DreamWorkFlow\src\DreamWorkFlow.Engine\obj\Debug\DreamWorkflow.Engine.dll
+F:\Source Codes\DreamWorkFlow\src\DreamWorkFlow.Engine\obj\Debug\DreamWorkflow.Engine.pdb

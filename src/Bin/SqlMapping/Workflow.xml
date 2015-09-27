@@ -19,7 +19,7 @@
         `WorkflowDefinitionID`=#WorkflowDefinitionID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Creator">
         `Creator`=#Creator#
@@ -42,11 +42,19 @@
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
     </isNotNull>
+    <isNotNull prepend="AND" property="ProcessID">
+        `ProcessID`=#ProcessID#
+    </isNotNull>
+    <isNotNull property="Ids">
+        <iterate property="Ids" open="(" close=")" conjunction="OR">
+         Id=#Ids[]#
+        </iterate>
+    </isNotNull>
     </dynamic>
     <isNotNull property="PageSize">
-    <isGreaterThan property="PageSize" compareValue="0">
-     LIMIT #StartIndex#, #PageSize# 
-    </isGreaterThan>
+        <isGreaterThan property="PageSize" compareValue="0">
+         LIMIT #StartIndex#, #PageSize# 
+        </isGreaterThan>
     </isNotNull>
   </select>
   <insert id="AddWorkflow" parameterClass="Workflow">
@@ -59,7 +67,8 @@
     `CreateTime`,
     `Status`,
     `LastUpdateTime`,
-    `LastUpdator`
+    `LastUpdator`,
+    `ProcessID`
   )
   VALUES
   (
@@ -70,7 +79,8 @@
         #CreateTime#,
         #Status#,
         #LastUpdateTime#,
-        #LastUpdator#
+        #LastUpdator#,
+        #ProcessID#
   )
   </insert>
   <update id="UpdateWorkflow" parameterClass="WorkflowUpdateForm">
@@ -97,6 +107,9 @@
         <isNotNull prepend="," property="Entity.LastUpdator">
         `LastUpdator`=#Entity.LastUpdator#
         </isNotNull>
+        <isNotNull prepend="," property="Entity.ProcessID">
+        `ProcessID`=#Entity.ProcessID#
+        </isNotNull>
     </dynamic>
     <dynamic prepend="WHERE">
     <isNotNull prepend="AND" property="WorkflowQueryForm.ID">
@@ -106,7 +119,7 @@
         `WorkflowDefinitionID`=#WorkflowQueryForm.WorkflowDefinitionID#
     </isNotNull>
     <isNotNull prepend="AND" property="WorkflowQueryForm.Name">
-        `Name` LIKE '%$WorkflowQueryForm.Name$%'
+        `Name`=#WorkflowQueryForm.Name#
     </isNotNull>
     <isNotNull prepend="AND" property="WorkflowQueryForm.Creator">
         `Creator`=#WorkflowQueryForm.Creator#
@@ -128,6 +141,9 @@
     </isNotNull>
     <isNotNull prepend="AND" property="WorkflowQueryForm.LastUpdator">
         `LastUpdator`=#WorkflowQueryForm.LastUpdator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowQueryForm.ProcessID">
+        `ProcessID`=#WorkflowQueryForm.ProcessID#
     </isNotNull>
     </dynamic>
   </update>
@@ -163,6 +179,9 @@
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
     </isNotNull>
+    <isNotNull prepend="AND" property="ProcessID">
+        `ProcessID`=#ProcessID#
+    </isNotNull>
   </delete>
    <select id="QueryWorkflowLastUpdateTime" resultClass="DateTime">
         SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM `Workflow`
@@ -177,7 +196,7 @@
         `WorkflowDefinitionID`=#WorkflowDefinitionID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Creator">
         `Creator`=#Creator#
@@ -199,6 +218,9 @@
     </isNotNull>
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="ProcessID">
+        `ProcessID`=#ProcessID#
     </isNotNull>
     </dynamic>
    </select>

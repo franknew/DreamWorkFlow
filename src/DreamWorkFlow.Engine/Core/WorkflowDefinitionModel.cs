@@ -163,10 +163,15 @@ namespace DreamWorkflow.Engine
                     activity.Status = (int)ActivityProcessStatus.Processed;
                     activity.ProcessTime = DateTime.Now;
                 }
-                //如果是第二节点，就设置成正在处理
                 if (this.Root.Children.Count > 0 && this.Root.Children[0].Equals(a))
                 {
                     activity.Status = (int)ActivityProcessStatus.Processing;
+                }
+                activitydao.Add(activity);
+                activityEntities.Add(activity);
+                //如果是第二节点，就设置成正在处理
+                if (this.Root.Children.Count > 0 && this.Root.Children[0].Equals(a))
+                {
                     ActivityModel activitymodel = new ActivityModel
                     {
                         Value = activity,
@@ -178,8 +183,6 @@ namespace DreamWorkflow.Engine
                         taskdao.Add(task);
                     }
                 }
-                activitydao.Add(activity);
-                activityEntities.Add(activity);
             }
 
             foreach (var l in links)

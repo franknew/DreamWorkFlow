@@ -54,9 +54,9 @@
     <isNotNull prepend="AND" property="Title">
         `Title`=#Title#
     </isNotNull>
-    <isNotNull property="Id">
+    <isNotNull property="Ids">
         <iterate property="Ids" open="(" close=")" conjunction="OR">
-         Id=#Ids[]#
+          ID=#Ids[]#
         </iterate>
     </isNotNull>
     </dynamic>

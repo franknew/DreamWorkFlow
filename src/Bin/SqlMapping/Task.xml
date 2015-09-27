@@ -15,11 +15,11 @@
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
-    <isNotNull prepend="AND" property="AcitivityID">
-        `AcitivityID`=#AcitivityID#
+    <isNotNull prepend="AND" property="ActivityID">
+        `ActivityID`=#ActivityID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Creator">
         `Creator`=#Creator#
@@ -63,6 +63,14 @@
     <isNotNull prepend="AND" property="Title">
         `Title`=#Title#
     </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowID">
+        `WorkflowID`=#WorkflowID#
+    </isNotNull>
+    <isNotNull property="Ids">
+        <iterate property="Ids" open="(" close=")" conjunction="OR">
+         Id=#Ids[]#
+        </iterate>
+    </isNotNull>
     </dynamic>
     <isNotNull property="PageSize">
         <isGreaterThan property="PageSize" compareValue="0">
@@ -74,7 +82,7 @@
   INSERT INTO `Task`
   (
     `ID`,
-    `AcitivityID`,
+    `ActivityID`,
     `Name`,
     `Creator`,
     `CreateTime`,
@@ -85,12 +93,13 @@
     `LastUpdateTime`,
     `LastUpdator`,
     `UserID`,
-    `Title`
+    `Title`,
+    `WorkflowID`
   )
   VALUES
   (
         #ID#,
-        #AcitivityID#,
+        #ActivityID#,
         #Name#,
         #Creator#,
         #CreateTime#,
@@ -101,14 +110,15 @@
         #LastUpdateTime#,
         #LastUpdator#,
         #UserID#,
-        #Title#
+        #Title#,
+        #WorkflowID#
   )
   </insert>
   <update id="UpdateTask" parameterClass="TaskUpdateForm">
   UPDATE `Task`
     <dynamic prepend="SET">
-        <isNotNull prepend="," property="Entity.AcitivityID">
-        `AcitivityID`=#Entity.AcitivityID#
+        <isNotNull prepend="," property="Entity.ActivityID">
+        `ActivityID`=#Entity.ActivityID#
         </isNotNull>
         <isNotNull prepend="," property="Entity.Name">
         `Name`=#Entity.Name#
@@ -143,16 +153,19 @@
         <isNotNull prepend="," property="Entity.Title">
         `Title`=#Entity.Title#
         </isNotNull>
+        <isNotNull prepend="," property="Entity.WorkflowID">
+        `WorkflowID`=#Entity.WorkflowID#
+        </isNotNull>
     </dynamic>
     <dynamic prepend="WHERE">
     <isNotNull prepend="AND" property="TaskQueryForm.ID">
         `ID`=#TaskQueryForm.ID#
     </isNotNull>
-    <isNotNull prepend="AND" property="TaskQueryForm.AcitivityID">
-        `AcitivityID`=#TaskQueryForm.AcitivityID#
+    <isNotNull prepend="AND" property="TaskQueryForm.ActivityID">
+        `ActivityID`=#TaskQueryForm.ActivityID#
     </isNotNull>
     <isNotNull prepend="AND" property="TaskQueryForm.Name">
-        `Name` LIKE '%$TaskQueryForm.Name$%'
+        `Name`=#TaskQueryForm.Name#
     </isNotNull>
     <isNotNull prepend="AND" property="TaskQueryForm.Creator">
         `Creator`=#TaskQueryForm.Creator#
@@ -196,6 +209,9 @@
     <isNotNull prepend="AND" property="TaskQueryForm.Title">
         `Title`=#TaskQueryForm.Title#
     </isNotNull>
+    <isNotNull prepend="AND" property="TaskQueryForm.WorkflowID">
+        `WorkflowID`=#TaskQueryForm.WorkflowID#
+    </isNotNull>
     </dynamic>
   </update>
   <delete id="DeleteTask" parameterClass="TaskQueryForm">
@@ -203,8 +219,8 @@
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
-    <isNotNull prepend="AND" property="AcitivityID">
-        `AcitivityID`=#AcitivityID#
+    <isNotNull prepend="AND" property="ActivityID">
+        `ActivityID`=#ActivityID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
         `Name`=#Name#
@@ -251,6 +267,9 @@
     <isNotNull prepend="AND" property="Title">
         `Title`=#Title#
     </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowID">
+        `WorkflowID`=#WorkflowID#
+    </isNotNull>
   </delete>
    <select id="QueryTaskLastUpdateTime" resultClass="DateTime">
         SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM `Task`
@@ -261,11 +280,11 @@
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
-    <isNotNull prepend="AND" property="AcitivityID">
-        `AcitivityID`=#AcitivityID#
+    <isNotNull prepend="AND" property="ActivityID">
+        `ActivityID`=#ActivityID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Creator">
         `Creator`=#Creator#
@@ -308,6 +327,9 @@
     </isNotNull>
     <isNotNull prepend="AND" property="Title">
         `Title`=#Title#
+    </isNotNull>
+    <isNotNull prepend="AND" property="WorkflowID">
+        `WorkflowID`=#WorkflowID#
     </isNotNull>
     </dynamic>
    </select>

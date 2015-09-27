@@ -16,7 +16,7 @@
         `ID`=#ID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Creator">
         `Creator`=#Creator#
@@ -51,11 +51,16 @@
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
     </isNotNull>
+    <isNotNull property="Ids">
+        <iterate property="Ids" open="(" close=")" conjunction="OR">
+         Id=#Ids[]#
+        </iterate>
+    </isNotNull>
     </dynamic>
     <isNotNull property="PageSize">
-    <isGreaterThan property="PageSize" compareValue="0">
-     LIMIT #StartIndex#, #PageSize# 
-    </isGreaterThan>
+        <isGreaterThan property="PageSize" compareValue="0">
+         LIMIT #StartIndex#, #PageSize# 
+        </isGreaterThan>
     </isNotNull>
   </select>
   <insert id="AddActivityAuth" parameterClass="ActivityAuth">
@@ -127,7 +132,7 @@
         `ID`=#ActivityAuthQueryForm.ID#
     </isNotNull>
     <isNotNull prepend="AND" property="ActivityAuthQueryForm.Name">
-        `Name` LIKE '%$ActivityAuthQueryForm.Name$%'
+        `Name`=#ActivityAuthQueryForm.Name#
     </isNotNull>
     <isNotNull prepend="AND" property="ActivityAuthQueryForm.Creator">
         `Creator`=#ActivityAuthQueryForm.Creator#
@@ -216,7 +221,7 @@
         `ID`=#ID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Creator">
         `Creator`=#Creator#

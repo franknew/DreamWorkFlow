@@ -95,11 +95,49 @@ namespace WinformTest
         {
             var workflow = WorkflowDefinitionModel.Load("1");
             workflow.StartNew("frank", "1", new GetUser());
+            RiskMgr.Model.Menu m = new RiskMgr.Model.Menu();
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             var workflow = WorkflowModel.Load("66c728aa03bb4f8aa6f26b43c705e70f");
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            RiskMgr.Model.Menu m = new RiskMgr.Model.Menu();
+            string workflowid = txbworkflowid.Text;
+            string activityid = txbactivityid.Text;
+            string taskid = txbtaskid.Text;
+            var workflow = WorkflowModel.Load(workflowid);
+            workflow.ProcessActivity(activityid, new Approval
+            {
+                ActivityID = activityid,
+                WorkflowID = workflow.Value.ID,
+                //Type = (int)ApprovalStatus.Agree,
+                Status = (int)ApprovalStatus.Agree,
+                Remark = "同意",
+            }, taskid, "1", new GetUser()
+            );
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            RiskMgr.Model.Menu m = new RiskMgr.Model.Menu();
+            string workflowid = txbworkflowid.Text;
+            string activityid = txbactivityid.Text;
+            string taskid = txbtaskid.Text;
+            var workflow = WorkflowModel.Load(workflowid);
+            workflow.ProcessActivity(activityid, new Approval
+            {
+                ActivityID = activityid,
+                WorkflowID = workflow.Value.ID,
+                //Type = (int)ApprovalStatus.Agree,
+                Status = (int)ApprovalStatus.Disagree,
+                Remark = "不同意",
+            }, taskid, "1", new GetUser()
+            );
         }
     }
     public class GetUser : IWorkflowAuthority

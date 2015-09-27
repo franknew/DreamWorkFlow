@@ -19,7 +19,7 @@
         `ActivityDefinitionID`=#ActivityDefinitionID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Page">
         `Page`=#Page#
@@ -65,6 +65,11 @@
     </isNotNull>
     <isNotNull prepend="AND" property="Title">
         `Title`=#Title#
+    </isNotNull>
+    <isNotNull property="Ids">
+        <iterate property="Ids" open="(" close=")" conjunction="OR">
+         Id=#Ids[]#
+        </iterate>
     </isNotNull>
     </dynamic>
     <isNotNull property="PageSize">
@@ -160,7 +165,7 @@
         `ActivityDefinitionID`=#ActivityQueryForm.ActivityDefinitionID#
     </isNotNull>
     <isNotNull prepend="AND" property="ActivityQueryForm.Name">
-        `Name` LIKE '%$ActivityQueryForm.Name$%'
+        `Name`=#ActivityQueryForm.Name#
     </isNotNull>
     <isNotNull prepend="AND" property="ActivityQueryForm.Page">
         `Page`=#ActivityQueryForm.Page#
@@ -279,7 +284,7 @@
         `ActivityDefinitionID`=#ActivityDefinitionID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Page">
         `Page`=#Page#

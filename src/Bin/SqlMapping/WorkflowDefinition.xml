@@ -16,7 +16,7 @@
         `ID`=#ID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Enabled">
         `Enabled`=#Enabled#
@@ -42,11 +42,16 @@
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
     </isNotNull>
+    <isNotNull property="Ids">
+        <iterate property="Ids" open="(" close=")" conjunction="OR">
+         Id=#Ids[]#
+        </iterate>
+    </isNotNull>
     </dynamic>
     <isNotNull property="PageSize">
-    <isGreaterThan property="PageSize" compareValue="0">
-     LIMIT #StartIndex#, #PageSize# 
-    </isGreaterThan>
+        <isGreaterThan property="PageSize" compareValue="0">
+         LIMIT #StartIndex#, #PageSize# 
+        </isGreaterThan>
     </isNotNull>
   </select>
   <insert id="AddWorkflowDefinition" parameterClass="WorkflowDefinition">
@@ -103,7 +108,7 @@
         `ID`=#WorkflowDefinitionQueryForm.ID#
     </isNotNull>
     <isNotNull prepend="AND" property="WorkflowDefinitionQueryForm.Name">
-        `Name` LIKE '%$WorkflowDefinitionQueryForm.Name$%'
+        `Name`=#WorkflowDefinitionQueryForm.Name#
     </isNotNull>
     <isNotNull prepend="AND" property="WorkflowDefinitionQueryForm.Enabled">
         `Enabled`=#WorkflowDefinitionQueryForm.Enabled#
@@ -174,7 +179,7 @@
         `ID`=#ID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Enabled">
         `Enabled`=#Enabled#

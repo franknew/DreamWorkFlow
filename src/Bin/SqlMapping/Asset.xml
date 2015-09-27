@@ -16,7 +16,7 @@
         `ID`=#ID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Creator">
         `Creator`=#Creator#
@@ -80,6 +80,11 @@
     </isNotNull>
     <isNotNull prepend="AND" property="ChangeOwnerPrice_End">
         `ChangeOwnerPrice`&lt;=#ChangeOwnerPrice_End#
+    </isNotNull>
+    <isNotNull property="Ids">
+        <iterate property="Ids" open="(" close=")" conjunction="OR">
+         Id=#Ids[]#
+        </iterate>
     </isNotNull>
     </dynamic>
     <isNotNull property="PageSize">
@@ -192,7 +197,7 @@
         `ID`=#AssetQueryForm.ID#
     </isNotNull>
     <isNotNull prepend="AND" property="AssetQueryForm.Name">
-        `Name` LIKE '%$AssetQueryForm.Name$%'
+        `Name`=#AssetQueryForm.Name#
     </isNotNull>
     <isNotNull prepend="AND" property="AssetQueryForm.Creator">
         `Creator`=#AssetQueryForm.Creator#
@@ -341,7 +346,7 @@
         `ID`=#ID#
     </isNotNull>
     <isNotNull prepend="AND" property="Name">
-        `Name` LIKE '%$Name$%'
+        `Name`=#Name#
     </isNotNull>
     <isNotNull prepend="AND" property="Creator">
         `Creator`=#Creator#

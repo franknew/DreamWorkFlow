@@ -108,6 +108,28 @@ namespace DreamWorkflow.Engine
             }
             return list;
         }
+
+        public void ReadTask(string taskid, string proccessor)
+        {
+            ISqlMapper mapper = MapperHelper.GetMapper();
+            TaskDao taskdao = new TaskDao(mapper);
+            var task = this.Tasks.Find(t => t.ID == taskid);
+            if (this.Value.Status == (int)ActivityProcessStatus.Processed)
+            {
+                task.Status = (int)TaskProcessStatus.Processed;
+            }
+            else
+            {
+                task.Status = (int)TaskProcessStatus.Read;
+            }
+            task.ReadTime = DateTime.Now;
+            task.LastUpdator = proccessor;
+            taskdao.Update(new TaskUpdateForm
+            {
+                Entity = new Task { ReadTime = task.ReadTime, Status = task.Status, LastUpdator = task.LastUpdator },
+                TaskQueryForm = new TaskQueryForm { ID = task.ID }
+            });
+        }
     }
 
 }

@@ -213,9 +213,13 @@ namespace DreamWorkflow.Engine
 
         }
 
-        public void ReadTask()
+        public void ReadTask(string taskid, string proccessor)
         {
-
+            ISqlMapper mapper = MapperHelper.GetMapper();
+            TaskDao taskdao = new TaskDao(mapper);
+            Task task = taskdao.Query(new TaskQueryForm { ID = taskid }).FirstOrDefault();
+            var activity = this.Root.GetList().Find(t => t.Value.ID == task.ID) as ActivityModel;
+            activity.ReadTask(taskid, proccessor);
         }
     }
 }
