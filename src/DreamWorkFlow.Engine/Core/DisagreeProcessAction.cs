@@ -44,7 +44,7 @@ namespace DreamWorkflow.Engine.Core
                 Entity = new Activity { Status = activity.Value.Status, ProcessTime = activity.Value.ProcessTime, LastUpdator = activity.Value.LastUpdator },
                 ActivityQueryForm = new ActivityQueryForm { ID = activity.Value.ID }
             });
-            activity.OwnerWorkflow.Root.Value.Status = (int)ActivityProcessStatus.Started;
+            activity.OwnerWorkflow.Root.Value.Status = (int)ActivityProcessStatus.Processing;
             var root = activity.OwnerWorkflow.Root;
             activitydao.Update(new ActivityUpdateForm
             {
