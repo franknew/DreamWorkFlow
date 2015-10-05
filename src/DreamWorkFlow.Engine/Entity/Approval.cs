@@ -17,6 +17,5 @@ namespace DreamWorkflow.Engine.Model
         public string WorkflowID { get; set; }
         
         public Int32? Type { get; set; }
-        
     }
 }

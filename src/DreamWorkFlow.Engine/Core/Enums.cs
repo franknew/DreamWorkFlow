@@ -30,5 +30,6 @@ namespace DreamWorkflow.Engine
     {
         Agree = 1,
         Disagree = 2,
+        None = 3,
     }
 }

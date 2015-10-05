@@ -24,6 +24,8 @@ namespace DreamWorkflow.Engine.Core
             {
                 ApprovalDao ad = new ApprovalDao(mapper);
                 approval.Creator = processor;
+                approval.ActivityID = activity.Value.ID;
+                approval.WorkflowID = activity.Value.WorkflowID;
                 ad.Add(approval);
             }
             //设置当前活动点状态

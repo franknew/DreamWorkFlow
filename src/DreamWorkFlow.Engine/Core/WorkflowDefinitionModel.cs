@@ -75,7 +75,6 @@ namespace DreamWorkflow.Engine
         {
             ISqlMapper mapper = MapperHelper.GetMapper();
             WorkflowDefinitionDao wddao = new WorkflowDefinitionDao(mapper);
-            ActivityAuthDefinitionDao aaddao = new ActivityAuthDefinitionDao(mapper);
             ActivityDefinitionDao addao = new ActivityDefinitionDao(mapper);
             LinkDefinitionDao linkdao = new LinkDefinitionDao(mapper);
             ActivityAuthDefinitionDao aadd = new ActivityAuthDefinitionDao(mapper);
@@ -145,17 +144,6 @@ namespace DreamWorkflow.Engine
                 activity.Status = (int)ActivityProcessStatus.Started;
 
                 List<ActivityAuth> authList = new List<ActivityAuth>();
-                //权限处理
-                foreach (var ad in a.AuthDefinition)
-                {
-                    ActivityAuth auth = ad.ConvertTo<ActivityAuth>();
-                    auth.Creator = creator;
-                    auth.WorkflowID = wf.ID;
-                    auth.ID = null;
-                    auth.ActivityAuthDefinitionID = ad.ID;
-                    aadd.Add(auth);
-                    authList.Add(auth);
-                }
 
                 //如果是开始节点，就设置为已处理
                 if (this.Root.Equals(a))
@@ -169,6 +157,20 @@ namespace DreamWorkflow.Engine
                 }
                 activitydao.Add(activity);
                 activityEntities.Add(activity);
+
+                //权限处理
+                foreach (var ad in a.AuthDefinition)
+                {
+                    ActivityAuth auth = ad.ConvertTo<ActivityAuth>();
+                    auth.Creator = creator;
+                    auth.WorkflowID = wf.ID;
+                    auth.ActivityID = activity.ID;
+                    auth.ID = null;
+                    auth.ActivityAuthDefinitionID = ad.ID;
+                    aadd.Add(auth);
+                    authList.Add(auth);
+                }
+
                 //如果是第二节点，就设置成正在处理
                 if (this.Root.Children.Count > 0 && this.Root.Children[0].Equals(a))
                 {

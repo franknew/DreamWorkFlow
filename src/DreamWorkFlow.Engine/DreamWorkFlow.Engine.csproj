@@ -79,6 +79,7 @@
     <Compile Include="Core\IProcessAction.cs" />
     <Compile Include="Core\LinkDefinitionModel.cs" />
     <Compile Include="Core\LinkModel.cs" />
+    <Compile Include="Core\NextProcessAction.cs" />
     <Compile Include="Core\WorkflowDefinitionModel.cs" />
     <Compile Include="Core\WorkflowModel.cs" />
     <Compile Include="DAL\ActivityAuthDao.cs" />

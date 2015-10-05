@@ -24,6 +24,9 @@ namespace DreamWorkflow.Engine.Core
                 case ApprovalStatus.Disagree:
                     action = new DisagreeProcessAction();
                     break;
+                case ApprovalStatus.None:
+                    action = new NextProcessAction();
+                    break;
             }
             return action;
         }
