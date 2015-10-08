@@ -79,13 +79,7 @@ namespace DreamWorkflow.Engine
         public bool Process(Approval approval, string taskid, string processor, IWorkflowAuthority auth)
         {
             IProcessAction actionprocess = ApprovalProcessFacotry.Create((ApprovalStatus)approval.Status.Value);
-            List<ActivityAuth> list = new List<ActivityAuth>();
-            if (this.Children != null && this.Children.Count > 0)
-            {
-                list = (this.Children[0] as ActivityModel).Auth;
-            }
-            actionprocess.Process(this, approval, taskid, processor, auth.GetUserIDList(list));
-
+            actionprocess.Process(this, approval, taskid, processor, auth);
             return true;
         }
 

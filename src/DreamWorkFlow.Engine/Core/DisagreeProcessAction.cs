@@ -11,7 +11,7 @@ namespace DreamWorkflow.Engine.Core
 {
     public class DisagreeProcessAction : IProcessAction
     {
-        public void Process(ActivityModel activity, Approval approval, string taskid, string processor, List<string> useridList)
+        public void Process(ActivityModel activity, Approval approval, string taskid, string processor, IWorkflowAuthority auth)
         {
             ISqlMapper mapper = MapperHelper.GetMapper();
             ActivityDao activitydao = new ActivityDao(mapper);
@@ -26,7 +26,7 @@ namespace DreamWorkflow.Engine.Core
                 approval.Creator = processor;
                 ad.Add(approval);
             }
-            //处理当前任务
+            //处理当前流程所有任务，设置为已处理
             var task = activity.Tasks.Find(t => t.ID == taskid);
             if (task != null)
             {
@@ -35,7 +35,7 @@ namespace DreamWorkflow.Engine.Core
                 taskdao.Update(new TaskUpdateForm
                 {
                     Entity = new Task { ProcessTime = task.ProcessTime, Status = task.Status },
-                    TaskQueryForm = new TaskQueryForm { ID = task.ID },
+                    TaskQueryForm = new TaskQueryForm { ActivityID = task.ActivityID },
                 });
             }
             //设置当前活动点状态
@@ -43,6 +43,12 @@ namespace DreamWorkflow.Engine.Core
             {
                 Entity = new Activity { Status = activity.Value.Status, ProcessTime = activity.Value.ProcessTime, LastUpdator = activity.Value.LastUpdator },
                 ActivityQueryForm = new ActivityQueryForm { ID = activity.Value.ID }
+            });
+            //把所有活动点的状态清空
+            activitydao.Update(new ActivityUpdateForm
+            {
+                Entity = new Activity { Status = activity.Value.Status },
+                ActivityQueryForm = new ActivityQueryForm {  WorkflowID = activity.Value.WorkflowID }
             });
             activity.OwnerWorkflow.Root.Value.Status = (int)ActivityProcessStatus.Processing;
             var root = activity.OwnerWorkflow.Root;

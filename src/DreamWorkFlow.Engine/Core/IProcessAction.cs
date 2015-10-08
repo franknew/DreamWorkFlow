@@ -8,7 +8,7 @@ namespace DreamWorkflow.Engine.Core
 {
     public interface IProcessAction
     {
-        void Process(ActivityModel activity, Approval approval, string taskid, string processor, List<string> useridList);
+        void Process(ActivityModel activity, Approval approval, string taskid, string processor, IWorkflowAuthority auth);
     }
 
     public class ApprovalProcessFacotry
