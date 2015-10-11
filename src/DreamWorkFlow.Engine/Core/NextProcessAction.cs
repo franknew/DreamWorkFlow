@@ -18,6 +18,9 @@ namespace DreamWorkflow.Engine
             ActivityDao activitydao = new ActivityDao(mapper);
             TaskDao taskdao = new TaskDao(mapper);
             //设置当前活动点状态
+            activity.Value.Status = (int)ActivityProcessStatus.Processed;
+            activity.Value.ProcessTime = DateTime.Now;
+            activity.Value.LastUpdator = processor;
             activitydao.Update(new ActivityUpdateForm
             {
                 Entity = new Activity { Status = activity.Value.Status, ProcessTime = activity.Value.ProcessTime, LastUpdator = activity.Value.LastUpdator },
