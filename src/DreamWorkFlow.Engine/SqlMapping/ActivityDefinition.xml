@@ -54,12 +54,13 @@
     <isNotNull prepend="AND" property="Title">
         `Title`=#Title#
     </isNotNull>
-    <isNotNull property="Ids">
+    <isNotNull prepend="AND"  property="Ids">
         <iterate property="Ids" open="(" close=")" conjunction="OR">
-          ID=#Ids[]#
+         `ID`=#Ids[]#
         </iterate>
     </isNotNull>
     </dynamic>
+        ORDER BY LastUpdateTime DESC
     <isNotNull property="PageSize">
         <isGreaterThan property="PageSize" compareValue="0">
          LIMIT #StartIndex#, #PageSize# 
@@ -223,6 +224,11 @@
     </isNotNull>
     <isNotNull prepend="AND" property="Title">
         `Title`=#Title#
+    </isNotNull>
+    <isNotNull prepend="AND"  property="Ids">
+        <iterate property="Ids" open="(" close=")" conjunction="OR">
+         `ID`=#Ids[]#
+        </iterate>
     </isNotNull>
   </delete>
    <select id="QueryActivityDefinitionLastUpdateTime" resultClass="DateTime">

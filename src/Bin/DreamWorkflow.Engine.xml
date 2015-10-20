@@ -33,6 +33,48 @@
             <param name="items"></param>
             <returns></returns>
         </member>
+        <member name="M:DreamWorkflow.Engine.WorkflowModel.Load(System.String)">
+            <summary>
+            从数据库读取流程信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DreamWorkflow.Engine.WorkflowModel.Create">
+            <summary>
+            把流程实体新增到数据库
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DreamWorkflow.Engine.WorkflowModel.ProcessActivity(System.String,DreamWorkflow.Engine.Model.Approval,System.String,System.String,DreamWorkflow.Engine.IWorkflowAuthority)">
+            <summary>
+            处理流程流转：审批，或者直接走到下一步
+            </summary>
+            <param name="activityid"></param>
+            <param name="approval"></param>
+            <param name="taskid"></param>
+            <param name="processor"></param>
+            <param name="auth"></param>
+        </member>
+        <member name="M:DreamWorkflow.Engine.WorkflowModel.Stop(System.String,System.String)">
+            <summary>
+            作废
+            </summary>
+            <param name="taskid"></param>
+            <param name="processor"></param>
+        </member>
+        <member name="M:DreamWorkflow.Engine.WorkflowModel.Remove">
+            <summary>
+            删除该流程
+            </summary>
+        </member>
+        <member name="M:DreamWorkflow.Engine.WorkflowModel.ReadTask(System.String,System.String)">
+            <summary>
+            打开任务
+            </summary>
+            <param name="taskid"></param>
+            <param name="proccessor"></param>
+        </member>
         <member name="P:DreamWorkflow.Engine.Model.Activity.ActivityDefinitionID">
             <summary>
             

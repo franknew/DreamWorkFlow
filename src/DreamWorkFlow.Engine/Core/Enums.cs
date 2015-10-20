@@ -17,6 +17,7 @@ namespace DreamWorkflow.Engine
         Started = 1,
         Processing = 2,
         Processed = 3,
+        Stoped = 4,
     }
 
     public enum TaskProcessStatus

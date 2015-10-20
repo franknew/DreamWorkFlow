@@ -14,6 +14,8 @@ namespace DreamWorkflow.Engine
     public class WorkflowModel
     {
         private static ICache cache = CacheFactory.Create();
+
+        #region property
         public ActivityModel Root { get; set; }
 
         public List<Approval> Approval { get; set; }
@@ -25,7 +27,22 @@ namespace DreamWorkflow.Engine
             get { return this.value; }
             private set { this.value = value; }
         }
+        
+        public ActivityModel CurrentActivity
+        {
+            get
+            {
+                return Root.GetList().Find(t => t.Value.Status.Value == (int)ActivityProcessStatus.Processing) as ActivityModel;
+            }
+        }
+        #endregion
 
+        #region action
+        /// <summary>
+        /// 从数据库读取流程信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static WorkflowModel Load(string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -129,6 +146,10 @@ namespace DreamWorkflow.Engine
             return model;
         }
 
+        /// <summary>
+        /// 把流程实体新增到数据库
+        /// </summary>
+        /// <returns></returns>
         public bool Create()
         {
             ISqlMapper mapper = MapperHelper.GetMapper();
@@ -178,14 +199,14 @@ namespace DreamWorkflow.Engine
             return true;
         }
 
-        public ActivityModel CurrentActivity
-        {
-            get
-            {
-                return Root.GetList().Find(t => t.Value.Status.Value == (int)ActivityProcessStatus.Processing) as ActivityModel;
-            }
-        }
-
+        /// <summary>
+        /// 处理流程流转：审批，或者直接走到下一步
+        /// </summary>
+        /// <param name="activityid"></param>
+        /// <param name="approval"></param>
+        /// <param name="taskid"></param>
+        /// <param name="processor"></param>
+        /// <param name="auth"></param>
         public void ProcessActivity(string activityid, Approval approval, string taskid, string processor, IWorkflowAuthority auth)
         {
             var activities = this.Root.GetList();
@@ -193,6 +214,42 @@ namespace DreamWorkflow.Engine
             activity.Process(approval, taskid, processor, auth);
         }
 
+        /// <summary>
+        /// 作废
+        /// </summary>
+        /// <param name="taskid"></param>
+        /// <param name="processor"></param>
+        public void Stop(string taskid, string processor)
+        {
+            if (this.CurrentActivity != null)
+            {
+                ISqlMapper mapper = MapperHelper.GetMapper();
+                WorkflowDao wfdao = new WorkflowDao(mapper);
+                var task = this.CurrentActivity.Tasks.FindAll(t => t.ID == taskid);
+                if (!task.Exists(t=>t.ID == taskid))
+                {
+                    throw new Exception("不能作废该流程，只有流程的当前操作人才能作废！");
+                }
+                this.value.Status = (int)WorkflowProcessStatus.Stoped;
+                this.value.LastUpdator = processor;
+                wfdao.Update(new WorkflowUpdateForm
+                {
+                    Entity = new Workflow
+                    {
+                        LastUpdator = this.value.LastUpdator,
+                        Status = this.value.Status,
+                    },
+                    WorkflowQueryForm= new WorkflowQueryForm
+                    {
+                        ID = this.value.ID,
+                    }
+                });
+            }
+        }
+
+        /// <summary>
+        /// 删除该流程
+        /// </summary>
         public void Remove()
         {
             ISqlMapper mapper = MapperHelper.GetMapper();
@@ -213,13 +270,16 @@ namespace DreamWorkflow.Engine
 
         }
 
+        /// <summary>
+        /// 打开任务
+        /// </summary>
+        /// <param name="taskid"></param>
+        /// <param name="proccessor"></param>
         public void ReadTask(string taskid, string proccessor)
         {
-            ISqlMapper mapper = MapperHelper.GetMapper();
-            TaskDao taskdao = new TaskDao(mapper);
-            Task task = taskdao.Query(new TaskQueryForm { ID = taskid }).FirstOrDefault();
-            var activity = this.Root.GetList().Find(t => t.Value.ID == task.ID) as ActivityModel;
+            var activity = this.Root.GetList().Find(t => t.Value.ID == taskid) as ActivityModel;
             activity.ReadTask(taskid, proccessor);
         }
+        #endregion
     }
 }
