@@ -6,7 +6,7 @@ using SOAFramework.Library.DAL;
 
 namespace DreamWorkflow.Engine.Model
 {
-    public class ActivityDefinition : SimpleEntity
+    public partial class ActivityDefinition : SimpleEntity
     {
         /// <summary>
         /// 
@@ -37,6 +37,11 @@ namespace DreamWorkflow.Engine.Model
         /// 
         /// </summary>
         public string Title { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public int? IsDeleted { get; set; }
         
     }
 }

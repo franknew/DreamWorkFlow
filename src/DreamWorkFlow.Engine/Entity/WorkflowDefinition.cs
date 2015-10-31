@@ -6,11 +6,22 @@ using SOAFramework.Library.DAL;
 
 namespace DreamWorkflow.Engine.Model
 {
-    public class WorkflowDefinition : SimpleEntity
+    public partial class WorkflowDefinition : SimpleEntity
     {
-        public UInt64? Enabled { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int? Enabled { get; set; }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public string Remark { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public int? IsDeleted { get; set; }
         
     }
 }

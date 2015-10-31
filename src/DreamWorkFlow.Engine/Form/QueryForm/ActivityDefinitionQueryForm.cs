@@ -8,6 +8,7 @@ namespace DreamWorkflow.Engine.Form
 {
     public class ActivityDefinitionQueryForm : SimpleQueryForm
     {
+        public List<String> IDs { get; set;}
         public string WorkflowDefinitionID { get; set; }
         
         public string Page { get; set; }
@@ -16,9 +17,12 @@ namespace DreamWorkflow.Engine.Form
         
         public Int32? Type { get; set; }
         
+        public List<String> Creators { get; set;}
         public string Remark { get; set; }
         
         public string Title { get; set; }
+        
+        public UInt64? IsDeleted { get; set; }
         
     }
 }

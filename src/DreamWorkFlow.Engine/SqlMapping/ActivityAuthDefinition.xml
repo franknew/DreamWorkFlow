@@ -10,7 +10,7 @@
     <isGreaterThan compareProperty="PageSize" compareValue="0">
     
     </isGreaterThan>
-    SELECT * FROM `ActivityAuthDefinition` 
+    SELECT * FROM `ActivityAuthDefinition`
     <dynamic prepend="WHERE">
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
@@ -48,9 +48,17 @@
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
     </isNotNull>
-    <isNotNull prepend="AND"  property="Ids">
-        <iterate property="Ids" open="(" close=")" conjunction="OR">
-         `ID`=#Ids[]#
+    <isNotNull prepend="AND" property="IsDeleted">
+        `IsDeleted`=#IsDeleted#
+    </isNotNull>
+    <isNotNull prepend="AND"  property="Creators">
+        <iterate property="Creators" open="(" close=")" conjunction="OR">
+         `Creator`=#Creators[]#
+        </iterate>
+    </isNotNull>
+    <isNotNull prepend="AND"  property="IDs">
+        <iterate property="IDs" open="(" close=")" conjunction="OR">
+         `ID`=#IDs[]#
         </iterate>
     </isNotNull>
     </dynamic>
@@ -73,7 +81,8 @@
     `ActivityDefinitionID`,
     `WorkflowDefinitionID`,
     `LastUpdateTime`,
-    `LastUpdator`
+    `LastUpdator`,
+    `IsDeleted`
   )
   VALUES
   (
@@ -86,7 +95,8 @@
         #ActivityDefinitionID#,
         #WorkflowDefinitionID#,
         #LastUpdateTime#,
-        #LastUpdator#
+        #LastUpdator#,
+        #IsDeleted#
   )
   </insert>
   <update id="UpdateActivityAuthDefinition" parameterClass="ActivityAuthDefinitionUpdateForm">
@@ -118,6 +128,9 @@
         </isNotNull>
         <isNotNull prepend="," property="Entity.LastUpdator">
         `LastUpdator`=#Entity.LastUpdator#
+        </isNotNull>
+        <isNotNull prepend="," property="Entity.IsDeleted">
+        `IsDeleted`=#Entity.IsDeleted#
         </isNotNull>
     </dynamic>
     <dynamic prepend="WHERE">
@@ -157,10 +170,13 @@
     <isNotNull prepend="AND" property="ActivityAuthDefinitionQueryForm.LastUpdator">
         `LastUpdator`=#ActivityAuthDefinitionQueryForm.LastUpdator#
     </isNotNull>
+    <isNotNull prepend="AND" property="ActivityAuthDefinitionQueryForm.IsDeleted">
+        `IsDeleted`=#ActivityAuthDefinitionQueryForm.IsDeleted#
+    </isNotNull>
     </dynamic>
   </update>
-  <delete id="DeleteActivityAuthDefinition" parameterClass="ActivityAuthDefinitionQueryForm">
-    DELETE FROM `ActivityAuthDefinition` WHERE 1=1
+  <update id="DeleteActivityAuthDefinition" parameterClass="ActivityAuthDefinitionQueryForm">
+    UPDATE `ActivityAuthDefinition` SET IsDelete=1 WHERE 1=1
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
@@ -197,12 +213,20 @@
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
     </isNotNull>
-    <isNotNull prepend="AND"  property="Ids">
-        <iterate property="Ids" open="(" close=")" conjunction="OR">
-         `ID`=#Ids[]#
+    <isNotNull prepend="AND" property="IsDeleted">
+        `IsDeleted`=#IsDeleted#
+    </isNotNull>
+    <isNotNull prepend="AND"  property="Creators">
+        <iterate property="Creators" open="(" close=")" conjunction="OR">
+         `Creator`=#Creators[]#
         </iterate>
     </isNotNull>
-  </delete>
+    <isNotNull prepend="AND"  property="IDs">
+        <iterate property="IDs" open="(" close=")" conjunction="OR">
+         `ID`=#IDs[]#
+        </iterate>
+    </isNotNull>
+  </update>
    <select id="QueryActivityAuthDefinitionLastUpdateTime" resultClass="DateTime">
         SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM `ActivityAuthDefinition`
    </select>
@@ -244,6 +268,19 @@
     </isNotNull>
     <isNotNull prepend="AND" property="LastUpdator">
         `LastUpdator`=#LastUpdator#
+    </isNotNull>
+    <isNotNull prepend="AND" property="IsDeleted">
+        `IsDeleted`=#IsDeleted#
+    </isNotNull>
+    <isNotNull prepend="AND"  property="Creators">
+        <iterate property="Creators" open="(" close=")" conjunction="OR">
+         `Creator`=#Creators[]#
+        </iterate>
+    </isNotNull>
+    <isNotNull prepend="AND"  property="IDs">
+        <iterate property="IDs" open="(" close=")" conjunction="OR">
+         `ID`=#IDs[]#
+        </iterate>
     </isNotNull>
     </dynamic>
    </select>

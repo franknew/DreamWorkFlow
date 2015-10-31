@@ -6,8 +6,11 @@ using SOAFramework.Library.DAL;
 
 namespace DreamWorkflow.Engine.Model
 {
-    public class Context : BaseEntity
+    public partial class Context : BaseEntity
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string WorkflowID { get; set; }
         
     }

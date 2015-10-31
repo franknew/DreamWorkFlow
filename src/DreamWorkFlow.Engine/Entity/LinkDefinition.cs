@@ -6,15 +6,32 @@ using SOAFramework.Library.DAL;
 
 namespace DreamWorkflow.Engine.Model
 {
-    public class LinkDefinition : SimpleEntity
+    public partial class LinkDefinition : SimpleEntity
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string FromActivityDefinitionID { get; set; }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public string ToActivityDefinitionID { get; set; }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public string Remark { get; set; }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public string WorkflowDefinitionID { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public int? IsDeleted { get; set; }
         
     }
 }

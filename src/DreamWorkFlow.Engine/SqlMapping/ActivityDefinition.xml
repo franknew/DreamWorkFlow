@@ -10,7 +10,7 @@
     <isGreaterThan compareProperty="PageSize" compareValue="0">
     
     </isGreaterThan>
-    SELECT * FROM `ActivityDefinition` 
+    SELECT * FROM `ActivityDefinition`
     <dynamic prepend="WHERE">
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
@@ -54,9 +54,17 @@
     <isNotNull prepend="AND" property="Title">
         `Title`=#Title#
     </isNotNull>
-    <isNotNull prepend="AND"  property="Ids">
-        <iterate property="Ids" open="(" close=")" conjunction="OR">
-         `ID`=#Ids[]#
+    <isNotNull prepend="AND" property="IsDeleted">
+        `IsDeleted`=#IsDeleted#
+    </isNotNull>
+    <isNotNull prepend="AND"  property="Creators">
+        <iterate property="Creators" open="(" close=")" conjunction="OR">
+         `Creator`=#Creators[]#
+        </iterate>
+    </isNotNull>
+    <isNotNull prepend="AND"  property="IDs">
+        <iterate property="IDs" open="(" close=")" conjunction="OR">
+         `ID`=#IDs[]#
         </iterate>
     </isNotNull>
     </dynamic>
@@ -81,7 +89,8 @@
     `Remark`,
     `LastUpdateTime`,
     `LastUpdator`,
-    `Title`
+    `Title`,
+    `IsDeleted`
   )
   VALUES
   (
@@ -96,7 +105,8 @@
         #Remark#,
         #LastUpdateTime#,
         #LastUpdator#,
-        #Title#
+        #Title#,
+        #IsDeleted#
   )
   </insert>
   <update id="UpdateActivityDefinition" parameterClass="ActivityDefinitionUpdateForm">
@@ -134,6 +144,9 @@
         </isNotNull>
         <isNotNull prepend="," property="Entity.Title">
         `Title`=#Entity.Title#
+        </isNotNull>
+        <isNotNull prepend="," property="Entity.IsDeleted">
+        `IsDeleted`=#Entity.IsDeleted#
         </isNotNull>
     </dynamic>
     <dynamic prepend="WHERE">
@@ -179,10 +192,13 @@
     <isNotNull prepend="AND" property="ActivityDefinitionQueryForm.Title">
         `Title`=#ActivityDefinitionQueryForm.Title#
     </isNotNull>
+    <isNotNull prepend="AND" property="ActivityDefinitionQueryForm.IsDeleted">
+        `IsDeleted`=#ActivityDefinitionQueryForm.IsDeleted#
+    </isNotNull>
     </dynamic>
   </update>
-  <delete id="DeleteActivityDefinition" parameterClass="ActivityDefinitionQueryForm">
-    DELETE FROM `ActivityDefinition` WHERE 1=1
+  <update id="DeleteActivityDefinition" parameterClass="ActivityDefinitionQueryForm">
+    UPDATE `ActivityDefinition` SET IsDelete=1 WHERE 1=1
     <isNotNull prepend="AND" property="ID">
         `ID`=#ID#
     </isNotNull>
@@ -225,12 +241,20 @@
     <isNotNull prepend="AND" property="Title">
         `Title`=#Title#
     </isNotNull>
-    <isNotNull prepend="AND"  property="Ids">
-        <iterate property="Ids" open="(" close=")" conjunction="OR">
-         `ID`=#Ids[]#
+    <isNotNull prepend="AND" property="IsDeleted">
+        `IsDeleted`=#IsDeleted#
+    </isNotNull>
+    <isNotNull prepend="AND"  property="Creators">
+        <iterate property="Creators" open="(" close=")" conjunction="OR">
+         `Creator`=#Creators[]#
         </iterate>
     </isNotNull>
-  </delete>
+    <isNotNull prepend="AND"  property="IDs">
+        <iterate property="IDs" open="(" close=")" conjunction="OR">
+         `ID`=#IDs[]#
+        </iterate>
+    </isNotNull>
+  </update>
    <select id="QueryActivityDefinitionLastUpdateTime" resultClass="DateTime">
         SELECT MAX(LastUpdateTime) AS LastUpdateTime FROM `ActivityDefinition`
    </select>
@@ -278,6 +302,19 @@
     </isNotNull>
     <isNotNull prepend="AND" property="Title">
         `Title`=#Title#
+    </isNotNull>
+    <isNotNull prepend="AND" property="IsDeleted">
+        `IsDeleted`=#IsDeleted#
+    </isNotNull>
+    <isNotNull prepend="AND"  property="Creators">
+        <iterate property="Creators" open="(" close=")" conjunction="OR">
+         `Creator`=#Creators[]#
+        </iterate>
+    </isNotNull>
+    <isNotNull prepend="AND"  property="IDs">
+        <iterate property="IDs" open="(" close=")" conjunction="OR">
+         `ID`=#IDs[]#
+        </iterate>
     </isNotNull>
     </dynamic>
    </select>

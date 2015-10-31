@@ -6,7 +6,7 @@ using SOAFramework.Library.DAL;
 
 namespace DreamWorkflow.Engine.Model
 {
-    public class Activity : SimpleEntity
+    public partial class Activity : SimpleEntity
     {
         /// <summary>
         /// 

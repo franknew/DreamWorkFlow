@@ -6,16 +6,31 @@ using SOAFramework.Library.DAL;
 
 namespace DreamWorkflow.Engine.Model
 {
-    public class ActivityAuth : SimpleEntity
+    public partial class ActivityAuth : SimpleEntity
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string ActivityAuthDefinitionID { get; set; }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public string Type { get; set; }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public string Value { get; set; }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public string ActivityID { get; set; }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public string WorkflowID { get; set; }
         
     }

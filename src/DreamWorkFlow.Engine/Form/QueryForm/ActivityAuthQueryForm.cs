@@ -8,6 +8,8 @@ namespace DreamWorkflow.Engine.Form
 {
     public class ActivityAuthQueryForm : SimpleQueryForm
     {
+        public List<String> IDs { get; set;}
+        public List<String> Creators { get; set;}
         public string ActivityAuthDefinitionID { get; set; }
         
         public string Type { get; set; }
@@ -18,5 +20,6 @@ namespace DreamWorkflow.Engine.Form
         
         public string WorkflowID { get; set; }
         
+        public List<String> WorkflowIDs { get; set;}
     }
 }

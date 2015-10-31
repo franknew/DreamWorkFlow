@@ -8,8 +8,10 @@ namespace DreamWorkflow.Engine.Form
 {
     public class TaskQueryForm : SimpleQueryForm
     {
+        public List<String> IDs { get; set;}
         public string ActivityID { get; set; }
         
+        public List<String> Creators { get; set;}
         public string Remark { get; set; }
         
         public Int32? Status { get; set; }
@@ -28,5 +30,6 @@ namespace DreamWorkflow.Engine.Form
         
         public string WorkflowID { get; set; }
         
+        public List<String> WorkflowIDs { get; set;}
     }
 }

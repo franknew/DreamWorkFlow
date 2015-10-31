@@ -6,13 +6,27 @@ using SOAFramework.Library.DAL;
 
 namespace DreamWorkflow.Engine.Model
 {
-    public class DataDictionary : SimpleEntity
+    public partial class DataDictionary : SimpleEntity
     {
-        public Int32? Value { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int? Value { get; set; }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public string Remark { get; set; }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public string DataDictionaryGroupID { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public int? IsDeleted { get; set; }
         
     }
 }

@@ -8,12 +8,14 @@ namespace DreamWorkflow.Engine.Form
 {
     public class LinkQueryForm : SimpleQueryForm
     {
+        public List<String> IDs { get; set;}
         public string LinkDefinitionID { get; set; }
         
         public string FromActivityID { get; set; }
         
         public string ToAcivityID { get; set; }
         
+        public List<String> Creators { get; set;}
         public UInt64? Passed { get; set; }
         
         public DateTime? PassedTime_Start { get; set; }
@@ -22,5 +24,6 @@ namespace DreamWorkflow.Engine.Form
         
         public string WorkflowID { get; set; }
         
+        public List<String> WorkflowIDs { get; set;}
     }
 }

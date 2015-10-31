@@ -115,6 +115,56 @@
             
             </summary>
         </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityAuth.ActivityAuthDefinitionID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityAuth.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityAuth.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityAuth.ActivityID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityAuth.WorkflowID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityAuthDefinition.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityAuthDefinition.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityAuthDefinition.ActivityDefinitionID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityAuthDefinition.WorkflowDefinitionID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityAuthDefinition.IsDeleted">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:DreamWorkflow.Engine.Model.ActivityDefinition.WorkflowDefinitionID">
             <summary>
             
@@ -141,6 +191,141 @@
             </summary>
         </member>
         <member name="P:DreamWorkflow.Engine.Model.ActivityDefinition.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.ActivityDefinition.IsDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Approval.ActivityID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Approval.Status">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Approval.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Approval.WorkflowID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Approval.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Context.WorkflowID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.DataDictionary.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.DataDictionary.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.DataDictionary.DataDictionaryGroupID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.DataDictionary.IsDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.DataDictionaryGroup.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.DataDictionaryGroup.IsDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Link.LinkDefinitionID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Link.FromActivityID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Link.ToAcivityID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Link.Passed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Link.PassedTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Link.WorkflowID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.LinkDefinition.FromActivityDefinitionID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.LinkDefinition.ToActivityDefinitionID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.LinkDefinition.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.LinkDefinition.WorkflowDefinitionID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.LinkDefinition.IsDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Parameter.ContextID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Parameter.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.Parameter.Value">
             <summary>
             
             </summary>
@@ -198,6 +383,21 @@
         <member name="P:DreamWorkflow.Engine.Model.Workflow.ProcessID">
             <summary>
             外接项目ID
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.WorkflowDefinition.Enabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.WorkflowDefinition.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DreamWorkflow.Engine.Model.WorkflowDefinition.IsDeleted">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:DreamWorkflow.Engine.ActivityModel.Process(DreamWorkflow.Engine.Model.Approval,System.String,System.String,DreamWorkflow.Engine.IWorkflowAuthority)">

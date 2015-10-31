@@ -8,6 +8,7 @@ namespace DreamWorkflow.Engine.Form
 {
     public class ParameterQueryForm : BaseQueryForm
     {
+        public List<String> IDs { get; set;}
         public string ContextID { get; set; }
         
         public string Key { get; set; }

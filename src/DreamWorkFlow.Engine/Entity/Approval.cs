@@ -6,16 +6,32 @@ using SOAFramework.Library.DAL;
 
 namespace DreamWorkflow.Engine.Model
 {
-    public class Approval : SimpleEntity
+    public partial class Approval : SimpleEntity
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string ActivityID { get; set; }
         
-        public Int32? Status { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int? Status { get; set; }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public string Remark { get; set; }
         
+        /// <summary>
+        /// 
+        /// </summary>
         public string WorkflowID { get; set; }
         
-        public Int32? Type { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int? Type { get; set; }
+        
     }
 }

@@ -8,7 +8,9 @@ namespace DreamWorkflow.Engine.Form
 {
     public class ContextQueryForm : BaseQueryForm
     {
+        public List<String> IDs { get; set;}
         public string WorkflowID { get; set; }
         
+        public List<String> WorkflowIDs { get; set;}
     }
 }
