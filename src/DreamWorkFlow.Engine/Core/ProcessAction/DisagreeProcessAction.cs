@@ -13,6 +13,11 @@ namespace DreamWorkflow.Engine.Core
     {
         public void Process(ActivityModel activity, Approval approval, string taskid, string processor, IWorkflowAuthority auth)
         {
+            //已经处理过就不能再处理
+            if (activity.Value.Status == (int)ActivityProcessStatus.Processed)
+            {
+                return;
+            }
             ISqlMapper mapper = MapperHelper.GetMapper();
             ActivityDao activitydao = new ActivityDao(mapper);
             TaskDao taskdao = new TaskDao(mapper);

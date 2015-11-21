@@ -27,7 +27,7 @@ namespace DreamWorkflow.Engine
             get { return this.value; }
             private set { this.value = value; }
         }
-        
+
         public ActivityModel CurrentActivity
         {
             get
@@ -212,6 +212,23 @@ namespace DreamWorkflow.Engine
             var activities = this.Root.GetList();
             var activity = activities.Find(t => t.Value.ID.Equals(activityid)) as ActivityModel;
             activity.Process(approval, taskid, processor, auth);
+            //如果后面没有节点，说明流程结束了。
+            if (activity.Children == null || activity.Children.Count == 0)
+            {
+                ISqlMapper mapper = MapperHelper.GetMapper();
+                WorkflowDao workflowdao = new WorkflowDao(mapper);
+                this.value.Status = (int)WorkflowProcessStatus.Processed;
+                this.value.LastUpdator = processor;
+                workflowdao.Update(new WorkflowUpdateForm
+                {
+                    Entity = new Workflow
+                    {
+                        Status = this.value.Status,
+                        LastUpdator = this.value.LastUpdator,
+                    },
+                    WorkflowQueryForm = new WorkflowQueryForm { ID = this.value.ID }
+                });
+            }
         }
 
         /// <summary>
@@ -226,7 +243,7 @@ namespace DreamWorkflow.Engine
                 ISqlMapper mapper = MapperHelper.GetMapper();
                 WorkflowDao wfdao = new WorkflowDao(mapper);
                 var task = this.CurrentActivity.Tasks.FindAll(t => t.ID == taskid);
-                if (!task.Exists(t=>t.ID == taskid))
+                if (!task.Exists(t => t.ID == taskid))
                 {
                     throw new Exception("不能作废该流程，只有流程的当前操作人才能作废！");
                 }
@@ -239,7 +256,7 @@ namespace DreamWorkflow.Engine
                         LastUpdator = this.value.LastUpdator,
                         Status = this.value.Status,
                     },
-                    WorkflowQueryForm= new WorkflowQueryForm
+                    WorkflowQueryForm = new WorkflowQueryForm
                     {
                         ID = this.value.ID,
                     }

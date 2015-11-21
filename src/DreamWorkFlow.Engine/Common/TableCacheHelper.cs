@@ -52,6 +52,7 @@ namespace DreamWorkflow.Engine
                 DateTime? lastupdatetime = result as DateTime?;
                 if (cacheentity.LastUpdateTime < lastupdatetime)
                 {
+                    list = cacheentity.List;
                     var newupdate = Query<TEntity>(daoType, new SimpleQueryForm {LastUpdateTime_Start = cacheentity.LastUpdateTime });
                     Type itemType = typeof(TEntity);
                     PropertyInfo deleteProperty = itemType.GetProperty("IsDeleted", BindingFlags.Instance | BindingFlags.Public);
@@ -62,7 +63,7 @@ namespace DreamWorkflow.Engine
                         {
                             if (deleteProperty != null)
                             {
-                                bool deleted = (bool)deleteProperty.GetValue(newitem, null);
+                                bool deleted = Convert.ToBoolean(deleteProperty.GetValue(newitem, null));
                                 if (deleted)
                                 {
                                     list.Remove(olditem);
