@@ -21,7 +21,7 @@ namespace DreamWorkflow.Engine.Core
             ISqlMapper mapper = MapperHelper.GetMapper();
             ActivityDao activitydao = new ActivityDao(mapper);
             TaskDao taskdao = new TaskDao(mapper);
-            activity.Value.Status = (int)ActivityProcessStatus.Processed;
+            activity.Value.Status = (int)ActivityProcessStatus.Started;
             activity.Value.ProcessTime = DateTime.Now;
             activity.Value.LastUpdator = processor;
             //新增审批意见
@@ -29,17 +29,20 @@ namespace DreamWorkflow.Engine.Core
             {
                 ApprovalDao ad = new ApprovalDao(mapper);
                 approval.Creator = processor;
+                approval.ActivityID = activity.Value.ID;
+                approval.WorkflowID = activity.Value.WorkflowID;
                 ad.Add(approval);
             }
             //处理当前流程所有任务，设置为已处理
-            var task = activity.Tasks.Find(t => t.ID == taskid);
+            var task = taskdao.Query(new TaskQueryForm { ID = taskid }).FirstOrDefault();
             if (task != null)
             {
                 task.ProcessTime = DateTime.Now;
                 task.Status = (int)TaskProcessStatus.Processed;
+                task.LastUpdator = processor;
                 taskdao.Update(new TaskUpdateForm
                 {
-                    Entity = new Task { ProcessTime = task.ProcessTime, Status = task.Status },
+                    Entity = new Task { ProcessTime = task.ProcessTime, Status = task.Status, LastUpdator = task.LastUpdator },
                     TaskQueryForm = new TaskQueryForm { ActivityID = task.ActivityID },
                 });
             }
@@ -71,6 +74,7 @@ namespace DreamWorkflow.Engine.Core
                 UserID = activity.OwnerWorkflow.Value.Creator,
                 WorkflowID = activity.OwnerWorkflow.Value.ID,
                 Status = (int)TaskProcessStatus.Started,
+                Creator = processor,
             };
             taskdao.Add(roottask);
         }

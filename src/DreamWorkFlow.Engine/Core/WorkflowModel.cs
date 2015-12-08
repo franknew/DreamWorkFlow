@@ -18,6 +18,8 @@ namespace DreamWorkflow.Engine
         #region property
         public ActivityModel Root { get; set; }
 
+        public ActivityModel Tail { get; set; }
+
         public List<Approval> Approval { get; set; }
 
         private Workflow value = new Workflow();
@@ -91,6 +93,7 @@ namespace DreamWorkflow.Engine
                     Approval = approval,
                 };
                 bool foundRoot = false;
+                bool foundTail = false;
                 foreach (var link in linkList)
                 {
                     linkModelList.Add(new LinkModel
@@ -134,6 +137,11 @@ namespace DreamWorkflow.Engine
                     {
                         model.Root = activityInstance;
                         foundRoot = true;
+                    }
+                    if (!foundTail && nextLink.Count == 0)
+                    {
+                        model.Tail = activityInstance;
+                        foundTail = true;
                     }
                     activityInstanceList.Add(activityInstance);
                 }
@@ -212,8 +220,8 @@ namespace DreamWorkflow.Engine
             var activities = this.Root.GetList();
             var activity = activities.Find(t => t.Value.ID.Equals(activityid)) as ActivityModel;
             activity.Process(approval, taskid, processor, auth);
-            //如果后面没有节点，说明流程结束了。
-            if (activity.Children == null || activity.Children.Count == 0)
+            //如果是尾节点，就设置流程结束
+            if (activity == this.Tail)
             {
                 ISqlMapper mapper = MapperHelper.GetMapper();
                 WorkflowDao workflowdao = new WorkflowDao(mapper);
