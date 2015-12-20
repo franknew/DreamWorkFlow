@@ -68,12 +68,12 @@ namespace DreamWorkflow.Engine
             WorkflowModel model = null;
             Workflow workflow = null;
             //先从缓存取值
-            var item = cache.GetItem(id);
-            if (item != null)
-            {
-                model = item.Value as WorkflowModel;
-                return model;
-            }
+            //var item = cache.GetItem(id);
+            //if (item != null)
+            //{
+            //    model = item.Value as WorkflowModel;
+            //    return model;
+            //}
             workflow = wfdao.Query(new WorkflowQueryForm { ID = id }).FirstOrDefault();
             activitylist = activitydao.Query(new ActivityQueryForm { WorkflowID = id });
             linkList = linkDao.Query(new LinkQueryForm { WorkflowID = id });
@@ -146,8 +146,8 @@ namespace DreamWorkflow.Engine
                     activityInstanceList.Add(activityInstance);
                 }
 
-                item = new CacheItem(id, model);
-                cache.AddItem(item, 30 * 60);
+                //item = new CacheItem(id, model);
+                //cache.AddItem(item, 30 * 60);
             }
             #endregion
 
