@@ -18,10 +18,10 @@ namespace DreamWorkflow.Engine
             //已经处理过就不能再处理
             if (activity.Value.Status == (int)ActivityProcessStatus.Processed)
             {
-                //MonitorCache.GetInstance().PushMessage(new CacheMessage { Message = "next processing out" }, CacheEnum.FormMonitor);
+                MonitorCache.GetInstance().PushMessage(new CacheMessage { Message = "next processing out,activity id:" + activity.Value.ID }, CacheEnum.FormMonitor);
                 return;
             }
-            //MonitorCache.GetInstance().PushMessage(new CacheMessage { Message = "activityid:" + activity.Value.ID +  " next activity status:" + activity.Value.Status.ToString() }, CacheEnum.FormMonitor);
+            MonitorCache.GetInstance().PushMessage(new CacheMessage { Message = "activityid:" + activity.Value.ID +  " next activity status:" + activity.Value.Status.ToString() }, CacheEnum.FormMonitor);
             ISqlMapper mapper = MapperHelper.GetMapper();
             ActivityDao activitydao = new ActivityDao(mapper);
             TaskDao taskdao = new TaskDao(mapper);

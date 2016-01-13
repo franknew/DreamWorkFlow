@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Caching;
 using System.Text;
+using SOAFramework.Library;
 
 namespace DreamWorkflow.Engine
 {
@@ -219,24 +220,30 @@ namespace DreamWorkflow.Engine
         {
             var activities = this.Root.GetList();
             var activity = activities.Find(t => t.Value.ID.Equals(activityid)) as ActivityModel;
+            MonitorCache.GetInstance().PushMessage(new CacheMessage { Message = "activity id:" + activityid }, CacheEnum.FormMonitor);
+            if (activity == null) throw new Exception("找不到Activity");
             activity.Process(approval, taskid, processor, auth);
+            ISqlMapper mapper = MapperHelper.GetMapper();
+            WorkflowDao workflowdao = new WorkflowDao(mapper);
             //如果是尾节点，就设置流程结束
             if (activity == this.Tail)
             {
-                ISqlMapper mapper = MapperHelper.GetMapper();
-                WorkflowDao workflowdao = new WorkflowDao(mapper);
                 this.value.Status = (int)WorkflowProcessStatus.Processed;
-                this.value.LastUpdator = processor;
-                workflowdao.Update(new WorkflowUpdateForm
-                {
-                    Entity = new Workflow
-                    {
-                        Status = this.value.Status,
-                        LastUpdator = this.value.LastUpdator,
-                    },
-                    WorkflowQueryForm = new WorkflowQueryForm { ID = this.value.ID }
-                });
             }
+            else
+            {
+                this.value.Status = (int)WorkflowProcessStatus.Processing;
+            }
+            this.value.LastUpdator = processor;
+            workflowdao.Update(new WorkflowUpdateForm
+            {
+                Entity = new Workflow
+                {
+                    Status = this.value.Status,
+                    LastUpdator = this.value.LastUpdator,
+                },
+                WorkflowQueryForm = new WorkflowQueryForm { ID = this.value.ID }
+            });
         }
 
         /// <summary>

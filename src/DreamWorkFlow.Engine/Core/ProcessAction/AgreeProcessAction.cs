@@ -13,6 +13,8 @@ namespace DreamWorkflow.Engine.Core
     {
         public void Process(ActivityModel activity, Approval approval, string taskid, string processor, IWorkflowAuthority auth)
         {
+            if (approval == null) throw new Exception("审批意见不能为null");
+            if (string.IsNullOrEmpty(approval.Remark)) throw new Exception("审批意见不能为空");
             //已经处理过就不能再处理
             if (activity.Value.Status == (int)ActivityProcessStatus.Processed)
             {
