@@ -1,0 +1,294 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RiskMgr.Api</name>
+    </assembly>
+    <members>
+        <member name="M:RiskMgr.Api.AssetApi.Add(RiskMgr.Model.Asset)">
+            <summary>
+            新增房产
+            </summary>
+            <param name="asset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.AssetApi.Update(RiskMgr.Model.Asset)">
+            <summary>
+            更新房产
+            </summary>
+            <param name="asset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.AssetApi.Delete(RiskMgr.Model.Asset)">
+            <summary>
+            删除房产
+            </summary>
+            <param name="assetid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.AuthFilter.OnActionExecuting(SOAFramework.Service.Core.Model.ActionContext)">
+            <summary>
+            验证是否登录，Code返回1为没有登录或者token失效，要重新登录
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.CustomerApi.Add(RiskMgr.Model.Customer)">
+            <summary>
+            新增客户
+            </summary>
+            <param name="customer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.CustomerApi.Update(RiskMgr.Model.Customer)">
+            <summary>
+            更新客户信息
+            </summary>
+            <param name="customer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.CustomerApi.Delete(RiskMgr.Form.CustomerQueryForm)">
+            <summary>
+            删除客户
+            </summary>
+            <param name="customerid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.CustomerApi.Query(RiskMgr.Form.CustomerQueryForm)">
+            <summary>
+            查询有效客户
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.CustomerApi.CheckIdentityCodeExists(RiskMgr.Form.CustomerQueryForm)">
+            <summary>
+            检查证件号码是否有存在,如果不存在用户id,则只检查证件号码，如果存在用户id，则检查不是该用户的证件号码
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.DataDictionaryApi.QueryByGroupNameList(RiskMgr.Form.QueryDataDictionaryByGroupNamesServiceForm)">
+            <summary>
+            根据组名列表查询
+            </summary>
+            <param name="nameList"></param>
+        </member>
+        <member name="M:RiskMgr.Api.DataDictionaryApi.QueryAll">
+            <summary>
+            查询所有数据字典
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.DataDictionaryApi.AddGroup(DreamWorkflow.Engine.Model.DataDictionaryGroup)">
+            <summary>
+            新增数组字典组
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.DataDictionaryApi.AddItems(System.Collections.Generic.List{DreamWorkflow.Engine.Model.DataDictionary})">
+            <summary>
+            新增数据字典项
+            </summary>
+            <param name="form"></param>
+            <returns>如果有新增的项，则会自动加上ID，以便前端绑定ID</returns>
+        </member>
+        <member name="M:RiskMgr.Api.DataDictionaryApi.Update(DreamWorkflow.Engine.Form.DataDictionaryResultForm)">
+            <summary>
+            更新数据字典
+            </summary>
+            <param name="form"></param>
+            <returns>如果有新增的项，则会自动加上ID，以便前端绑定ID</returns>
+        </member>
+        <member name="M:RiskMgr.Api.DataDictionaryApi.Delete(System.String)">
+            <summary>
+            删除数据字典组和项的所有信息
+            </summary>
+            <param name="form">组ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.DataDictionaryApi.DeleteItem(System.String)">
+            <summary>
+            删除数据字典项
+            </summary>
+            <param name="form">项ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.IndexApi.InitPage">
+            <summary>
+            首页初始化时查询的数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.LogonApi.Logon(RiskMgr.Form.LogonServiceForm)">
+            <summary>
+            登录
+            </summary>
+            <param name="username">用户名</param>
+            <param name="password">密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.LogonApi.Logout">
+            <summary>
+            注销
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.ProjectApi.Add(RiskMgr.Form.AddProjectServiceForm)">
+            <summary>
+            新增额度申请
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.ProjectApi.Query(RiskMgr.Form.QueryProjectServiceForm)">
+            <summary>
+            查询项目
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.ProjectApi.InitApproval(RiskMgr.Form.ProjectQueryForm)">
+            <summary>
+            查询流程的数据和状态
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.ProjectApi.QueryMyProcessedProject">
+            <summary>
+            查询我处理过的项目
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.ProjectApi.QueryMyApply">
+            <summary>
+            查询我发起的流程
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.ProjectApi.UpdateCharge(RiskMgr.Model.FinaceApprovalServiceForm)">
+            <summary>
+            财务审批
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.ProjectApi.UpdateFinance(RiskMgr.Model.FinaceApprovalServiceForm)">
+            <summary>
+            更新财务信息
+            </summary>
+            <param name="project"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.ProjectApi.UpdateTracking(RiskMgr.Form.UpdateTrackingServiceForm)">
+            <summary>
+            保后跟踪
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.WorkflowApi.Approval(RiskMgr.Model.ApprovalServiceForm)">
+            <summary>
+            审批
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.WorkflowApi.QueryMyApply">
+            <summary>
+            查询我发起的流程
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.WorkflowApi.QueryMyProcessing">
+            <summary>
+            查询我需要处理的流程
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.WorkflowApi.QueryMyProcessed">
+            <summary>
+            查询我处理过的流程
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.WorkflowApi.QueryMyTask(RiskMgr.Form.QueryMyTaskServiceForm)">
+            <summary>
+            查询我的任务
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.WorkflowApi.StopWorkflow(DreamWorkflow.Engine.Model.Task)">
+            <summary>
+            流程作废
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.UserApi.Add(RiskMgr.Form.AddUserServiceForm)">
+            <summary>
+            新增用户
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.UserApi.Update(RiskMgr.Form.UpdateUserServiceForm)">
+            <summary>
+            更新用户资料，不能修改密码
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.UserApi.Delete(RiskMgr.Form.UserQueryForm)">
+            <summary>
+            删除用户
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.UserApi.ChangePassword(RiskMgr.Form.ChangePasswordUpdateForm)">
+            <summary>
+            管理员修改密码，不需要验证旧密码
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.UserApi.ChangeSelfPassword(RiskMgr.Form.ChangePasswordUpdateForm)">
+            <summary>
+            用户自己改密码，需要验证旧密码
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.UserApi.QueryUser(RiskMgr.Form.FullUserQueryForm)">
+            <summary>
+            查询所有用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RiskMgr.Api.UserApi.Init(RiskMgr.Form.FullUserQueryForm)">
+            <summary>
+            用户管理首页需要用到的数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RiskMgr.Api.Properties.Resources">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Api.Properties.Resources.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Api.Properties.Resources.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+    </members>
+</doc>

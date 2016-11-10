@@ -13,15 +13,11 @@ namespace DreamWorkflow.Engine
 {
     public class NextProcessAction : IProcessAction
     {
-        public void Process(ActivityModel activity, Approval approval, string taskid, string processor, IWorkflowAuthority auth)
+        public void Process(ActivityModel activity, Approval approval, string processor, IWorkflowAuthority auth)
         {
             //已经处理过就不能再处理
-            if (activity.Value.Status == (int)ActivityProcessStatus.Processed)
-            {
-                MonitorCache.GetInstance().PushMessage(new CacheMessage { Message = "next processing out,activity id:" + activity.Value.ID }, CacheEnum.FormMonitor);
-                return;
-            }
-            MonitorCache.GetInstance().PushMessage(new CacheMessage { Message = "activityid:" + activity.Value.ID +  " next activity status:" + activity.Value.Status.ToString() }, CacheEnum.FormMonitor);
+            if (activity.Value.Status == (int)ActivityProcessStatus.Processed) return;
+            //MonitorCache.GetInstance().PushMessage(new CacheMessage { Message = "activityid:" + activity.Value.ID + " next activity status:" + activity.Value.Status.ToString() }, CacheEnum.FormMonitor);
             ISqlMapper mapper = MapperHelper.GetMapper();
             ActivityDao activitydao = new ActivityDao(mapper);
             TaskDao taskdao = new TaskDao(mapper);
@@ -34,16 +30,17 @@ namespace DreamWorkflow.Engine
                 Entity = new Activity { Status = activity.Value.Status, ProcessTime = activity.Value.ProcessTime, LastUpdator = activity.Value.LastUpdator },
                 ActivityQueryForm = new ActivityQueryForm { ID = activity.Value.ID }
             });
+            var task = activity.GetUserProcessingTask(processor);
+            if (task == null) throw new Exception("环节中没有你的任务，无法进行审批操作");
+            task.Status = (int)TaskProcessStatus.Processed;
+            task.ProcessTime = DateTime.Now;
+            task.LastUpdator = processor;
             //处理任务
-            var task = activity.Tasks.Find(t => t.ID == taskid);
-            if (task != null)
+            taskdao.Update(new TaskUpdateForm
             {
-                taskdao.Update(new TaskUpdateForm
-                {
-                    Entity = new Task { ProcessTime = DateTime.Now, Status = (int)TaskProcessStatus.Processed },
-                    TaskQueryForm = new TaskQueryForm { ID = task.ID },
-                });
-            }
+                Entity = new Task { ProcessTime = task.ProcessTime, Status = task.Status, LastUpdator = task.LastUpdator },
+                TaskQueryForm = new TaskQueryForm { ID = task.ID },
+            });
             //设置下个活动点的状态
             if (activity.Children.Count > 0)
             {
@@ -51,9 +48,11 @@ namespace DreamWorkflow.Engine
                 {
                     string nextactivityid = next.Value.ID;
                     var nextActivityModel = next as ActivityModel;
+                    nextActivityModel.Value.Status = (int)ActivityProcessStatus.Processing;
+                    nextActivityModel.Value.LastUpdator = processor;
                     activitydao.Update(new ActivityUpdateForm
                     {
-                        Entity = new Activity { Status = (int)ActivityProcessStatus.Processing, LastUpdator = processor },
+                        Entity = new Activity { Status = nextActivityModel.Value.Status, LastUpdator = nextActivityModel.Value.LastUpdator },
                         ActivityQueryForm = new ActivityQueryForm { ID = nextactivityid },
                     });
 
@@ -62,6 +61,7 @@ namespace DreamWorkflow.Engine
                     var tasklist = nextActivityModel.GetTask(processor, useridList);
                     foreach (var t in tasklist)
                     {
+                        nextActivityModel.Tasks.Add(t);
                         taskdao.Add(t);
                     }
                 }

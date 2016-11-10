@@ -10,6 +10,7 @@ namespace DreamWorkflow.Engine
         Started = 1,
         Processing = 2,
         Processed = 3,
+        Stoped = 4,
     }
 
     public enum WorkflowProcessStatus
@@ -25,6 +26,7 @@ namespace DreamWorkflow.Engine
         Started = 1,
         Read = 2,
         Processed = 3,
+        Stoped = 4,
     }
 
     public enum ApprovalStatus

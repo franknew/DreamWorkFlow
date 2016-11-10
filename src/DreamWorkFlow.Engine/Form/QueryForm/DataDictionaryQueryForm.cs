@@ -16,6 +16,7 @@ namespace DreamWorkflow.Engine.Form
         
         public string DataDictionaryGroupID { get; set; }
         
+        public List<String> DataDictionaryGroupIDs { get; set;}
         public UInt64? IsDeleted { get; set; }
         
     }

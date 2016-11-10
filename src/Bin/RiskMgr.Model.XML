@@ -1,0 +1,1003 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RiskMgr.Model</name>
+    </assembly>
+    <members>
+        <member name="P:RiskMgr.Model.Action.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Asset.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Asset.Type">
+            <summary>
+            资产类型.1:房产 
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Asset.Usage">
+            <summary>
+            用途。1:自主 2:租赁 
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Asset.Position">
+            <summary>
+            所在区域
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Asset.Address">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Asset.Code">
+            <summary>
+            资产编号
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Asset.Area">
+            <summary>
+             面积
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Asset.RegPrice">
+            <summary>
+            登记价格
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Asset.IssueType">
+            <summary>
+            办理事项
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Asset.IsTraded">
+            <summary>
+            是否交易
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Asset.Enabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Asset.ChangeOwnerPrice">
+            <summary>
+            评估过户总价
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Asset.IsDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Asset.Joint">
+            <summary>
+            公权人
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Asset_Project.AssetID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Asset_Project.ProjectID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.BankAccount.BankType">
+            <summary>
+            银行类型
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.BankAccount.BankName">
+            <summary>
+            银行名称
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.BankAccount.BankAccountCode">
+            <summary>
+            银行账号
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.BankAccount.LastUpdater">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer.Gender">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer.Marrage">
+            <summary>
+            婚姻状况
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer.CardType">
+            <summary>
+            证件类型
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer.IdentityCode">
+            <summary>
+            证件号码
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer.Phone">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer.OrignalName">
+            <summary>
+            曾用名
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer.OrignalIdentityCode">
+            <summary>
+            曾用号码
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer.BankType">
+            <summary>
+            银行类型
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer.BankCode">
+            <summary>
+            银行账号
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer.Address">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer.WorkUnit">
+            <summary>
+            单位
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer.Enabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer.IsDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer_Asset.CustomerID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer_Asset.AssetID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer_Asset.Type">
+            <summary>
+            1.房主 2.公权人
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer_Asset.ProjectID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer_Project.CustomerID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer_Project.ProjectID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Customer_Project.Type">
+            <summary>
+            客户类型 1.买家 2.卖家 3.买家第三方 4.卖家第三方
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.FullActivity.Processor">
+            <summary>
+            当前流程处理人
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.FullUser.QQ">
+            <summary>
+            qq
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.FullUser.Mobile">
+            <summary>
+            手机
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.FullUser.WX">
+            <summary>
+            微信
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.FullUser.Address">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.FullUser.CnName">
+            <summary>
+            中文名
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.FullUser.Identity">
+            <summary>
+            证件号码
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.LogonHistory.UserID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.LogonHistory.Token">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.LogonHistory.LogonTime">
+            <summary>
+            登录时间
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.LogonHistory.IP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.LogonHistory.ActiveTime">
+            <summary>
+            活动时间
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Menu.Page">
+            <summary>
+            页面
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Menu.ParentID">
+            <summary>
+            父节点ID
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Menu.Enabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Menu.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Menu.ImagePath">
+            <summary>
+            图片路径
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Menu.IsDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Menu_Role.MenuID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Menu_Role.RoleID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Module.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Payment.BankAccountID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Payment.Paid">
+            <summary>
+            支付金额
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Payment.PayTime">
+            <summary>
+            支付时间
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Payment.Type">
+            <summary>
+            类型：1.支付  0.收款
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Post.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.Type">
+            <summary>
+            额度申请类型1.二手楼买卖 2.首期垫付 3.现金赎楼 4.红本抵押
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.Source">
+            <summary>
+            来源
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.AgentName">
+            <summary>
+            中介名称
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.CertificateData">
+            <summary>
+            公证书日期
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.AgentContact">
+            <summary>
+            中介联系人
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.Rebater">
+            <summary>
+            返佣人
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.RebateAccount">
+            <summary>
+            返佣账号
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.OtherRebateInfo">
+            <summary>
+            其他返佣信息
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.OrignalMortgageBank">
+            <summary>
+            原按揭银行
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.OrignalMortgageBranch">
+            <summary>
+            原按揭银行支行
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.OrignalFundCenter">
+            <summary>
+            原贷款公积金中心
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.OrignalFundBranch">
+            <summary>
+            公积金银行支行
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.SupplyCardCopy">
+            <summary>
+            是否提供供楼卡复印件
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.OrignalCreditPI">
+            <summary>
+            原贷款本息
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.OrignalCreditCommerceMoney">
+            <summary>
+            原贷款商业金额
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.OrignalCreditFundMoney">
+            <summary>
+            原贷款公积金金额
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.AssetRansomCustomerManager">
+            <summary>
+            赎楼客户经理
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.AssetRansomContactPhone">
+            <summary>
+            赎楼联系电话
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.NewCreditBank">
+            <summary>
+            新贷款银行
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.NewCreditBranch">
+            <summary>
+            新贷款银行支行
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.ShortTermAssetRansomBank">
+            <summary>
+            短期赎楼贷款银行
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.ShortTermAssetRansomBranch">
+            <summary>
+            短期赎楼贷款银行支行
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.GuaranteeMoney">
+            <summary>
+            担保金额
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.GuaranteeMonth">
+            <summary>
+            担保期限
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.BuyerCreditCommerceMoney">
+            <summary>
+            买方贷款商业金额
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.BuyerCreditFundMoney">
+            <summary>
+            买方贷款公积金金额
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.LoanMoney">
+            <summary>
+            贷款放款金额
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.DealMoney">
+            <summary>
+            成交金额
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.EarnestMoney">
+            <summary>
+            交易定金
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.SupervisionMoney">
+            <summary>
+            监管资金
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.SupervisionBank">
+            <summary>
+            资金监管银行
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.AssetRansomMoney">
+            <summary>
+            赎楼金额
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.CustomerPredepositMoney">
+            <summary>
+            客户预存款
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.CreditReceiverName">
+            <summary>
+            贷款接收姓名
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.CreditReceiverBank">
+            <summary>
+            贷款接收银行-支行
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.CreditReceiverAccount">
+            <summary>
+            贷款接收账号
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.TrusteeshipAccount">
+            <summary>
+            工行托管账号
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.AssetRansomPredictMoney">
+            <summary>
+            预计赎楼金额
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.AssetRansomer">
+            <summary>
+            赎楼员
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.AssetRansomType">
+            <summary>
+            赎楼方式
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.PredictDays">
+            <summary>
+            预存时间
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.ChargeType">
+            <summary>
+            收费方式
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.CheckNumbersAndLimit">
+            <summary>
+            申请支票数量及限额
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.Stagnationer">
+            <summary>
+            驻点人员
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.Index">
+            <summary>
+            索引
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.InsuranceFee">
+            <summary>
+            收取担保费
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.InsuranceTime">
+            <summary>
+            担保时间
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.ExportMoney">
+            <summary>
+            放款金额
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.ExportTime">
+            <summary>
+            放款时间
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.ReturnBackMoney">
+            <summary>
+            汇款金额
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.ReturnBackTime">
+            <summary>
+            汇款时间
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.DelayFee">
+            <summary>
+            滞纳金
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.DelayTime">
+            <summary>
+            滞纳金时间
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.HasExpired">
+            <summary>
+            是否有展期费用
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.NewAssetCode">
+            <summary>
+            新房产证号
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.ChangeOwnerManualCode">
+            <summary>
+            过户人工编号
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.MortgagePerson">
+            <summary>
+            抵押驻点人员
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.MortgageRemark">
+            <summary>
+            抵押备注说明
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.InsuranceFreeTime">
+            <summary>
+            解保日期
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Project.IsDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.ProjectTask.ProcessStatus">
+            <summary>
+            流程处理状态,1：刚启动，2：处理中，3：已处理
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Role.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Role.ParentID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Role.DataAccessType">
+            <summary>
+            数据访问权限类型：1.自己和下属部门数据，2.所有数据
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Role.IsDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Role_Module_Action.RoleID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Role_Module_Action.ModuleID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.Role_Module_Action.ActionID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.TrackingChangeOwner.ProjectID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.TrackingChangeOwner.LastUpdater">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.TrackingChangeOwner.ChangeOwnerCode">
+            <summary>
+            过户办文编号
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.TrackingChangeOwner.ChangeOwnerTime">
+            <summary>
+            过户收文日期
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.TrackingChangeOwner.NewAssetCode">
+            <summary>
+            新房产证号
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.TrackingChangeOwner.ChangeOwnerRemark">
+            <summary>
+            取房产证日期过户说明
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.TrackingMortgage.ProjectID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.TrackingMortgage.LastUpdater">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.TrackingMortgage.MortgageFeedbackCode">
+            <summary>
+            抵押回执编号
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.TrackingMortgage.MortgageFeedbackTime">
+            <summary>
+            抵押收文日期
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.TrackingMortgage.MortgagePredictCompleteTime">
+            <summary>
+            预计完成日解保日期
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.User.Password">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.User.Enabled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.UserInfo.QQ">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.UserInfo.Mobile">
+            <summary>
+            手机
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.UserInfo.WX">
+            <summary>
+            微信
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.UserInfo.Address">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.UserInfo.Identity">
+            <summary>
+            证件号码
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.UserInfo.CnName">
+            <summary>
+            名字
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.UserInfo.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.User_Post.UserID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.User_Post.PostID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.User_Role.UserID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.User_Role.RoleID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:RiskMgr.Model.ActionStatus.Queryable">
+            <summary>
+            可查询
+            </summary>
+        </member>
+        <member name="F:RiskMgr.Model.ActionStatus.Editable">
+            <summary>
+            可编辑
+            </summary>
+        </member>
+        <member name="F:RiskMgr.Model.ActionStatus.Approvalable">
+            <summary>
+            可审批
+            </summary>
+        </member>
+        <member name="F:RiskMgr.Model.CustomerType.Buyer">
+            <summary>
+            买家
+            </summary>
+        </member>
+        <member name="F:RiskMgr.Model.CustomerType.Seller">
+            <summary>
+            卖家
+            </summary>
+        </member>
+        <member name="F:RiskMgr.Model.CustomerType.Joint">
+            <summary>
+            第三方
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.ApprovalServiceForm.WorkflowID">
+            <summary>
+            流程ID
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.ApprovalServiceForm.ActivityID">
+            <summary>
+            节点ID
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.ApprovalServiceForm.Approval">
+            <summary>
+            审批结果
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.ApprovalServiceForm.TaskID">
+            <summary>
+            表示从哪一个任务处理的流程
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Model.FinaceApprovalServiceForm.Project">
+            <summary>
+            项目财务信息
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.InitApprovalResultForm.ChargeCanEdit">
+            <summary>
+            业务模块对表单的操作状态。1：可查询 2：可编辑 3：可审批
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.InitApprovalResultForm.FollowupCanEdit">
+            <summary>
+            财务模块对表单的操作状态。1：可查询 2：可编辑 3：可审批
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.InitApprovalResultForm.Approvals">
+            <summary>
+            历史审批数据
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.InitApprovalResultForm.CurrentActivity">
+            <summary>
+            当前流程，不是当前正在处于处理状态的流程
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.InitApprovalResultForm.Operator">
+            <summary>
+            当前处理状态流程的处理人
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.InitApprovalResultForm.DisplayCharge">
+            <summary>
+            是否显示收费信息
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.InitApprovalResultForm.DisplayTracking">
+            <summary>
+            是否显示跟踪信息
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.UserInitResultForm.User">
+            <summary>
+            带分页信息的用户列表
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.AddProjectServiceForm.Project">
+            <summary>
+            项目信息
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.AddProjectServiceForm.Buyers">
+            <summary>
+            买家ID
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.AddProjectServiceForm.Sellers">
+            <summary>
+            卖家ID
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.AddProjectServiceForm.Assets">
+            <summary>
+            房产ID
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.AddProjectServiceForm.Report">
+            <summary>
+            调查报告
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.AddUserServiceForm.Role">
+            <summary>
+            角色ID
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.InitApprovalServiceForm.WorkflowID">
+            <summary>
+            流程编号
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.LogonServiceForm.username">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.LogonServiceForm.password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.QueryDataDictionaryByGroupNamesServiceForm.NameList">
+            <summary>
+            组名列表
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.QueryMyTaskServiceForm.ApplierName">
+            <summary>
+            申请人姓名
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.UpdateTrackingServiceForm.ChangeOwner">
+            <summary>
+            过户信息
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.UpdateTrackingServiceForm.Mortgage">
+            <summary>
+            借贷信息
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.UpdateUserServiceForm.QQ">
+            <summary>
+            qq
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.UpdateUserServiceForm.Mobile">
+            <summary>
+            手机
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.UpdateUserServiceForm.WX">
+            <summary>
+            微信
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.UpdateUserServiceForm.Address">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.UpdateUserServiceForm.CnName">
+            <summary>
+            中文名
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.UpdateUserServiceForm.Identity">
+            <summary>
+            证件号码
+            </summary>
+        </member>
+        <member name="P:RiskMgr.Form.UpdateUserServiceForm.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+    </members>
+</doc>

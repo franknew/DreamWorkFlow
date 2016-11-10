@@ -76,10 +76,10 @@ namespace DreamWorkflow.Engine
         /// <param name="processor"></param>
         /// <param name="auth"></param>
         /// <returns></returns>
-        public bool Process(Approval approval, string taskid, string processor, IWorkflowAuthority auth)
+        public bool Process(Approval approval, string processor, IWorkflowAuthority auth)
         {
             IProcessAction actionprocess = ApprovalProcessFacotry.Create((ApprovalStatus)approval.Status.Value);
-            actionprocess.Process(this, approval, taskid, processor, auth);
+            actionprocess.Process(this, approval, processor, auth);
             return true;
         }
 
@@ -123,6 +123,16 @@ namespace DreamWorkflow.Engine
                 Entity = new Task { ReadTime = task.ReadTime, Status = task.Status, LastUpdator = task.LastUpdator },
                 TaskQueryForm = new TaskQueryForm { ID = task.ID }
             });
+        }
+
+        public bool CanUserProcess(string processor)
+        {
+            return this.tasks.Exists(t => t.UserID.Equals(processor) && t.Status == (int)TaskProcessStatus.Started);
+        }
+
+        public Task GetUserProcessingTask(string processor)
+        {
+            return this.tasks.Find(t => t.UserID.Equals(processor) && t.Status == (int)TaskProcessStatus.Started);
         }
     }
 

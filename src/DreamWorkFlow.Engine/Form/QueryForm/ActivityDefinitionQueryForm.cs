@@ -11,6 +11,7 @@ namespace DreamWorkflow.Engine.Form
         public List<String> IDs { get; set;}
         public string WorkflowDefinitionID { get; set; }
         
+        public List<String> WorkflowDefinitionIDs { get; set;}
         public string Page { get; set; }
         
         public UInt64? Enabled { get; set; }

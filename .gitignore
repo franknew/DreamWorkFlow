@@ -1,2 +1,5 @@
 *.cache
 *.pdb
+*.dll
+*.suo
+src/Bin/DreamWorkFlow.Engine.pdb

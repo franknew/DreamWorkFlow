@@ -29,8 +29,10 @@ namespace WinformTest
         {
             WorkflowDao dao = new WorkflowDao();
             var wf = new WorkflowQueryForm();
-            wf.ID = "2";
+            wf.ID = "1c74c3e0ce2d4c5f983fab3dc6063223";
             var list = dao.Query(wf);
+
+            WorkflowModel model = WorkflowModel.Load("1c74c3e0ce2d4c5f983fab3dc6063223");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -110,14 +112,14 @@ namespace WinformTest
             string activityid = txbactivityid.Text;
             string taskid = txbtaskid.Text;
             var workflow = WorkflowModel.Load(workflowid);
-            workflow.ProcessActivity(activityid, new Approval
+            workflow.ProcessActivity(new Approval
             {
                 ActivityID = activityid,
                 WorkflowID = workflow.Value.ID,
                 //Type = (int)ApprovalStatus.Agree,
                 Status = (int)ApprovalStatus.Agree,
                 Remark = "同意",
-            }, taskid, "1", new GetUser()
+            }, "1", new GetUser()
             );
 
         }
@@ -129,14 +131,14 @@ namespace WinformTest
             string activityid = txbactivityid.Text;
             string taskid = txbtaskid.Text;
             var workflow = WorkflowModel.Load(workflowid);
-            workflow.ProcessActivity(activityid, new Approval
+            workflow.ProcessActivity(new Approval
             {
                 ActivityID = activityid,
                 WorkflowID = workflow.Value.ID,
                 //Type = (int)ApprovalStatus.Agree,
                 Status = (int)ApprovalStatus.Disagree,
                 Remark = "不同意",
-            }, taskid, "1", new GetUser()
+            }, "1", new GetUser()
             );
         }
     }

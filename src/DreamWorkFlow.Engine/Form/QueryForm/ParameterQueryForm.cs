@@ -11,6 +11,7 @@ namespace DreamWorkflow.Engine.Form
         public List<String> IDs { get; set;}
         public string ContextID { get; set; }
         
+        public List<String> ContextIDs { get; set;}
         public string Key { get; set; }
         
         public string Value { get; set; }

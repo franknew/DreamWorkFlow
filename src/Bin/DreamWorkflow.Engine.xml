@@ -40,13 +40,20 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:DreamWorkflow.Engine.WorkflowModel.Load(DreamWorkflow.Engine.Form.WorkflowQueryForm)">
+            <summary>
+            从数据库读取流程信息
+            </summary>
+            <param name="workflowids"></param>
+            <returns></returns>
+        </member>
         <member name="M:DreamWorkflow.Engine.WorkflowModel.Create">
             <summary>
             把流程实体新增到数据库
             </summary>
             <returns></returns>
         </member>
-        <member name="M:DreamWorkflow.Engine.WorkflowModel.ProcessActivity(System.String,DreamWorkflow.Engine.Model.Approval,System.String,System.String,DreamWorkflow.Engine.IWorkflowAuthority)">
+        <member name="M:DreamWorkflow.Engine.WorkflowModel.ProcessActivity(DreamWorkflow.Engine.Model.Approval,System.String,DreamWorkflow.Engine.IWorkflowAuthority)">
             <summary>
             处理流程流转：审批，或者直接走到下一步
             </summary>
@@ -56,9 +63,21 @@
             <param name="processor"></param>
             <param name="auth"></param>
         </member>
-        <member name="M:DreamWorkflow.Engine.WorkflowModel.Stop(System.String,System.String)">
+        <member name="M:DreamWorkflow.Engine.WorkflowModel.FinishWorkflow(System.String)">
             <summary>
-            作废
+            结束流程
+            </summary>
+            <param name="lastupdator"></param>
+        </member>
+        <member name="M:DreamWorkflow.Engine.WorkflowModel.ContinueWorkflow(System.String)">
+            <summary>
+            继续流程
+            </summary>
+            <param name="lastupdator"></param>
+        </member>
+        <member name="M:DreamWorkflow.Engine.WorkflowModel.Stop(System.String)">
+            <summary>
+            作废(停止)流程
             </summary>
             <param name="taskid"></param>
             <param name="processor"></param>
@@ -74,6 +93,20 @@
             </summary>
             <param name="taskid"></param>
             <param name="proccessor"></param>
+        </member>
+        <member name="M:DreamWorkflow.Engine.WorkflowModel.CanUserProcess(System.String)">
+            <summary>
+            用户是否有任务处理
+            </summary>
+            <param name="processor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DreamWorkflow.Engine.WorkflowModel.GetUserProcessingTask(System.String)">
+            <summary>
+            获得用户正在处理的任务
+            </summary>
+            <param name="processor"></param>
+            <returns></returns>
         </member>
         <member name="P:DreamWorkflow.Engine.Model.Activity.ActivityDefinitionID">
             <summary>
@@ -400,7 +433,7 @@
             
             </summary>
         </member>
-        <member name="M:DreamWorkflow.Engine.ActivityModel.Process(DreamWorkflow.Engine.Model.Approval,System.String,System.String,DreamWorkflow.Engine.IWorkflowAuthority)">
+        <member name="M:DreamWorkflow.Engine.ActivityModel.Process(DreamWorkflow.Engine.Model.Approval,System.String,DreamWorkflow.Engine.IWorkflowAuthority)">
             <summary>
             处理指定活动点
             </summary>

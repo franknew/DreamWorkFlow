@@ -1,0 +1,5 @@
+E:\AppLib\DreamWorkFlow\src\Bin\DreamWorkflow.Engine.UnitTest.dll
+E:\AppLib\DreamWorkFlow\src\Bin\DreamWorkflow.Engine.UnitTest.pdb
+E:\AppLib\DreamWorkFlow\src\DreamWorkFlow.Engine.UnitTest\obj\x86\Debug\DreamWorkFlow.Engine.UnitTest.csprojResolveAssemblyReference.cache
+E:\AppLib\DreamWorkFlow\src\DreamWorkFlow.Engine.UnitTest\obj\x86\Debug\DreamWorkflow.Engine.UnitTest.dll
+E:\AppLib\DreamWorkFlow\src\DreamWorkFlow.Engine.UnitTest\obj\x86\Debug\DreamWorkflow.Engine.UnitTest.pdb

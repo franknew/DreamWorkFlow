@@ -11,6 +11,7 @@ namespace DreamWorkflow.Engine.Form
         public List<String> IDs { get; set;}
         public string ActivityID { get; set; }
         
+        public List<String> ActivityIDs { get; set;}
         public Int32? Status { get; set; }
         
         public string Remark { get; set; }

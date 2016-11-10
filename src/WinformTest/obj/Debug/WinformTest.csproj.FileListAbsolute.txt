@@ -1,0 +1,9 @@
+E:\AppLib\DreamWorkFlow\src\WinformTest\obj\Debug\WinformTest.csprojResolveAssemblyReference.cache
+E:\AppLib\DreamWorkFlow\src\WinformTest\obj\Debug\WinformTest.Form1.resources
+E:\AppLib\DreamWorkFlow\src\WinformTest\obj\Debug\WinformTest.Properties.Resources.resources
+E:\AppLib\DreamWorkFlow\src\WinformTest\obj\Debug\WinformTest.csproj.GenerateResource.Cache
+E:\AppLib\DreamWorkFlow\src\Bin\WinformTest.exe.config
+E:\AppLib\DreamWorkFlow\src\Bin\WinformTest.exe
+E:\AppLib\DreamWorkFlow\src\Bin\WinformTest.pdb
+E:\AppLib\DreamWorkFlow\src\WinformTest\obj\Debug\WinformTest.exe
+E:\AppLib\DreamWorkFlow\src\WinformTest\obj\Debug\WinformTest.pdb

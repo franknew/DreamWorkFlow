@@ -12,12 +12,14 @@ namespace DreamWorkflow.Engine.Form
         public List<String> Creators { get; set;}
         public string ActivityAuthDefinitionID { get; set; }
         
+        public List<String> ActivityAuthDefinitionIDs { get; set;}
         public string Type { get; set; }
         
         public string Value { get; set; }
         
         public string ActivityID { get; set; }
         
+        public List<String> ActivityIDs { get; set;}
         public string WorkflowID { get; set; }
         
         public List<String> WorkflowIDs { get; set;}

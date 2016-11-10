@@ -11,21 +11,25 @@ namespace DreamWorkflow.Engine.Core
 {
     public class DisagreeProcessAction : IProcessAction
     {
-        public void Process(ActivityModel activity, Approval approval, string taskid, string processor, IWorkflowAuthority auth)
+        public void Process(ActivityModel activity, Approval approval, string processor, IWorkflowAuthority auth)
         {
             if (approval == null) throw new Exception("审批意见不能为null");
             if (string.IsNullOrEmpty(approval.Remark)) throw new Exception("审批意见不能为空");
             //已经处理过就不能再处理
-            if (activity.Value.Status == (int)ActivityProcessStatus.Processed)
-            {
-                return;
-            }
+            if (activity.Value.Status == (int)ActivityProcessStatus.Processed) return;
             ISqlMapper mapper = MapperHelper.GetMapper();
             ActivityDao activitydao = new ActivityDao(mapper);
             TaskDao taskdao = new TaskDao(mapper);
             activity.Value.Status = (int)ActivityProcessStatus.Started;
             activity.Value.ProcessTime = DateTime.Now;
             activity.Value.LastUpdator = processor;
+
+            //设置当前活动点状态
+            activitydao.Update(new ActivityUpdateForm
+            {
+                Entity = new Activity { Status = activity.Value.Status, ProcessTime = activity.Value.ProcessTime, LastUpdator = activity.Value.LastUpdator },
+                ActivityQueryForm = new ActivityQueryForm { ID = activity.Value.ID }
+            });
             //新增审批意见
             if (approval != null)
             {
@@ -34,31 +38,25 @@ namespace DreamWorkflow.Engine.Core
                 approval.ActivityID = activity.Value.ID;
                 approval.WorkflowID = activity.Value.WorkflowID;
                 ad.Add(approval);
+                activity.OwnerWorkflow.Approval.Add(approval);
             }
             //处理当前流程所有任务，设置为已处理
-            var task = taskdao.Query(new TaskQueryForm { ID = taskid }).FirstOrDefault();
-            if (task != null)
+            var task = activity.GetUserProcessingTask(processor);
+            if (task == null) throw new Exception("环节中没有你的任务，无法进行审批操作");
+            task.ProcessTime = DateTime.Now;
+            task.Status = (int)TaskProcessStatus.Processed;
+            task.LastUpdator = processor;
+            taskdao.Update(new TaskUpdateForm
             {
-                task.ProcessTime = DateTime.Now;
-                task.Status = (int)TaskProcessStatus.Processed;
-                task.LastUpdator = processor;
-                taskdao.Update(new TaskUpdateForm
-                {
-                    Entity = new Task { ProcessTime = task.ProcessTime, Status = task.Status, LastUpdator = task.LastUpdator },
-                    TaskQueryForm = new TaskQueryForm { ActivityID = task.ActivityID },
-                });
-            }
-            //设置当前活动点状态
-            activitydao.Update(new ActivityUpdateForm
-            {
-                Entity = new Activity { Status = activity.Value.Status, ProcessTime = activity.Value.ProcessTime, LastUpdator = activity.Value.LastUpdator },
-                ActivityQueryForm = new ActivityQueryForm { ID = activity.Value.ID }
+                Entity = new Task { ProcessTime = task.ProcessTime, Status = task.Status, LastUpdator = task.LastUpdator },
+                TaskQueryForm = new TaskQueryForm { ActivityID = task.ActivityID },
             });
             //把所有活动点的状态清空
+            activity.OwnerWorkflow.Root.GetList().ForEach(t => t.Value.Status = activity.Value.Status);
             activitydao.Update(new ActivityUpdateForm
             {
                 Entity = new Activity { Status = activity.Value.Status },
-                ActivityQueryForm = new ActivityQueryForm {  WorkflowID = activity.Value.WorkflowID }
+                ActivityQueryForm = new ActivityQueryForm { WorkflowID = activity.Value.WorkflowID }
             });
             activity.OwnerWorkflow.Root.Value.Status = (int)ActivityProcessStatus.Processing;
             var root = activity.OwnerWorkflow.Root;
@@ -78,6 +76,7 @@ namespace DreamWorkflow.Engine.Core
                 Status = (int)TaskProcessStatus.Started,
                 Creator = processor,
             };
+            root.Tasks.Add(roottask);
             taskdao.Add(roottask);
         }
     }

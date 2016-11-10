@@ -11,10 +11,13 @@ namespace DreamWorkflow.Engine.Form
         public List<String> IDs { get; set;}
         public string LinkDefinitionID { get; set; }
         
+        public List<String> LinkDefinitionIDs { get; set;}
         public string FromActivityID { get; set; }
         
+        public List<String> FromActivityIDs { get; set;}
         public string ToAcivityID { get; set; }
         
+        public List<String> ToAcivityIDs { get; set;}
         public List<String> Creators { get; set;}
         public UInt64? Passed { get; set; }
         

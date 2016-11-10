@@ -11,6 +11,7 @@ namespace DreamWorkflow.Engine.Form
         public List<String> IDs { get; set;}
         public string ActivityID { get; set; }
         
+        public List<String> ActivityIDs { get; set;}
         public List<String> Creators { get; set;}
         public string Remark { get; set; }
         
@@ -26,6 +27,7 @@ namespace DreamWorkflow.Engine.Form
         
         public string UserID { get; set; }
         
+        public List<String> UserIDs { get; set;}
         public string Title { get; set; }
         
         public string WorkflowID { get; set; }
